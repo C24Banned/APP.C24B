@@ -1,0 +1,58 @@
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Utils" as u;
+
+//
+@use "@unite/scss/design/ColorTheme" as tm;
+@use "@unite/scss/design/ColorVars" as cl;
+@use "@unite/scss/design/ColorUtils" as cu;
+
+//
+@layer ui-shape-select {
+    .ui-shape-selector {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        block-size: max-content;
+        min-block-size: 4rem;
+
+        //
+        .ui-shape-frame {
+            block-size: 3rem;
+            inline-size: 3rem;
+            border-radius: 0.5rem;
+            place-content: center;
+            place-items: center;
+            padding: 0.33rem;
+
+            //
+            &:has(:checked) {
+                outline: solid 0.125rem var(--current-glyph-color);
+            }
+
+            //
+            .ui-shape {
+                display: flex;
+                position: relative;
+                pointer-events: auto;
+                inline-size: 100%;
+                block-size: 100%;
+                place-content: center;
+                place-items: center;
+
+                max-block-size: none;
+                max-inline-size: none;
+
+                cursor: pointer;
+                background-color: var(--current-glyph-color);
+
+                //
+                input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+            }
+        }
+
+    }
+};

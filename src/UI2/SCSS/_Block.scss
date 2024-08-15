@@ -1,0 +1,168 @@
+@use "@unite/scss/design/ColorVars" as cl;
+@use "@unite/scss/design/ColorUtils" as cu;
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Utils" as u;
+
+//
+@layer ui-decors {
+    .ui-block-decor {
+        @include cm.no-wrap;
+
+        //
+        position: relative;
+        inline-size: stretch;
+        container-type: normal;
+        contain: none;
+
+        //
+        max-block-size: stretch;
+        min-inline-size: max-content;
+        pointer-events: none;
+
+        //
+        --decor-size: 2.8rem;
+
+        //
+        display: grid;
+        box-sizing: border-box;
+        place-content: center;
+        place-items: center;
+
+        //
+        grid-template-columns: minmax(var(--decor-size), max-content) minmax(0px, 1fr) minmax(var(--decor-size), max-content);
+        grid-template-rows: minmax(var(--decor-size), max-content);
+        block-size: max-content;
+        min-block-size: max-content;
+
+        //
+        padding: 0px;
+        margin: 0px;
+        cursor: pointer;
+        overflow: visible;
+
+        //
+        justify-content: space-between;
+
+        //
+        & > :where(*) {
+            @include cm.no-wrap;
+
+            //
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            max-inline-size: none;
+            max-block-size: none;
+
+            //
+            pointer-events: none;
+            place-items: center;
+            place-content: center;
+
+            //
+            min-inline-size: max-content;
+            min-block-size: max-content;
+
+            //
+            box-sizing: border-box;
+            background-clip: border-box;
+            background-origin: content-box;
+            background-color: transparent;
+            background-image: none;
+            padding-inline: calc(var(--decor-size) * 0.3);
+            padding-block: calc(var(--decor-size) * 0.3);
+            overflow: visible;
+        }
+
+        & > *:where([data-place="label"], :not([data-place])) {
+            @include cm.no-wrap;
+
+            //
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            padding-inline: calc(var(--decor-size) * 0.2);
+
+            //
+            text-align: start;
+            justify-self: start;
+            justify-content: start;
+            justify-items: start;
+        }
+
+        //
+        & > *[data-place="element"] {
+            //
+            pointer-events: none;
+            place-content: center;
+            place-items: center;
+
+            //
+            min-inline-size: max-content;
+            inline-size: max-content;
+            max-inline-size: stretch;
+            aspect-ratio: auto;
+
+            justify-self: end;
+        }
+
+        //
+        & > *[data-place="icon"] {
+            color: var(--current-glyph-color);
+            aspect-ratio: 1 / 1;
+            max-inline-size: var(--decor-size);//calc(var(--decor-size) * 1.333);
+            max-block-size: var(--decor-size);//calc(var(--decor-size) * 1.333);
+
+            justify-self: start;
+        }
+
+        //
+        & > *[data-place="icon"] {
+            grid-column: 1 / 1 span;
+            grid-row: 1 / 1 span;
+        }
+
+        & > *[data-place="element"] {
+            grid-column: 3 / 3 span;
+            grid-row: 1 / 1 span;
+        }
+
+        & > *:where([data-place="label"], :not([data-place])) {
+            grid-column: 2 / 2 span;
+            grid-row: 1 / 1 span;
+        }
+
+        //
+        &.layout-alt {
+            grid-template-columns: minmax(var(--decor-size), max-content) minmax(0px, 1fr);
+            grid-template-rows: minmax(var(--decor-size), max-content) minmax(var(--decor-size), max-content);
+            overflow: visible;
+
+            //
+            min-block-size: max-content;
+            //block-size: 9rem;
+
+            //
+            & > *[data-place="icon"] {
+                grid-column: 1 / 1 span;
+                grid-row: 1 / 1 span;
+                justify-self: start;
+            }
+
+            & > *[data-place="element"] {
+                grid-column: 1 / 2 span;
+                grid-row: 2 / 2 span;
+                justify-self: start;
+                align-self: start;
+            }
+
+            & > *:where([data-place="label"], :not([data-place])) {
+                grid-column: 2 / 2 span;
+                grid-row: 1 / 1 span;
+                justify-self: start;
+            }
+        }
+    };
+};

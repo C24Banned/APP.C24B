@@ -1,0 +1,27 @@
+@use "./Common" as c;
+
+//
+$XOVerbenaExternal:
+    url("@assets/fonts/ttf/XO_Verbena_Nu.ttf") format("truetype");
+
+//
+$XOVerbenaLocal: local("XO Verbena");
+$XOVerbenaFallback: local("Verdana");
+
+//
+@font-face {
+    /* webpackIgnore: true */
+    src: #{$XOVerbenaLocal}, #{$XOVerbenaExternal}, #{$XOVerbenaFallback};
+    font-weight : 200 400;
+    font-display: auto;
+    font-family : "XO Verbena";
+    font-style  : normal;
+}
+
+//
+@mixin applyFont($font-size: 12px) {
+    font-family: "XO Verbena", "Verdana";
+
+    //
+    @include c.fontStyle($font-size);
+}

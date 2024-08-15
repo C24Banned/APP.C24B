@@ -1,0 +1,22 @@
+{
+    tasks: {
+        settings: "Настройки",
+        wallpapers: "Обои",
+        manager: "Обои"
+    },
+    settings: {
+        columns: "Ряды: ",
+        rows: "Строки: ",
+        scaling: "Масштаб: ",
+        theme: "Тема: ",
+        iconShape: "Форма: ",
+
+        //
+        display_desc: "Настройки отображения: ",
+        design_desc: "Настройки дизайна: ",
+        grid_layout_desc: "Настройки разметки: ",
+    },
+    manager: {
+        
+    }
+}

@@ -1,0 +1,74 @@
+@use "@unite/scss/core/CMixins" as cm;
+
+//
+@layer ui-editor {
+    //
+    .ui-editor {//
+        inline-size: 100%;
+
+        //
+        pointer-events: auto;
+        place-content: center;
+        place-items: center;
+
+        //
+        display: grid;
+        z-index: 999999;
+        overflow: hidden;
+        align-self: start;
+
+        //
+        inset: 0px;
+        inset-block-start: auto;
+
+        //
+        grid-row: field-edit;
+
+        //
+        box-shadow: 0px 0px 1rem 1px #00000070;
+
+        //
+        grid-template-columns: minmax(0px, 1fr) minmax(3rem, max-content) minmax(3rem, max-content);
+        grid-template-rows: minmax(3rem, max-content);
+
+        //
+        max-block-size: 3rem;
+        min-block-size: 3rem;
+        block-size: max-content;
+
+        //
+        :where(.field-copy, .field-paste) {//
+            inline-size: 100%;
+
+            //
+            place-items: center;
+            place-content: center;
+
+            //
+            display: flex;
+            padding: 1rem;
+            block-size: 3rem;
+
+            //
+            pointer-events: auto;
+            border-radius: 0px;
+
+            //
+            cursor: pointer;
+        }
+
+        //
+        input {//
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            pointer-events: auto;
+            user-select: auto;
+
+            //
+            font-size: 1.3rem;
+            padding-inline: 1rem;
+        }
+    }
+};

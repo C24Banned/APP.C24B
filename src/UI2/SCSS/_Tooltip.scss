@@ -1,0 +1,59 @@
+@use "@unite/scss/design/ColorVars" as cl;
+@use "@unite/scss/design/ColorUtils" as cu;
+@use "@unite/scss/design/ColorTheme";
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Utils" as u;
+
+//
+@layer ui-tooltip {
+    .ui-tooltip {
+        inset: 0px;
+
+        //
+        inset-inline-end: auto;
+        inset-block-end: auto;
+
+        //
+        place-self: start;
+
+        //
+        position: fixed;
+        padding: 0.5rem;
+        overflow: hidden;
+        border-radius: 0.125rem;
+        box-sizing: border-box;
+
+        //
+        pointer-events: none;
+
+        //
+        place-items: center;
+        place-content: center;
+
+        //
+        z-index: 99999;
+        font-size: 0.8rem;
+
+        //
+        --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - calc(50cqi - 50%));
+        --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - calc(50cqb - 50%));
+
+        //
+        --translate-x: clamp(0px, calc(calc(50cqi - 50%) + var(--rx)), calc(100cqi - 100%));
+        --translate-y: clamp(0px, calc(calc(50cqb - 50%) + var(--ry)), calc(100cqb - 100%));
+
+        //
+        transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale, 1));
+        outline: solid 0.5px oklch(from var(--current-glyph-color) l c h / 0.125);
+
+        //
+        @include u.clamped-width(max-content, max-content, 80cqi);
+        @include u.clamped-height(max-content, max-content, 80cqb);
+
+        //
+        @media screen and (hover: none) and (pointer: coarse) {
+            --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - 50cqi);
+            --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - 50cqb);
+        }
+    }
+};

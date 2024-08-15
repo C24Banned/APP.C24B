@@ -1,0 +1,22 @@
+{
+    tasks: {
+        settings: "Settings",
+        wallpapers: "Wallpapers",
+        manager: "Wallpapers"
+    },
+    settings: {
+        columns: "Columns: ",
+        rows: "Rows: ",
+        scaling: "Scaling: ",
+        theme: "Theme: ",
+        iconShape: "Icon Shape: ",
+
+        //
+        display_desc: "Display Settings: ",
+        design_desc: "Design Settings: ",
+        grid_layout_desc: "Grid Layout Settings: ",
+    },
+    manager: {
+        
+    }
+}

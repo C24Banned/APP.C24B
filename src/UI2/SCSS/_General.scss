@@ -1,0 +1,67 @@
+@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Detector" as d;
+
+//
+@use "@unite/scss/design/ColorVars" as cl;
+@use "@unite/scss/design/ColorUtils" as cu;
+@use "@unite/scss/design/ColorTheme" as tm;
+
+
+//
+@property --titlebar-size {
+    syntax: "<length-percentage>";
+    initial-value: 0px;
+    inherits: true;
+}
+
+//
+@property --status-size {
+    syntax: "<length-percentage>";
+    initial-value: 0px;
+    inherits: true;
+}
+
+//
+@property --height-adjust {
+    syntax: "<length-percentage>";
+    initial-value: 0px;
+    inherits: true;
+}
+
+//
+// titlebar == titlebar (desktop) | navbar (mobile) | taskbar (mobile)
+// status   == 0px      (desktop) | status (mobile)
+
+//
+@mixin whenDesktop {
+    --status-size: 0px;
+};
+
+//
+@mixin whenMobile {
+    // when hover/gesture option is not enabled
+    --height-adjust: var(--taskbar-size, 0px);
+};
+
+//
+@layer ui-general {
+
+    //
+    body {
+        --taskbar-size: 3rem;
+        --titlebar-size: 3rem;
+        --status-size: max(env(safe-area-inset-top, 0px), 2rem);
+        --height-adjust: 0px;//var(--taskbar-size, 0px);
+
+        //
+        @media #{d.$isMobile} { @include whenMobile; }
+        @media #{d.$isDesktop} { @include whenDesktop; }
+    }
+
+    :where(.icon-wrap) {
+        will-change: auto;
+        transform: none;
+    }
+
+};

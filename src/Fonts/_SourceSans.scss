@@ -1,0 +1,27 @@
+@use "./Common" as c;
+
+//
+$SourceSansExternal:
+    url("@assets/fonts/variable/SourceSans3VF-Italic.otf.woff2") format("woff2"),
+    url("@assets/fonts/variable/SourceSans3VF-Italic.otf.woff") format("woff");
+
+//
+$SourceSansLocal: local("Source Sans"), local("Source Sans Pro");
+
+//
+@font-face {
+    /* webpackIgnore: true */
+    src: #{$SourceSansLocal}, #{$SourceSansExternal};
+    font-weight : 200 400;
+    font-display: auto;
+    font-family : "Source Sans";
+    font-style  : normal;
+}
+
+//
+@mixin applyFont($font-size: 12px) {
+    font-family: "Source Sans", "Source Sans Pro", sans-serif;
+
+    //
+    @include c.fontStyle($font-size);
+}

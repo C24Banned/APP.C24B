@@ -1,0 +1,93 @@
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/Detector" as d;
+
+//
+@use "@unite/scss/design/ColorTheme";
+
+//
+@layer ui-settings {
+    //
+    #settings {
+
+        .ui-space {
+            padding-inline: 1rem;
+            padding-block: 1rem;
+        }
+
+        //
+        .form-wrap {
+            //inset-inline: 1rem;
+            //inline-size: calc(100% - 2rem);
+            inline-size: 100%;
+            max-inline-size: 100cqi;
+            min-inline-size: none;
+
+            block-size: max-content;
+            min-block-size: max-content;
+            max-block-size: none;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            container-type: normal;
+            contain: none;
+            //padding-inline: 0.5rem;
+            //padding-block-end: 0.5rem;
+        }
+
+        //
+        .form-description {
+            @include cm.no-wrap;
+            align-self: start;
+
+            //
+            inline-size: 100%;
+            block-size: 100%;
+            min-block-size: max-content;
+
+            //
+            pointer-events: none;
+            place-content: center;
+            place-items: center;
+
+            //
+            display: flex;
+            padding: 2rem;
+            opacity: 0.6;
+            padding-block-end: 0.5rem;
+            padding-inline: min(2rem, 5cqi);
+            font-size: 0.8rem;
+
+            //
+            justify-content: start;
+
+            //
+            background-color: var(--current-surface-color);
+        }
+
+        //
+        .opt-label {
+            @include cm.no-wrap;
+
+            //
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            pointer-events: none;
+            place-content: center;
+            place-items: center;
+
+            //
+            text-align: start;
+            justify-self: start;
+            justify-content: start;
+            justify-items: start;
+
+            //
+            display: flex;
+        }
+    }
+}

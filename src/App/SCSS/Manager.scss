@@ -1,0 +1,89 @@
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/Detector" as d;
+
+//
+@use "@unite/scss/design/ColorTheme" as tm;
+
+//
+@layer ui-manager {
+    //
+    #manager {
+        //
+        .file-list {
+            @include cm.no-wrap;
+
+            //
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            pointer-events: none;
+            place-content: center;
+            place-items: center;
+
+            //
+            display: grid;
+            grid-template-columns: minmax(0px, 2rem) minmax(0px, 1fr) minmax(0px, max-content);
+            grid-auto-rows: minmax(0px, 2rem);
+            gap: 0rem 1rem;
+            font-size: 0.7rem;
+
+            //
+            align-content: start;
+
+            //
+            .file {
+                @include cm.no-wrap;
+
+                //
+                inline-size: 100%;
+                block-size: 100%;
+
+                //
+                place-content: center;
+                place-items: center;
+                pointer-events: auto;
+
+                //
+                cursor: pointer;
+
+                //
+                display: grid;
+                padding-inline: 1rem;
+
+                //
+                grid-template-columns: subgrid;
+                grid-template-rows: minmax(0px, 1fr);
+                grid-column: 1 / -1;
+
+                //
+                & * {
+                    background-color: transparent;
+                    @include cm.no-wrap;
+                }
+
+                //
+                &.selected {
+                    @include tm.ux-inverse;
+                }
+
+                //
+                & .name {
+                    text-align: start;
+                    justify-self: start;
+                }
+
+                //
+                & > * {
+                    inline-size: max-content;
+                    block-size: max-content;
+
+                    //
+                    max-inline-size: stretch;
+                    max-block-size: stretch;
+                }
+            }
+        }
+    }
+}

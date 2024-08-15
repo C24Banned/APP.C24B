@@ -1,0 +1,188 @@
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Utils" as u;
+
+//
+@use "@unite/scss/design/ColorTheme" as tm;
+@use "@unite/scss/design/ColorVars" as cl;
+@use "@unite/scss/design/ColorUtils" as cu;
+
+//
+@property --value-mod {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+//
+@layer ui-inputs {
+    :where(.ui-switch) {
+        @include u.clamped-width(max-content, 6rem, 6rem);
+        @include u.clamped-height(max-content, 1.8rem, 1.8rem);
+        direction: ltr;
+
+        //
+        --thumb-size: 1.25rem;
+        --value-mod: 0;
+
+        //
+        place-items: center;
+        place-content: center;
+        container-type: size;
+        contain: none;
+        display: grid;
+        pointer-events: auto;
+
+        //
+        transition: --value-mod 100ms linear;
+
+        //
+        grid-template-columns:
+            [space-l] calc(var(--thumb-size) * 0.5)
+            [fillT] calc((100% - var(--thumb-size)) * var(--value-mod))
+            [track] minmax(0px, 1fr)
+            [space-r] calc(var(--thumb-size) * 0.5);
+        grid-template-rows: minmax(0px, 1fr);
+
+        //
+        overflow: visible;
+        position: relative;
+        border-radius: 0.25rem;
+        box-sizing: border-box;
+        aspect-ratio: 1 / 1;
+
+        //
+        background-color: transparent;
+        accent-color: var(--current-glyph-color);
+        color: var(--current-glyph-color);
+
+        //
+        & * { background-color: transparent; }
+        &::after { grid-column: space-r; }
+        &::before { grid-column: space-l; }
+
+        //
+        &:where(::after, ::before) {//
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            content: "";
+            display: block;
+            grid-row: 1 / 1 span;
+        }
+
+        //
+        .thumb { pointer-events: none; background-color: var(--current-surface-color); z-index: 9; direction: ltr; }
+        .icon-sign {
+            direction: ltr;
+            place-items: center;
+            place-content: center;
+            pointer-events: none;
+
+            //
+            justify-self: start;
+            grid-column: track;
+            grid-row: 1 / 1 span;
+
+            //
+            translate: calc(0px - 50%) 0px 0px;
+
+            //
+            padding: 0.125rem;
+            display: flex;
+            stroke: var(--current-glyph-color);
+
+            //
+            border-radius: calc(var(--thumb-size) * 0.45);
+
+            //
+            inline-size: var(--thumb-size);
+            block-size: 110cqmin;
+            max-inline-size: var(--thumb-size);
+            max-block-size: 110cqmin;
+
+            //
+            & > * {//
+                direction: ltr;
+                inline-size: 100%;
+                block-size: 100%;
+                stroke-width: 0.25rem;
+                position: relative;
+                inset: 0px;
+                translate: 0px 0px 0px;
+                stroke: var(--current-glyph-color);
+            }
+        }
+
+        //
+        & :where(.fill, .track) {
+            inset: 0px;
+            transition: inline-size 100ms linear;
+            pointer-events: none;
+            grid-row: 1 / 1 span;
+
+            //
+            background-color: var(--current-surface-color);
+            direction: ltr;
+        }
+
+        //
+        & .fill {//
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            border-radius: 0.25rem;
+            grid-column: 2 / 2;
+            z-index: 1;
+        }
+
+        //
+        & .track {//
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            grid-column: 3 / 3;
+            border-radius: 0.25rem;
+            z-index: 2;
+        }
+
+        //
+        input[type="range"]::-moz-range-thumb,
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            block-size: stretch;
+            inline-size: var(--thumb-size);
+
+            //
+            touch-action: manipulation;
+            -webkit-user-drag: auto;
+            -moz-user-drag: auto;
+            user-select: none;
+
+            direction: ltr;
+        }
+
+        //
+        input {//
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            padding: 0px;
+            border: none 0px transparent;
+            position: relative;
+            pointer-events: auto;
+
+            //
+            grid-column: 1 / 4 span;
+            grid-row: 1 / 1 span;
+
+            //
+            opacity: 0;
+            cursor: pointer;
+            direction: ltr;
+        }
+    }
+};

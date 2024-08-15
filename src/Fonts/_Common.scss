@@ -1,0 +1,11 @@
+
+//
+@mixin fontStyle($font-size: 12px) {
+    font-optical-sizing: auto            ;
+    font-style  : normal                 ;
+    font-weight : normal                 ;
+    font-size   : #{$font-size}          ;
+    line-height : normal                 ;
+    font-variant: common-ligatures normal;
+    font-stretch: ultra-condensed        ;
+}

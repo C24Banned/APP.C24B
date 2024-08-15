@@ -1,0 +1,28 @@
+@use "./Common" as c;
+
+//
+$XOOrielExternal:
+    url("@assets/fonts/woff/XO_Oriel_Nu.woff2") format("woff2"),
+    url("@assets/fonts/woff/XO_Oriel_Nu.woff") format("wofff");
+
+//
+$XOOrielLocal: local("XO Oriel");
+$XOOrielFallback: local("Arial");
+
+//
+@font-face {
+    /* webpackIgnore: true */
+    src: #{$XOOrielLocal}, #{$XOOrielExternal}, #{$XOOrielFallback};
+    font-weight : 200 400;
+    font-display: auto;
+    font-family : "XO Oriel";
+    font-style  : normal;
+}
+
+//
+@mixin applyFont($font-size: 12px) {
+    font-family: "XO Oriel", "Arial";
+
+    //
+    @include c.fontStyle($font-size);
+}

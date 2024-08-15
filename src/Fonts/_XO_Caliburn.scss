@@ -1,0 +1,27 @@
+@use "./Common" as c;
+
+//
+$XOCaliburnExternal:
+    url("@assets/fonts/woff/XO_Caliburn_Nu.woff") format("woff");
+
+//
+$XOCaliburnLocal: local("XO Caliburn");
+$XOCaliburnFallback: local("Calibri"), local("Carlito");
+
+//
+@font-face {
+    /* webpackIgnore: true */
+    src: #{$XOCaliburnLocal}, #{$XOCaliburnExternal}, #{$XOCaliburnFallback};
+    font-weight : 200 400;
+    font-display: auto;
+    font-family : "XO Caliburn";
+    font-style  : normal;
+}
+
+//
+@mixin applyFont($font-size: 12px) {
+    font-family: "XO Caliburn", Calibri, Carlito, Caliburn, Seravek, 'Gill Sans Nova', Ubuntu, 'DejaVu Sans', Candara, Segoe, "Segoe UI", Optima, source-sans-pro, sans-serif;
+
+    //
+    @include c.fontStyle($font-size);
+}

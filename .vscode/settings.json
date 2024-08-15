@@ -1,0 +1,19 @@
+{
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "cSpell.words": [
+        "IPFS",
+        "OPFS",
+        "Tuya"
+    ],
+    "alias-tool.mappings": {
+        "@": "${folder}",
+        "@idc": "${folder}/src",
+        "@unite": "${folder}/unite",
+    },
+    "path-autocomplete.pathMappings": {
+        "@": "${folder}",
+        "@idc": "${folder}/src",
+        "@unite": "${folder}/unite",
+    },
+    "i18n-ally.localesPaths": []
+}

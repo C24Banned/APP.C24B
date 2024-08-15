@@ -1,0 +1,42 @@
+name: IDC-L2 WebApp Package (Deploy)
+
+on:
+  push:
+    branches: [ "unite" ]
+  pull_request:
+    branches: [ "unite" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install
+      run: |
+        git submodule sync --recursive
+        npm install --include=dev
+        npm install -g vite
+
+    - name: Build
+      run: |
+        npm run build
+
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v4
+      with:
+        name: webapp-package
+        path: webapp
+        retention-days: 14

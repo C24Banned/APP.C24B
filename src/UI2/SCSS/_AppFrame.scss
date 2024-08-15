@@ -1,0 +1,293 @@
+@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Detector" as d;
+
+//
+@use "@unite/scss/design/ColorVars" as cl;
+@use "@unite/scss/design/ColorUtils" as cu;
+@use "@unite/scss/design/ColorTheme" as tm;
+
+//
+// titlebar == titlebar (desktop) | navbar (mobile) | taskbar (mobile)
+// status   == 0px      (desktop) | status (mobile)
+
+//
+@layer ui-app-frame {
+    //
+    @mixin maximized {
+        display: contents;
+
+        //
+        & :where(.ui-title-label, .ui-titlebar) {
+            display: none;
+        }
+
+        //
+        & .ui-content {
+            z-index: calc(999 + var(--z-index, 0));
+        }
+    };
+
+    //
+    @mixin whenDesktop {
+        border-radius: 0.25rem;
+        box-shadow: 0px 0px 1rem 1px #00000070;
+
+        //
+        //--status-size: 0px;
+
+        //
+        @include u.clamped-width(min(64rem, 100cqi), calc(80rem + var(--resize-x, 0) * var(--zpx, 1px)), 100cqi);
+        @include u.clamped-height(min(36rem, 100cqb), calc(45rem + var(--resize-y, 0) * var(--zpx, 1px)), calc(100cqb - var(--height-adjust, 0px)));
+    };
+
+    //
+    @mixin whenMobile {
+        padding-block-end: 0px;
+        grid-template-rows:
+            [status] minmax(0px, var(--status-size))
+            [content-b] minmax(0px, 1fr)
+            [titlebar] minmax(0px, var(--titlebar-size));
+
+        //
+        .ui-titlebar {
+            display: none;
+        }
+    };
+
+    //
+    .ui-app-frame {
+        direction: ltr;
+
+        //
+        inline-size: 100%;
+        block-size: 100%;
+
+        //
+        pointer-events: auto;
+        place-content: center;
+        place-items: center;
+
+        //
+        //--titlebar-size: 3rem;
+        //--status-size: max(env(safe-area-inset-top, 0px), 2rem);
+
+        //
+        --rx: calc(var(--drag-x, 0) * var(--zpx, 1px));
+        --ry: calc(var(--drag-y, 0) * var(--zpx, 1px));
+
+        //
+        --translate-x: clamp(0px, var(--rx, 0px), calc(100cqi - 100%));
+        --translate-y: clamp(0px, var(--ry, 0px), calc(calc(100cqb - var(--height-adjust, 0px)) - 100%));
+
+        //
+        outline: solid 0.25px oklch(from var(--current-glyph-color) l c h / 0);
+        transition: outline-color 200ms;
+
+        //
+        transform: translate3d(var(--translate-x), var(--translate-y), 0px) scale3d(var(--scale, 1), var(--scale, 1), 1);
+
+        //
+        will-change:
+            inline-size,
+            block-size,
+            transform,
+            contents,
+            --rx, --ry,
+            --drag-x, --drag-y,
+            --resize-x, --resize-y,
+            --translate-x, --translate-y;
+
+        //
+        overflow: hidden;
+        position: fixed;
+
+        //
+        inset: 0px;
+        z-index: calc(999 + var(--z-index, 0));
+        display: grid;
+
+        //
+        place-self: start;
+        inset-block-end: auto;
+        inset-inline-end: auto;
+
+        //
+        contain: content;
+        container-type: size;
+        container-name: ui-windowed;
+        box-sizing: border-box;
+
+        //
+        font-size: 0.9rem;
+
+        //
+        grid-template-columns:
+            [menu-button] minmax(var(--titlebar-size), max-content)
+            [title-label] minmax(0px, 1fr)
+            [back-button] minmax(var(--titlebar-size), max-content);
+
+        //
+        grid-template-rows:
+            [titlebar] minmax(0px, var(--titlebar-size))
+            [content-b] minmax(0px, 1fr)
+            [status] minmax(0px, var(--status-size));
+
+        //
+        &:has(*:target) { z-index: 1399; }
+        & > :where(*) { inline-size: 100%; block-size: 100%; }
+
+        //
+        &:not(.ui-detached) { @include maximized(); }
+        &:not(:has(.ui-content)) { display: none; }
+        &:hover {
+            outline: solid 0.5px oklch(from var(--current-glyph-color) l c h / 0.125);
+        }
+
+        //
+        & > :where(.ui-resize) {
+            position: absolute;
+            inset: auto;
+            inset-inline-end: 0px;
+            inset-block-end: 0px;
+            inline-size: 1rem;
+            block-size: 1rem;
+
+            //
+            background-color: transparent;
+            cursor: nwse-resize;
+        }
+
+        //
+        & > :where(.ui-titlebar) {
+            @include cm.no-wrap;
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            direction: ltr;
+
+            //
+            pointer-events: auto;
+            place-content: center;
+            place-items: center;
+
+            //
+            grid-row: titlebar;
+            grid-column: 1 / 3 span;
+            grid-template-columns: subgrid;
+            grid-template-rows: minmax(0px, 1fr);
+            display: grid;
+
+            //
+            gap: 0px;
+
+            //
+            box-sizing: border-box;
+            //block-size: var(--titlebar-size);
+
+            //
+            align-items: end;
+            min-block-size: max-content;
+
+            //
+            & > :where(*) {
+                inline-size: 100%;
+                block-size: 100%;
+
+                //
+                pointer-events: none;
+                place-content: center;
+                place-items: center;
+
+                //
+                display: flex;
+                padding: 1rem;
+                grid-row: 1 / 1 span !important;
+            }
+
+            //
+            & > :where(.back-button, .menu-button) {
+                padding: 0.75rem;
+                cursor: pointer;
+                aspect-ratio: 1 / 1;
+                pointer-events: auto;
+                direction: ltr;
+
+                //
+                max-inline-size: var(--titlebar-size);
+                max-block-size: var(--titlebar-size);
+            }
+        };
+
+        //
+        & :where(.ui-titlebar > .ui-title-handle, .ui-title-label) {
+            @include cm.no-wrap;
+
+            //
+            grid-row: titlebar;
+            grid-column: 1 / 2 span;
+
+            //
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            pointer-events: none;
+
+            //
+            text-align: start;
+            justify-self: start;
+            justify-content: start;
+            justify-items: start;
+
+            //
+            align-self: center;
+            align-items: center;
+            align-content: center;
+
+            //
+            display: flex;
+            gap: 1rem;
+
+            //
+            flex-direction: row;
+            padding: 0.5rem;
+            padding-inline: 1rem;
+            min-inline-size: max-content;
+            cursor: move;
+
+            //
+            font-weight: 600;
+            font-size: 1rem;
+
+            //
+            .ui-icon {
+                inline-size: max-content;
+                block-size: max-content;
+
+                max-inline-size: 1.25rem;
+                max-block-size: 1.25rem;
+            }
+        };
+
+        //
+        & :where(.ui-title-handle) {
+            pointer-events: auto !important;
+        }
+
+        //
+        & :where(.ui-title-label) {
+            pointer-events: none;
+        }
+
+        //
+        & > .ui-status  { grid-row: status;    grid-column: 1 / 3 span; };
+        & > .ui-content { grid-row: content-b; grid-column: 1 / 3 span; };
+
+        //
+        @media #{d.$isMobile} { @include whenMobile; };
+        @media #{d.$isDesktop} { @include whenDesktop; };
+        @container ui-windowed (width < #{d.$mobileWidth}) { @include whenMobile; };
+    };
+};

@@ -1,0 +1,23 @@
+@use "./Layers";
+
+//
+@use "./UI2/SCSS/General";
+@use "./UI2/SCSS/Block";
+@use "./UI2/SCSS/Frame";
+@use "./UI2/SCSS/ItemEdit";
+@use "./UI2/SCSS/IconEdit";
+@use "./UI2/SCSS/InputEdit";
+@use "./UI2/SCSS/Number";
+@use "./UI2/SCSS/Switch";
+@use "./UI2/SCSS/AppFrame";
+@use "./UI2/SCSS/StatusBar";
+@use "./UI2/SCSS/GridDesign";
+@use "./UI2/SCSS/Viewport";
+@use "./UI2/SCSS/Tooltip";
+@use "./UI2/SCSS/Taskbar";
+@use "./UI2/SCSS/ShapeSelect";
+
+//
+@use "./App/SCSS/ControlCenter.scss";
+@use "./App/SCSS/Settings.scss";
+@use "./App/SCSS/Manager.scss";

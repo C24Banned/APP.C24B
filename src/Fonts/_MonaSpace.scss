@@ -1,0 +1,36 @@
+@use "./Common" as c;
+
+//
+$MonaspaceExternal:
+    url("@assets/fonts/variable/MonaspaceArgonVarVF[wght,wdth,slnt].ttf") format("truetype");
+
+//
+$MonaspaceLocal:
+    local("Monaspace Argon"),
+    local("Monaspace");
+$MonaspaceFallback:
+    local("Consolas"),
+    local("Fira Code")
+    local("Roboto Mono")
+    local(monospace)
+    local("Courier New");
+
+//
+@font-face {
+    /* webpackIgnore: true */
+    src: #{$MonaspaceLocal}, #{$MonaspaceExternal}, #{$MonaspaceFallback};
+    font-family : "Monaspace";
+    font-weight : 200 400;
+    font-display: auto;
+}
+
+//
+@mixin applyFont($font-size: 12px) {
+    font-family: "Monaspace", "Monaspace Argon", "Consolas", "Fira Code", "Roboto Mono", monospace, "Courier New";
+    font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1, "ss06" 1, "ss07" 1, "ss08" 1, "calt" 1, "dlig" 1;
+    -webkit-font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1, "ss06" 1, "ss07" 1, "ss08" 1, "calt" 1, "dlig" 1;
+    -moz-font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1, "ss06" 1, "ss07" 1, "ss08" 1, "calt" 1, "dlig" 1;
+
+    //
+    @include c.fontStyle($font-size);
+}

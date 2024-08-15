@@ -1,0 +1,153 @@
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/grid/GridLayout";
+
+//
+@use "@unite/scss/design/Shape" as s;
+
+//
+@layer ui-grid {
+
+    //
+    *[data-shape="wavy"] .ui-item-design, .ui-item-design[data-shape="wavy"] {
+        --clip-amplitude: 0.06;
+        --clip-freq: 8;
+        --clip-path: #{s.Integrate("WavyFx", 100)};
+        --corrector: 1.1;
+        clip-path: var(--clip-path);
+        border-radius: calc(var(--icon-size, 100%) * 0.5);
+    }
+
+    //
+    *[data-shape="circle"] .ui-item-design, .ui-item-design[data-shape="circle"] {
+        border-radius: calc(var(--icon-size, 100%) * 0.5);
+    }
+
+    //
+    *[data-shape="tear"] .ui-item-design, .ui-item-design[data-shape="tear"] {
+        border-radius: calc(var(--icon-size, 100%) * 0.5);
+        border-end-end-radius: calc(var(--icon-size, 100%) * 0.125);
+    }
+
+    //
+    *[data-shape="square"] .ui-item-design, .ui-item-design[data-shape="square"] {
+        border-radius: calc(var(--icon-size, 100%) * 0.25);
+    }
+
+    //
+    .ui-grid-pages,
+    .ui-desktop-grid {
+        direction: ltr;
+
+        //
+        inline-size: 100%;
+        block-size: 100%;
+
+        //
+        pointer-events: auto;
+
+        //
+        --padding-h: 1rem;
+        --padding-v: 1.5rem;
+
+        //
+        overflow: visible;
+        contain: content;
+
+        //
+        padding-inline: var(--padding-h);
+        padding-block: var(--padding-v);
+
+        //
+        @media (orientation: portrait) {
+            padding-inline: var(--padding-h);
+            padding-block: var(--padding-v);
+        }
+
+        //
+        @media (orientation: landscape) {
+            padding-inline: var(--padding-v);
+            padding-block: var(--padding-h);
+        }
+    }
+
+    //
+    .ui-grid-page {
+        pointer-events: none;
+
+        //
+        --c-gap: calc(4dvmin / var(--zoom, 1));
+        --r-gap: calc(4dvmin / var(--zoom, 1));
+
+        //
+        .ux-grid-item {
+            inline-size: max-content;
+            block-size: max-content;
+            overflow: visible;
+
+            //
+            filter: drop-shadow(0px 0px 0.25rem #00000060);
+
+            //
+            &[data-dragging="true"] {
+                z-index: 99;
+            }
+        }
+
+        //
+        .ux-grid-item.ui-item-label {
+            @include cm.no-wrap;
+
+            //
+            --translate-x: 0px;
+            --translate-y: calc(var(--icon-size) * 0.5 * 1.3333);
+
+            //
+            pointer-events: none;
+            display: inline-block;
+            overflow: visible;
+
+            //
+            font-size: calc(var(--icon-size) * 0.175);
+
+            //
+            filter: drop-shadow(0px 0px 0.25rem #00000080);
+        }
+
+        //
+        .ui-item-design {
+            will-change:
+                --rx, --ry,
+                --drag-x,
+                --drag-y,
+                --resize-x,
+                --resize-y,
+                --translate-x,
+                --translate-y;
+
+            //
+            overflow: hidden;
+            pointer-events: auto;
+            cursor: pointer;
+
+            //
+            display: flex;
+            padding: calc(var(--icon-size) * 0.265 * var(--corrector));
+            --scale: var(--corrector, 1);
+            //clip-path: var(--clip-path);
+            //border-radius: calc(var(--icon-size) * 0.5);
+
+            //
+            max-inline-size: var(--icon-size);
+            max-block-size: var(--icon-size);
+
+            //
+            aspect-ratio: 1 / 1;
+            inline-size: var(--icon-size);
+            block-size: var(--icon-size);
+
+            // override by animations...
+            --translate-x: 0px;//calc(var(--drag-x, 0) * var(--zpx, 1px));
+            --translate-y: 0px;//calc(var(--drag-y, 0) * var(--zpx, 1px));
+        }
+    }
+};

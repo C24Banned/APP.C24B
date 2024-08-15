@@ -1,0 +1,33 @@
+//
+@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/CMixins" as cm;
+
+//
+@use "@unite/scss/design/ColorTheme";
+
+//
+@layer ui-icon-edit {
+    .ui-icon-edit {
+
+        //
+        button {
+            border-radius: 0.25rem;
+            padding: 1rem;
+            display: flex;
+        }
+
+        //
+        .ui-but {
+            inline-size: stretch;
+            block-size: stretch;
+
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
+            grid-template-rows: minmax(0px, max-content);
+
+            gap: 1rem;
+            padding: 0.5rem;
+        }
+
+    }
+};
