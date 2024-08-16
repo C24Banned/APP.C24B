@@ -44,6 +44,10 @@ const config = defineConfig({
     base: './',
     resolve: {
         alias: {
+            "@node_modules": path.resolve("./node_modules"),
+            "@culori": path.resolve("./node_modules/culori"),
+            "@material": path.resolve("./node_modules/@material"),
+
             "@": path.resolve("./"),
             "@src": path.resolve("src/"),
             "@idc": path.resolve("src/"),

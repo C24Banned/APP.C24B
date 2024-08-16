@@ -16,9 +16,15 @@
 //
 @layer ui-inputs {
     :where(.ui-switch) {
-        @include u.clamped-width(max-content, 6rem, 6rem);
-        @include u.clamped-height(max-content, 1.8rem, 1.8rem);
         direction: ltr;
+
+        //
+        min-inline-size: 6rem;
+        max-block-size: 2rem;
+
+        //
+        inline-size: max-content;
+        block-size: max-content;
 
         //
         --thumb-size: 1.25rem;

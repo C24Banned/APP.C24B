@@ -62,17 +62,17 @@ const files = new Map([]);
 
 //
 export const getFileList = async (exists, state)=>{
-    let wall = null;
+    let wall: any = null;
 
     //
     if (exists) { wall = exists; } else {
         const root = await navigator?.storage?.getDirectory?.();
-        wall = await root?.getDirectoryHandle?.("images");
+        wall = await root?.getDirectoryHandle?.("images", { create: true });
     }
 
     //
     const it = await wall?.entries();//getFileHandle()
-    const entries = [];
+    const entries: any[] = [];
     while (true) {
         const v = (await it.next())?.value;
         if (!v) break; entries.push(v);
