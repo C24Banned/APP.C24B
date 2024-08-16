@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "idc-lx",
-    "short_name": "IDC-LX0",
+    "name": "app.c24b.ru",
+    "short_name": "app.c24b.ru",
     "version": "canary",
     "start_url": "/",
     "author": "unit-404",
@@ -14,7 +14,7 @@
         "fullscreen",
         "standalone"
     ],
-    "description": "A readable Hacker News app.",
+    "description": "NTP PWA Application.",
     "theme_color": "#101010",
     "background_color": "#101010",
     "orientation": "any",
