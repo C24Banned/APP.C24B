@@ -56,12 +56,11 @@
         --status-size: max(env(safe-area-inset-top, 0px), 2rem);
         --height-adjust: 0px;//var(--taskbar-size, 0px);
 
+        @include dFont.applyFont(0.9rem);
+
         //
         @media #{d.$isMobile} { @include whenMobile; }
         @media #{d.$isDesktop} { @include whenDesktop; }
-
-        //
-        @include dFont.applyFont(0.9rem);
     }
 
     :where(.icon-wrap) {

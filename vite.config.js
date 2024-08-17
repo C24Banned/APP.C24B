@@ -47,6 +47,7 @@ const config = defineConfig({
             "@node_modules": path.resolve("./node_modules"),
             "@culori": path.resolve("./node_modules/culori"),
             "@material": path.resolve("./node_modules/@material"),
+            "happy-opfs": path.resolve("./node_modules/happy-opfs"),
 
             "@": path.resolve("./"),
             "@src": path.resolve("src/"),

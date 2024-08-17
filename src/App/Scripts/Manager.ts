@@ -1,5 +1,6 @@
 //
 import { pickWallpaperImage } from "@idc/State/ActionMap.ts";
+import { useFS } from "@unite/scripts/utils/Utils.ts";
 
 // Function to download data to a file
 export const downloadImage = async (file) => {
@@ -62,20 +63,15 @@ const files = new Map([]);
 
 //
 export const getFileList = async (exists, state)=>{
-    let wall: any = null;
+    const fs = await useFS();
 
     //
-    if (exists) { wall = exists; } else {
-        const root = await navigator?.storage?.getDirectory?.();
-        wall = await root?.getDirectoryHandle?.("images", { create: true });
-    }
-
-    //
-    const it = await wall?.entries();//getFileHandle()
     const entries: any[] = [];
+    const dir = await fs.readDir("/images/");
+    const it = await (dir?.unwrap?.() ?? dir);
     while (true) {
         const v = (await it.next())?.value;
-        if (!v) break; entries.push(v);
+        if (!v) break; entries.push([v.path, v.handle]);
     }
 
     //
@@ -121,27 +117,17 @@ export const useItemEv = (ev, state)=>{
 }
 
 //
-export const addItemEv = (ev, state)=>{
+export const addItemEv = async (ev, state)=>{
+    const fs = await useFS();
+
+    //
     pickWallpaperImage()
         .catch(console.warn.bind(console))
         .then(async (blob) => {
             if (blob) {
-                //
-                const root = await navigator?.storage?.getDirectory?.();
-                const wall = await root?.getDirectoryHandle?.("images");
-
-                //
-                const fn = blob?.name || "wallpaper";
-                const fw = await (await wall?.getFileHandle?.(fn, {
-                    create: true,
-                }))?.createWritable?.({
-                    keepExistingData: true
-                });
-
-                //
-                await fw?.write?.(blob);
-                await fw?.flush?.();
-                await fw?.close?.();
+                const fn = (blob?.name || "wallpaper");
+                await fs.mkdir("/images/");
+                await fs.writeFile("/images/" + fn, blob);
 
                 //
                 files.set(fn, blob);
@@ -151,20 +137,22 @@ export const addItemEv = (ev, state)=>{
                 state.fileList = files;
 
                 //
-                await getFileList(wall, state);
+                await getFileList(fs, state);
             }
         });
 }
 
 //
-export const removeItemEv = (ev, state)=>{
+export const removeItemEv = async (ev, state)=>{
+    const fs = await useFS();
+
+    //
     const {selectedFilename} = state;
     if (selectedFilename) {
         (async ()=>{
             if (("/opfs?path=images/" + (selectedFilename || "wallpaper")) != localStorage.getItem("@wallpaper")) {
-                const root = await navigator?.storage?.getDirectory?.();
-                const wall = await root?.getDirectoryHandle?.("images");
-                await wall?.removeEntry?.(selectedFilename);
+                await fs.mkdir("/images/");
+                await fs.remove(selectedFilename);
 
                 //
                 files.delete(selectedFilename);
@@ -172,7 +160,7 @@ export const removeItemEv = (ev, state)=>{
                 state.fileList = files;
 
                 //
-                await getFileList(wall, state);
+                await getFileList(fs, state);
             }
         })();
     }
