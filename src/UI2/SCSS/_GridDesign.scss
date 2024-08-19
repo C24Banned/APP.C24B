@@ -75,8 +75,8 @@
         pointer-events: none;
 
         //
-        --c-gap: calc(4dvmin / var(--zoom, 1));
-        --r-gap: calc(4dvmin / var(--zoom, 1));
+        --c-gap: calc(4dvmin / max(var(--zoom, 1), 0.125));
+        --r-gap: calc(4dvmin / max(var(--zoom, 1), 0.125));
 
         //
         .ux-grid-item {

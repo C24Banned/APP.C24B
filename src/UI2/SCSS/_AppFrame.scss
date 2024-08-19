@@ -37,8 +37,8 @@
         //--status-size: 0px;
 
         //
-        @include u.clamped-width(min(64rem, 100cqi), calc(80rem + var(--resize-x, 0) * var(--zpx, 1px)), 100cqi);
-        @include u.clamped-height(min(36rem, 100cqb), calc(45rem + var(--resize-y, 0) * var(--zpx, 1px)), calc(100cqb - var(--height-adjust, 0px)));
+        @include u.clamped-width(min(64rem, 100cqi), calc(80rem + var(--resize-x, 0) * var(--zpx, 1px)), calc(100cqi - calc(var(--drag-x, 0) * var(--zpx, 1px))));
+        @include u.clamped-height(min(36rem, 100cqb), calc(45rem + var(--resize-y, 0) * var(--zpx, 1px)), calc(100cqb - calc(var(--drag-y, 0) * var(--zpx, 1px)) - var(--height-adjust, 0px)));
     };
 
     //
@@ -215,8 +215,8 @@
                 direction: ltr;
 
                 //
-                max-inline-size: var(--titlebar-size);
-                max-block-size: var(--titlebar-size);
+                max-inline-size: var(--titlebar-size, 0px);
+                max-block-size: var(--titlebar-size, 0px);
             }
         };
 
