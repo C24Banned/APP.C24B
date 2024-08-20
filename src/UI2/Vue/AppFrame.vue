@@ -51,7 +51,7 @@
         </div>
 
         <!--<slot></slot>-->
-        <component :key="props.id" :is="task().content" data-instant></component>
+        <component :key="props.id" :id="props.id" :is="task().content" data-instant></component>
 
         <!-- -->
         <div class="ui-status" data-scheme="solid" data-highlight="2.5"></div>

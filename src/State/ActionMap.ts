@@ -141,11 +141,14 @@ const actionMap = makeReactive(new Map<string, Function>([
             };
     }],
 
-    //
-    ["open-link", ({initiator}) => {
-
-    }],
-
+    [
+        "open-link-in-frame",
+        ({
+            initiator
+        }) => {
+            // unsupported...
+        },
+    ],
 
     [
         "open-link",
@@ -155,7 +158,6 @@ const actionMap = makeReactive(new Map<string, Function>([
             window.open(initiator.dataset.href, (!initiator.dataset.href || initiator.dataset.href.startsWith("#")) ? "_self" : "_blank");
         },
     ],
-
 
     ["edit-item", ({initiator}) => {
         if (initiator) {

@@ -20,6 +20,7 @@
 
     //
     const props = defineProps({
+        id: { type: String, default: "#settings" },
         stateName: { type: String, default: "settings" },
         ifc: Boolean
     });
@@ -57,7 +58,7 @@
         <span>{{ "Settings" }}</span>
     </div>
 
-    <div class="ui-screen ui-content" id="settings" v-bind="$attrs" data-transparent data-scheme="solid-transparent">
+    <div class="ui-screen ui-content ui-settings" :id="props.id.replace(/^\#/i,'')" v-bind="$attrs" data-transparent data-scheme="solid-transparent">
 
         <div class="ui-nav" data-scheme="solid" data-highlight="2.5">
             <div class="f-space"></div>

@@ -8,7 +8,7 @@
 //
 @layer ui-manager {
     //
-    #manager {
+    .ui-content.ui-manager {
         //
         .file-list {
             @include cm.no-wrap;
