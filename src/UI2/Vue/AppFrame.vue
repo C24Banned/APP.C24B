@@ -14,19 +14,16 @@
 
     //
     const props = defineProps({
-        hashIdName: {type: String, default: "#app"},
-        icon: {type: String, default: "settings"},
-        label: {type: String, default: ""}
+        apps: {type: Object, default: {}},
+        hashIdName: {type: String, default: "#app"}
     });
 
     //
     const isActive = ref(location.hash == props.hashIdName);
-
-    //
     const task = {
-        get label() { return props.label },
         get id() { return props.hashIdName },
-        get icon() { return props.icon },
+        get label() { return props.apps[props.hashIdName].label },
+        get icon() { return props.apps[props.hashIdName].icon },
         active: false
     };
 
@@ -39,14 +36,8 @@
 
     // vue has poor reactivity in such cases
     const currentHash = ref(location.hash); toTask();
-
-    addEventListener("popstate", (event) => {
-        currentHash.value = location.hash; toTask();
-    });
-
-    addEventListener("hashchange", (event) => {
-        currentHash.value = location.hash; toTask();
-    });
+    addEventListener("popstate"  , (event) => { currentHash.value = location.hash; toTask(); });
+    addEventListener("hashchange", (event) => { currentHash.value = location.hash; toTask(); });
 
     //
     const toFocus = (ev)=>{
@@ -54,17 +45,13 @@
     }
 
     //
-    TaskManager.on("*", ()=>{
-        isActive.value = task.active;
-    });
-
-    //
+    TaskManager.on("*", ()=>{ isActive.value = task.active; });
     TaskManager.addTask(task, false);
 </script>
 
 <!-- -->
 <template>
-    <div @pointerdown="toFocus" ref="target" :data-hidden="!isActive" data-scheme="solid" class="ui-frame ui-app-frame ui-default-theme ui-detached" v-bind="$attrs">
+    <div @pointerdown="toFocus" ref="target" :data-hidden="!isActive" :data-id="props.hashIdName" data-scheme="solid" class="ui-frame ui-app-frame ui-default-theme ui-detached" v-bind="$attrs">
 
         <div class="ui-titlebar" data-highlight="3" data-scheme="solid">
             <button class="back-button" type="button"><LucideIcon name="chevron-down" style="grid-column: back-button; aspect-ratio: 1 / 1;" /></button>
@@ -72,8 +59,10 @@
             <!--<LucideIcon name="menu" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" />-->
         </div>
 
-        <slot></slot>
+        <!--<slot></slot>-->
+        <component :is="props.apps[props.hashIdName].content" data-instant></component>
 
+        <!-- -->
         <div class="ui-status" data-scheme="solid" data-highlight="2.5"></div>
         <div class="ui-resize"></div>
     </div>

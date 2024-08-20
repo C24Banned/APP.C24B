@@ -1,4 +1,9 @@
 <script setup>
+    import {shallowRef, defineAsyncComponent} from "vue";
+    import { useI18n } from 'vue-i18n'
+    const {t} = useI18n({ useScope: "global" });
+
+    //
     import "@idc/State/CurrentState.ts";
     import "@idc/State/ActionMap.ts";
     import "@idc/State/GridState.ts";
@@ -12,10 +17,6 @@
     //
     import StatusBar from "@idc/UI2/Vue/StatusBar.vue";
     import Taskbar from "@idc/UI2/Vue/Taskbar.vue";
-
-    //
-    import Manager from "@idc/App/Vue/Manager.vue";
-    import Settings from "@idc/App/Vue/Settings.vue";
 
     //
     import DesktopGrid from "@idc/UI2/Vue/DesktopGrid.vue";
@@ -50,6 +51,21 @@
         name: "Fullscreen",
         action: "fullscreen"
     }];
+
+    //
+    const nativeApps = shallowRef({
+        "#settings": {
+            content: defineAsyncComponent(() => import("@idc/App/Vue/Settings.vue")),
+            label: t('tasks.settings'),
+            icon: "settings"
+        },
+        "#manager": {
+            content: defineAsyncComponent(() => import("@idc/App/Vue/Manager.vue")),
+            label: t('tasks.wallpapers'),
+            icon: "wallpaper"
+        }
+    });
+
 </script>
 
 <!-- -->
@@ -58,14 +74,11 @@
 <Viewport>
     <DesktopGrid></DesktopGrid>
 
-    <AppFrame hashIdName="#settings" icon="settings" :label="$t('tasks.settings')">
-        <Settings data-instant></Settings>
-    </AppFrame>
+    <!-- -->
+    <AppFrame hashIdName="#settings" :apps="nativeApps"></AppFrame>
+    <AppFrame hashIdName="#manager"  :apps="nativeApps"></AppFrame>
 
-    <AppFrame hashIdName="#manager" icon="wallpaper" :label="$t('tasks.wallpapers')">
-        <Manager data-instant></Manager>
-    </AppFrame>
-
+    <!-- -->
     <IconEdit></IconEdit>
     <Taskbar></Taskbar>
 </Viewport>

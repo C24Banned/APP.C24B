@@ -1,19 +1,22 @@
 <script setup>
     import LucideIcon from '@idc/UI2/Vue/WLucideIcon.vue';
     import { lang } from "@idc/Config/Config.ts";
+    import { defineAsyncComponent, ref, shallowRef } from 'vue'
 
     //
     import { useI18n } from "vue-i18n";
     const { t } = useI18n({ useScope: "global" });
 
     //
-    import Number from '@idc/UI2/Vue/Number.vue';
-    import Switch from '@idc/UI2/Vue/Switch.vue';
-    import ShapeSelect from '@idc/UI2/Vue/ShapeSelect.vue';
-
-    //
     import { state, layout, size } from "@idc/State/GridState.ts";
     import { settings } from "@idc/State/CurrentState.ts";
+
+    //
+    const fieldByType = shallowRef({
+        "number": defineAsyncComponent(() => import('@idc/UI2/Vue/Number.vue')),
+        "switch": defineAsyncComponent(() => import('@idc/UI2/Vue/Switch.vue')),
+        "shape": defineAsyncComponent(() => import('@idc/UI2/Vue/ShapeSelect.vue')),
+    });
 
     //
     const props = defineProps({
@@ -76,23 +79,14 @@
                         <LucideIcon data-place="icon" :name="field.icon"/>
 
                         <div data-place="element">
-                            <Number v-if="field.type == 'number'"
-                                :min="field.params[0]"
-                                :max="field.params[1]"
-                                :step="field.params[2]"
+                            <component
+                                :is="fieldByType[field.type]"
+                                :min="field?.params?.[0]"
+                                :max="field?.params?.[1]"
+                                :step="field?.params?.[2]"
                                 :data-state="props.stateName"
                                 :data-name="field.name"
-                            ></Number>
-
-                            <Switch v-if="field.type == 'switch'"
-                                :data-state="props.stateName"
-                                :data-name="field.name"
-                            ></Switch>
-
-                            <ShapeSelect v-if="field.type == 'shape'"
-                                :data-state="props.stateName"
-                                :data-name="field.name"
-                            ></ShapeSelect>
+                            ></component>
                         </div>
                     </div>
                 </div>
