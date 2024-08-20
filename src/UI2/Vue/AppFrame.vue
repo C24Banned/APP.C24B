@@ -5,32 +5,27 @@
 
     //
     const target = ref(null);
+    const props = defineProps({
+        tasks: {type: Array, default: []},
+        id: {type: String, default: "#app"}
+    });
+    const isActive = ref(location.hash == props.id);
+
+    //
+    const task = ()=>{
+        return props.tasks.find((t)=>(t.id==props.id));
+    }
 
     //
     TaskManager.on("*", ()=>{
-        const idx = TaskManager.tasks.findIndex((t)=>(t.id == task.id));
+        const idx = props.tasks.findIndex((t)=>(t.id == props.id));
         target?.value?.style?.setProperty?.("--z-index", idx, "");
     });
 
     //
-    const props = defineProps({
-        apps: {type: Object, default: {}},
-        hashIdName: {type: String, default: "#app"}
-    });
-
-    //
-    const isActive = ref(location.hash == props.hashIdName);
-    const task = {
-        get id() { return props.hashIdName },
-        get label() { return props.apps[props.hashIdName].label },
-        get icon() { return props.apps[props.hashIdName].icon },
-        active: false
-    };
-
-    //
     const toTask = ()=>{
-        if (currentHash.value == props.hashIdName) {
-            TaskManager.addTask(task);
+        if (currentHash.value == props.id) {
+            TaskManager.addTask(task());
         }
     }
 
@@ -40,18 +35,14 @@
     addEventListener("hashchange", (event) => { currentHash.value = location.hash; toTask(); });
 
     //
-    const toFocus = (ev)=>{
-        TaskManager.focus(props.hashIdName);
-    }
-
-    //
-    TaskManager.on("*", ()=>{ isActive.value = task.active; });
-    TaskManager.addTask(task, false);
+    const toFocus = (ev)=>{ TaskManager.focus(props.id); }
+    TaskManager.on("*", ()=>{ isActive.value = task().active; });
+    //TaskManager.addTask(task, false);
 </script>
 
 <!-- -->
 <template>
-    <div @pointerdown="toFocus" ref="target" :data-hidden="!isActive" :data-id="props.hashIdName" data-scheme="solid" class="ui-frame ui-app-frame ui-default-theme ui-detached" v-bind="$attrs">
+    <div @pointerdown="toFocus" ref="target" :data-hidden="!isActive" :data-id="props.id" data-scheme="solid" class="ui-frame ui-app-frame ui-default-theme ui-detached" v-bind="$attrs">
 
         <div class="ui-titlebar" data-highlight="3" data-scheme="solid">
             <button class="back-button" type="button"><LucideIcon name="chevron-down" style="grid-column: back-button; aspect-ratio: 1 / 1;" /></button>
@@ -60,7 +51,7 @@
         </div>
 
         <!--<slot></slot>-->
-        <component :is="props.apps[props.hashIdName].content" data-instant></component>
+        <component :key="props.id" :is="task().content" data-instant></component>
 
         <!-- -->
         <div class="ui-status" data-scheme="solid" data-highlight="2.5"></div>

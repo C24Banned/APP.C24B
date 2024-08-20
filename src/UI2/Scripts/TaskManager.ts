@@ -150,6 +150,14 @@ export class TaskManager {
     }
 
     //
+    addTasks(tasks: any = []) {
+        for (const task of (tasks?.value ?? tasks)) {
+            this.addTask(task || {}, false);
+        }
+        return this;
+    }
+
+    //
     addTask(task, doFocus = true) {
         const index = this.tasks.findIndex((t)=>(t == task || t.id == task.id));
         const last = this.tasks.length;

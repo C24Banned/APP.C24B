@@ -1,6 +1,9 @@
 <script setup>
     import {shallowRef, defineAsyncComponent} from "vue";
     import { useI18n } from 'vue-i18n'
+    import TaskManager from "@idc/UI2/Scripts/TaskManager.ts";
+
+    //
     const {t} = useI18n({ useScope: "global" });
 
     //
@@ -53,18 +56,24 @@
     }];
 
     //
-    const nativeApps = shallowRef({
-        "#settings": {
+    const tasks = shallowRef([
+        {
+            id: "#settings",
             content: defineAsyncComponent(() => import("@idc/App/Vue/Settings.vue")),
             label: t('tasks.settings'),
             icon: "settings"
         },
-        "#manager": {
+        {
+            id: "#manager",
             content: defineAsyncComponent(() => import("@idc/App/Vue/Manager.vue")),
             label: t('tasks.wallpapers'),
             icon: "wallpaper"
         }
-    });
+    ]);
+
+    //
+    TaskManager.addTasks(tasks, false);
+    TaskManager.on("*", ()=>{ tasks.value = TaskManager.tasks; });
 
 </script>
 
@@ -75,8 +84,7 @@
     <DesktopGrid></DesktopGrid>
 
     <!-- -->
-    <AppFrame hashIdName="#settings" :apps="nativeApps"></AppFrame>
-    <AppFrame hashIdName="#manager"  :apps="nativeApps"></AppFrame>
+    <AppFrame v-for="task in tasks" :key="task.id" :id="task.id" :tasks="tasks"></AppFrame>
 
     <!-- -->
     <IconEdit></IconEdit>
