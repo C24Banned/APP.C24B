@@ -88,7 +88,7 @@
     });
 
     //
-    const wp = localStorage.getItem("@wallpaper") || "./assets/wallpaper/0.jpg";
+    const wp = localStorage.getItem("@wallpaper") || "./assets/wallpaper/v.webp";
 
     // native VUE reactivity doesn't supported here...
     const items = ref(getItems(state.items));
