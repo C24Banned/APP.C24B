@@ -9,5 +9,13 @@ const target = ref(null);
 
 <!-- -->
 <template>
-    <LucideIcon name="battery-charging,battery,battery-full,battery-low,battery-medium,battery-warning" :hook="(v)=>{ target = v; }" data-transparent ref="target" class="icon-wrap ui-icon-state ui-battery" data-icon="battery-charging" v-bind="$attrs"></LucideIcon>
+    <div data-transparent ref="target" class="ui-indicator" color-scheme="" v-bind="$attrs">
+        <LucideIcon
+            name="battery-charging,battery,battery-full,battery-low,battery-medium,battery-warning"
+            class="icon-wrap ui-icon-state ui-battery"
+            data-transparent
+            data-icon="battery-charging"
+            :hook="(v)=>{ target = v; }"
+        ></LucideIcon>
+    </div>
 </template>

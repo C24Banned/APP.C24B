@@ -9,5 +9,13 @@ const target = ref(null);
 
 <!-- -->
 <template>
-    <LucideIcon name="wifi,wifi-off,wifi-high,wifi-low,wifi-zero" data-transparent :hook="(v)=>{ target = v; }" class="icon-wrap ui-icon-state ui-network" data-icon="wifi" v-bind="$attrs"></LucideIcon>
+    <div data-transparent ref="target" class="ui-indicator" color-scheme="" v-bind="$attrs">
+        <LucideIcon
+            name="wifi,wifi-off,wifi-high,wifi-low,wifi-zero"
+            class="icon-wrap ui-icon-state ui-network"
+            data-transparent
+            data-icon="wifi"
+            :hook="(v)=>{ target = v; }"
+        ></LucideIcon>
+    </div>
 </template>
