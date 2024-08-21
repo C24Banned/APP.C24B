@@ -10,6 +10,10 @@
 
     //
     .ui-content, .ui-screen {
+        --sidebar-space: 0px;//min(20rem, 100cqi);
+        --sidebar-size: min(20rem, 100cqi);
+
+        //
         inline-size: 100%;
         block-size: 100%;
 
@@ -20,7 +24,7 @@
 
         //
         display: grid;
-        grid-template-columns: minmax(0px, 1fr);
+        grid-template-columns: minmax(0px, var(--sidebar-space)) minmax(0px, 1fr);
         grid-template-rows: minmax(0px, 2.5rem) minmax(0px, 1fr);
         position: relative;
         overflow: hidden;
@@ -34,6 +38,7 @@
             inline-size: 100%;
             block-size: 100%;
             grid-row: 2 / 2 span;
+            grid-column: 2 / 2 span;
         }
 
         //
@@ -44,6 +49,7 @@
             //
             display: flex;
             flex-direction: row;
+            grid-column: 1 / 2 span;
             grid-row: 1 / 1 span;
 
             //

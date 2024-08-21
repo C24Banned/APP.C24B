@@ -29,14 +29,26 @@ export default async ()=>{
     document.documentElement.addEventListener("change", onChange);
 
     //
+    const updateInput = (target)=>{
+        const input = target.querySelector("input:where([type=\"text\"], [type=\"number\"], [type=\"range\"])");
+        const state = stateMap.get(target?.dataset?.state);
+        if (state && input) {
+            input.value = state[target?.dataset?.name];
+            input.dispatchEvent(new Event("change", { bubbles: false, cancelable: true, }))
+        }
+    }
+
+    //
     observeBySelector(document.documentElement, ".ui-input", (mutations)=>{
         mutations.addedNodes.forEach((target)=>{
-            const input = target.querySelector("input:where([type=\"text\"], [type=\"number\"], [type=\"range\"])");
-            const state = stateMap.get(target?.dataset?.state);
-            if (state && input) {
-                input.value = state[target?.dataset?.name];
-                input.dispatchEvent(new Event("change", { bubbles: false, cancelable: true, }))
-            }
+            updateInput(target);
+        });
+    });
+
+    //
+    document.documentElement.addEventListener("ux-appear", ()=>{
+        document.querySelectorAll(".ui-input").forEach((target)=>{
+            updateInput(target);
         });
     });
 }
