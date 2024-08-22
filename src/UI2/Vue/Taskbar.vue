@@ -122,9 +122,9 @@
 
     <!-- -->
     <div class="ui-navbar" data-scheme="solid" data-highlight="2" v-bind="$attrs">
-        <LucideIcon data-scheme="dynamic-transparent" name="chevron-down" class="back-button" style="grid-column: back-button; aspect-ratio: 1 / 1;" />
+        <button data-scheme="dynamic-transparent" class="back-button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
         <div class="ui-title-handle" @pointerdown="toFocus">{{ label }}</div>
-        <LucideIcon data-scheme="dynamic-transparent" name="menu" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" @click="openPanel"/>
+        <button data-scheme="dynamic-transparent" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" @click="openPanel"><LucideIcon  name="menu"/></button>
     </div>
 
 
