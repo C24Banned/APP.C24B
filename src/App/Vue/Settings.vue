@@ -28,6 +28,12 @@
     //
     const tabs = [
         {
+            id: "all",
+            icon: "cog",
+            label: "All",
+            include: ["layout", "display", "design"]
+        },
+        {
             id: "grid",
             icon: "grid",
             label: "Grid",
@@ -50,13 +56,7 @@
             icon: "palette",
             label: "Design",
             include: ["design"]
-        },
-        {
-            id: "all",
-            icon: "cog",
-            label: "All",
-            include: ["layout", "display", "design"]
-        },
+        }
     ];
 
     //
@@ -149,7 +149,7 @@
         <x-scrollbox class="ui-side" data-scheme="solid" data-highlight="2.5" ref="sideBar">
             <!--<div></div>-->
 
-            <div v-for="tab in tabs"  @click="()=>setCurrentTab(tab.id)"  :data-scheme="currentTab==tab.id ? 'inverse' : 'solid'" :class="{'ui-selected': currentTab==tab.id}" class="ui-block-decor pe-none ui-tab" style="--decor-size: 3rem;" data-highlight-hover="2">
+            <div v-for="tab in tabs"  @click="()=>setCurrentTab(tab.id)" data-highlight="2.5" :data-scheme="currentTab==tab.id ? 'inverse' : 'solid'" :class="{'ui-selected': currentTab==tab.id}" class="ui-block-decor pe-none ui-tab" style="--decor-size: 3rem;" data-highlight-hover="2">
                 <span class="tab-label">{{tab.label}}</span>
                 <LucideIcon data-place="icon" :name="tab.icon"/>
             </div>
