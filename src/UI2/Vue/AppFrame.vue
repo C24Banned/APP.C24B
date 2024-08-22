@@ -44,9 +44,9 @@
 <template>
     <div @pointerdown="toFocus" ref="target" :data-hidden="!isActive" :data-id="props.id" data-scheme="solid" class="ui-frame ui-app-frame ui-default-theme ui-detached" v-bind="$attrs">
 
-        <div class="ui-titlebar" data-highlight="3" data-scheme="solid">
-            <button class="back-button" type="button"><LucideIcon name="chevron-down" style="grid-column: back-button; aspect-ratio: 1 / 1;" /></button>
-            <div data-transparent data-scheme="solid-transparent" class="ui-title-handle"></div>
+        <div class="ui-titlebar" data-highlight="3" data-scheme="accent" style="--theme-accent-chroma: 0.9;">
+            <button data-bg-dep class="back-button" type="button"><LucideIcon name="chevron-down" style="grid-column: back-button; aspect-ratio: 1 / 1;" /></button>
+            <div data-bg-dep data-transparent data-scheme="solid-transparent" class="ui-title-handle"></div>
             <!--<LucideIcon name="menu" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" />-->
         </div>
 

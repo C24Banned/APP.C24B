@@ -29,7 +29,7 @@
     <label ref="target" class="ui-input ui-switch" data-scheme="solid-transparent" v-bind="$attrs">
         <input ref="input" data-scheme="solid-transparent" @change="whenChange" @input="whenChange" type="range" min="-1" max="1" step="1"/>
         <div data-scheme="inverse" data-highlight="2" class="fill" ></div>
-        <div data-scheme="solid"   data-highlight="2" class="track" ></div>
-        <div data-scheme="solid"   data-highlight="3" class="thumb icon-sign"><LucideIcon name="circle"/></div>
+        <div data-scheme="solid"  data-highlight="2" class="track" ></div>
+        <div data-scheme="solid"  data-highlight="3" class="thumb icon-sign"><LucideIcon name="circle"/></div>
     </label>
 </template>

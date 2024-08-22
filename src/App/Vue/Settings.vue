@@ -129,7 +129,7 @@
 
 <!-- -->
 <template>
-    <div class="ui-title-label">
+    <div class="ui-title-label" data-transparent data-bg-dep data-scheme="dynamic">
         <LucideIcon inert name="settings" class="ui-icon"/>
         <span>{{ "Settings" }}</span>
     </div>
