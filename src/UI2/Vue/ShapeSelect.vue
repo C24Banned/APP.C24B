@@ -6,27 +6,31 @@
 
 <template>
 
-    <div class="ui-shape-selector ui-input" v-bind="$attrs">
-        <div class="ui-shape-frame" data-scheme="solid" style="--theme-accent-chroma: 0.2;" data-highlight="1" data-highlight-hover="2" @click="vib">
-            <label class="wavy-shaped ui-shape" data-highlight="1">
+    <div class="ui-shape-selector ui-input" v-bind="$attrs" data-scheme="accent" data-transparent>
+        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
+            <div class="ui-shape-bg" data-scheme="solid" data-highlight="1" data-highlight-hover="2"></div>
+            <div class="wavy-shaped ui-shape" data-scheme="inverse" style="--theme-accent-chroma: 0.6;">
                 <input type="radio" name="shape" value="wavy" :checked="current == 'wavy'"></input>
-            </label>
-        </div>
-        <div class="ui-shape-frame" data-scheme="solid" style="--theme-accent-chroma: 0.2;" data-highlight="1" data-highlight-hover="2" @click="vib">
-            <label class="tear-shaped ui-shape" data-highlight="1">
+            </div>
+        </label>
+        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
+            <div class="ui-shape-bg" data-scheme="solid" data-highlight="1" data-highlight-hover="2"></div>
+            <div class="tear-shaped ui-shape" data-scheme="inverse" style="--theme-accent-chroma: 0.6;">
                 <input type="radio" name="shape" value="tear" :checked="current == 'tear'"></input>
-            </label>
-        </div>
-        <div class="ui-shape-frame" data-scheme="solid" style="--theme-accent-chroma: 0.2;" data-highlight="1" data-highlight-hover="2" @click="vib">
-            <label class="circle-shaped ui-shape" data-highlight="1">
+            </div>
+        </label>
+        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
+            <div class="ui-shape-bg" data-scheme="solid" data-highlight="1" data-highlight-hover="2"></div>
+            <div class="circle-shaped ui-shape" data-scheme="inverse" style="--theme-accent-chroma: 0.6;">
                 <input type="radio" name="shape" value="circle" :checked="current == 'circle'" ></input>
-            </label>
-        </div>
-        <div class="ui-shape-frame" data-scheme="solid" style="--theme-accent-chroma: 0.2;" data-highlight="1" data-highlight-hover="2" @click="vib">
-            <label class="square-shaped ui-shape" data-highlight="1">
+            </div>
+        </label>
+        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
+            <div class="ui-shape-bg" data-scheme="solid" data-highlight="1" data-highlight-hover="2"></div>
+            <div class="square-shaped ui-shape" data-scheme="inverse">
                 <input type="radio" name="shape" value="square" :checked="current == 'square'"></input>
-            </label>
-        </div>
+            </div>
+        </label>
     </div>
 
 </template>
