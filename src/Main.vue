@@ -1,15 +1,10 @@
 <script setup>
     import {shallowRef, defineAsyncComponent} from "vue";
     import { useI18n } from 'vue-i18n'
-    import TaskManager from "@idc/UI2/Scripts/TaskManager.ts";
+    import TaskManager from "@idc/PreInit/TaskManager.ts";
 
     //
     const {t} = useI18n({ useScope: "global" });
-
-    //
-    import "@idc/State/CurrentState.ts";
-    import "@idc/State/ActionMap.ts";
-    import "@idc/State/GridState.ts";
 
     //
     import ContextMenu from "@idc/UI2/Vue/ContextMenu.vue";

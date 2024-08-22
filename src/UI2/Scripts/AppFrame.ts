@@ -5,7 +5,7 @@ import { observeBySelector } from "@unite/scripts/dom/Observer.ts";
 import { zoomOf } from "@unite/scripts/utils/Zoom.ts";
 
 //
-import TaskManager from "@idc/UI2/Scripts/TaskManager.ts";
+import TaskManager from "@idc/PreInit/TaskManager.ts";
 
 
 //

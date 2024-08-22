@@ -1,7 +1,7 @@
 <script setup>
     import {reactive, watch, ref, onMounted} from "vue";
     import LucideIcon from './WLucideIcon.vue';
-    import TaskManager from "@idc/UI2/Scripts/TaskManager.ts";
+    import TaskManager from "@idc/PreInit/TaskManager.ts";
 
     //
     const target = ref(null);

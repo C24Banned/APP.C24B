@@ -214,3 +214,10 @@ addEventListener("popstate", (ev)=>{
         if (!focus || !location.hash || location.hash == "#") { close(); }
     }
 });
+
+//
+import("@idc/Core/Event.ts").then((m)=>{
+    m?.default?.fire?.("task-manager-loaded", {
+        taskManager: Manager
+    });
+});

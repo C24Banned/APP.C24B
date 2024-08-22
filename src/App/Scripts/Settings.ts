@@ -1,5 +1,4 @@
 import { observeBySelector } from "@unite/scripts/dom/Observer.ts";
-import "@idc/State/CurrentState.ts";
 import stateMap from "@unite/scripts/reactive/StateManager.ts";
 
 //

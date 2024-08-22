@@ -8,7 +8,7 @@ import Timer from "@unite/scripts/performance/Time.ts";
 import stateMap from "@unite/scripts/reactive/StateManager.ts"
 
 //
-import TaskManager from "@idc/UI2/Scripts/TaskManager.ts";
+import TaskManager from "@idc/PreInit/TaskManager.ts";
 
 //
 import {
@@ -16,7 +16,7 @@ import {
     importSettings,
     pickBinaryFromFS,
     saveBinaryToFS,
-} from "./ImportExport.ts";
+} from "../State/ImportExport.ts";
 
 //
 export const UIState = makeReactive({
@@ -235,3 +235,10 @@ const actionMap = makeReactive(new Map<string, Function>([
 
 //
 export default actionMap;
+
+//
+import("@idc/Core/Event.ts").then((m)=>{
+    m?.default?.fire?.("action-map-loaded", {
+        actionMap
+    });
+});

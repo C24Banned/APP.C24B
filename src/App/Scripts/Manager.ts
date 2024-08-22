@@ -1,5 +1,5 @@
 //
-import { pickWallpaperImage } from "@idc/State/ActionMap.ts";
+import { pickWallpaperImage } from "@idc/PreInit/ActionMap.ts";
 import { useFS } from "@unite/scripts/utils/Utils.ts";
 
 // Function to download data to a file

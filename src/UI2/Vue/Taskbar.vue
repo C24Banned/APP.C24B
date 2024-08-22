@@ -10,7 +10,7 @@
     import Time from "./Status/Time.vue";
 
     //
-    import TaskManager from "@idc/UI2/Scripts/TaskManager.ts";
+    import TaskManager from "@idc/PreInit/TaskManager.ts";
 
     //
     const UIState = stateMap.get("UIState");

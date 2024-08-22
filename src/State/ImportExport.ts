@@ -1,8 +1,8 @@
 import {JSOX} from 'jsox';
 
 //
-import {settings} from "./CurrentState.ts";
-import {state, toMapSet, toMap, fromMap} from "./GridState.ts";
+import {settings} from "../PreInit/CurrentState.ts";
+import {state, toMapSet, toMap, fromMap} from "../PreInit/GridState.ts";
 import stateMap from "@unite/scripts/reactive/StateManager.ts"
 import {subscribe, extractSymbol} from "@unite/scripts/reactive/ReactiveLib.ts";
 

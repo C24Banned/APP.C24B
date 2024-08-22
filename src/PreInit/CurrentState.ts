@@ -90,3 +90,10 @@ subscribe(settings, (v) => {
     localStorage.setItem("@icon-shape", v || "wavy");
     if (grid) { grid.dataset.shape = v; };
 }, "iconShape");
+
+//
+import("@idc/Core/Event.ts").then((m)=>{
+    m?.default?.fire?.("app-state-loaded", {
+        settings
+    });
+});

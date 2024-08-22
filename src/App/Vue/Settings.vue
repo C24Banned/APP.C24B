@@ -8,8 +8,8 @@
     const { t } = useI18n({ useScope: "global" });
 
     //
-    import { state, layout, size } from "@idc/State/GridState.ts";
-    import { settings } from "@idc/State/CurrentState.ts";
+    import { state, layout, size } from "@idc/PreInit/GridState.ts";
+    import { settings } from "@idc/PreInit/CurrentState.ts";
 
     //
     const fieldByType = shallowRef({

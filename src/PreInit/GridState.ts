@@ -163,3 +163,10 @@ addEventListener("beforeunload", (event) => {
     localStorage.setItem("@gridsState", JSOX.stringify(Array.from(state.grids?.values() || v)));
     localStorage.setItem("@itemsState", JSOX.stringify(Array.from(state.items?.values() || v)));
 });
+
+//
+import("@idc/Core/Event.ts").then((m)=>{
+    m?.default?.fire?.("grid-state-loaded", {
+        state
+    });
+});
