@@ -152,7 +152,7 @@ export const removeItemEv = async (ev, state)=>{
         (async ()=>{
             if (("/opfs?path=images/" + (selectedFilename || "wallpaper")) != localStorage.getItem("@wallpaper")) {
                 await fs.mkdir("/images/");
-                await fs.remove(selectedFilename);
+                await fs.remove("/images/" + selectedFilename);
 
                 //
                 files.delete(selectedFilename);
