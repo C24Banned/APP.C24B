@@ -42,7 +42,7 @@
         //
         justify-items: stretch;
         container-type: size-inline;
-        contain: content;
+        contain: layout;
 
         //
         & > :where(*) { flex: 1; }

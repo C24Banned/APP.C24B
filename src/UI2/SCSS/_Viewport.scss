@@ -10,7 +10,7 @@
 
         //
         container-type: size;
-        contain: content;
+        contain: layout;
         display: grid;
         position: fixed;
         overflow: visible;
@@ -64,7 +64,7 @@
                 position: absolute;
                 overflow: hidden;
                 container-type: size;
-                contain: content;
+                contain: layout;
 
                 //
                 inline-size: var(--vp-i-size, 100dvi);
