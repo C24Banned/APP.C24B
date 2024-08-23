@@ -19,23 +19,11 @@
 
     //
     .ui-task-panel {
-        position: fixed;
-
-        //
         inset: 0px;
+        position: relative;
+
+        //
         pointer-events: auto;
-
-        //
-        place-content: center;
-        place-items: center;
-
-        //
-        justify-items: start;
-        justify-content: start;
-
-        //
-        display: flex;
-        flex-direction: column;
         grid-column: 1 / 1 span;
 
         //
@@ -51,19 +39,42 @@
         box-shadow: 0px 0px 1rem rgb(from #000000 r g b / 0.2);
 
         //
-        padding: 0px;
-        gap: 0px;
+        &::part(content-box) {
+            //
+            display: flex;
+            flex-direction: column;
+            pointer-events: auto;
 
-        //
-        padding-block-start: 2rem;
+            //
+            padding: 0px;
+            gap: 0px;
+
+            //
+            place-content: center;
+            place-items: center;
+
+            //
+            justify-items: start;
+            justify-content: start;
+
+            //
+            padding-block-start: 2rem;
+        }
 
         //
         .ui-tab-item {
             --decor-size: 4rem;
+            inline-size: 100%;
+            display: flex;
+            flex-direction: row;
 
             //
-            grid-column: 1 / 3 span;
-            grid-row: auto;
+            justify-content: space-between;
+            justify-items: stretch;
+
+            //
+            //grid-column: 1 / 3 span;
+            //grid-row: auto;
 
             //
             pointer-events: auto;
@@ -98,7 +109,7 @@
 
         //
         container-type: size;
-        contain: layout;
+        contain: content;
 
         //
         //box-shadow: 0px 0px 1rem #00000070;
@@ -253,7 +264,7 @@
 
             //
             container-type: size;
-            contain: layout;
+            contain: content;
 
             //
             grid-template-columns:
