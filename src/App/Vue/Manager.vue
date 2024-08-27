@@ -41,7 +41,7 @@
         <span>{{ "Wallpapers" }}</span>
     </div>
 
-    <div ref="target" class="ui-screen ui-content ui-manager" :id="props.id.replace(/^\#/i,'')" v-bind="$attrs" data-transparent data-scheme="solid-transparent">
+    <div ref="target" class="ui-screen ui-content ui-manager" :id="props.id.replace(/^\#/i,'')" v-bind="$attrs" data-scheme="solid">
 
         <div class="ui-nav" data-scheme="solid" style="pointer-events: auto;" data-highlight="2.5">
             <button data-tooltip="Use as Wallpaper" class="use-item" data-scheme="solid-transparent" data-highlight-hover="1" @click="(ev)=>useItemEv(ev, state)">

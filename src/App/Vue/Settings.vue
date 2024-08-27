@@ -78,13 +78,13 @@
             description: t('settings.display_desc'),
             fields: [
                 {label: t('settings.scaling'), icon: "scaling", type: "number", params: [0.5, 1.5, 0.125], name: "scaling"},
+                {label: t('settings.theme'), icon: "sun-moon", type: "switch", params: [-1, 1, 1], name: "theme"},
             ]
         },
         {
             id: "design",
             description: t('settings.design_desc'),
             fields: [
-                {label: t('settings.theme'), icon: "sun-moon", type: "switch", params: [-1, 1, 1], name: "theme"},
                 {label: t('settings.iconShape'), icon: "badge", type: "shape", name: "iconShape"},
             ]
         }
@@ -134,7 +134,7 @@
         <span>{{ "Settings" }}</span>
     </div>
 
-    <div class="ui-screen ui-content ui-settings" :id="props.id.replace(/^\#/i,'')" v-bind="$attrs" data-transparent data-scheme="solid-transparent">
+    <div class="ui-screen ui-content ui-settings" :id="props.id.replace(/^\#/i,'')" v-bind="$attrs" data-scheme="solid">
 
         <div class="ui-nav" data-scheme="solid" data-highlight="2.5">
             <button class="menu-act hl-1 hl-2h" data-tooltip="Menu" data-scheme="solid-transparent" data-transparent data-highlight-hover="1" @click="openSidebar">
