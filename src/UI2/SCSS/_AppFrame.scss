@@ -81,7 +81,7 @@
         --translate-y: clamp(0px, var(--ry, 0px), calc(calc(100cqb - var(--height-adjust, 0px)) - 100%));
 
         //
-        outline: solid 0.25px oklch(from var(--current-glyph-color) l c h / 0);
+        //outline: solid 0.25px oklch(from var(--current-glyph-color) l c h / 0);
         transition: outline-color 200ms;
 
         //
@@ -122,6 +122,13 @@
         font-size: 0.9rem;
 
         //
+        //$accent: color-mix(in oklch, var(--accent-surface-color) calc(100% * 0.9), var(--theme-solid-color));
+        //$highlight: color-mix(in oklch, var(--theme-highlight-color) calc(9 * 1%), #{$accent});
+
+        //
+        //outline: solid 1px $highlight;
+
+        //
         grid-template-columns:
             [menu-button] minmax(var(--titlebar-size), max-content)
             [title-label] minmax(0px, 1fr)
@@ -140,9 +147,9 @@
         //
         &:not(.ui-detached) { @include maximized(); }
         &:not(:has(.ui-content)) { display: none; }
-        &:hover {
+        /*&:hover {
             outline: solid 0.5px oklch(from var(--current-glyph-color) l c h / 0.125);
-        }
+        }*/
 
         //
         & > :where(.ui-resize) {

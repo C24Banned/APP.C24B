@@ -10,8 +10,7 @@
 
     //
     .ui-content, .ui-screen {
-        --sidebar-space: 0px;//min(20rem, 100cqi);
-        --sidebar-size: min(20rem, 100cqi);
+        //min(20rem, 100cqi);
 
         //
         inline-size: 100%;
@@ -24,14 +23,29 @@
 
         //
         display: grid;
-        grid-template-columns: minmax(0px, var(--sidebar-space)) minmax(0px, 1fr);
+
+        // wallpaper manager doesn't supported sidebars...
+        grid-template-columns: 0px minmax(0px, 1fr);
         grid-template-rows: minmax(0px, 2.5rem) minmax(0px, 1fr);
         position: relative;
         overflow: hidden;
 
         //
-        //grid-column: 2 / 2 span;
-        //grid-row: 1 / 1 span;
+        @media #{d.$isDesktop} {
+            --sidebar-size: 100%;//min(20rem, 100cqi);
+            --sidebar-space: min(16rem, 100cqi);
+        }
+
+        //
+        @media not #{d.$isDesktop} {
+            --sidebar-size: 100cqi;//100%;//min(20rem, 100cqi);
+            --sidebar-space: 0px;
+        }
+
+        //
+        &.ui-settings {
+            grid-template-columns: minmax(0px, var(--sidebar-space)) minmax(0px, 1fr);
+        }
 
         //
         .ui-space {
