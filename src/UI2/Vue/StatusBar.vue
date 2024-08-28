@@ -20,7 +20,7 @@ document.documentElement.addEventListener("contextmenu", (ev)=>{
 
 <!-- -->
 <template>
-    <div class="ui-status-bar" data-scheme="transparent" data-transparent data-bg-dep>
+    <div class="ui-status-bar" data-scheme="transparent" data-transparent>
         <div class="left">
             <Time data-scheme="dynamic-transparent"></Time>
         </div>

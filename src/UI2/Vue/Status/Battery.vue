@@ -9,7 +9,7 @@ const target = ref(null);
 
 <!-- -->
 <template>
-    <div data-transparent ref="target" class="ui-indicator" color-scheme="" v-bind="$attrs">
+    <div data-transparent ref="target" class="ui-indicator" color-scheme="dynamic-transparent" v-bind="$attrs">
         <LucideIcon
             name="battery-charging,battery,battery-full,battery-low,battery-medium,battery-warning"
             class="icon-wrap ui-icon-state ui-battery"

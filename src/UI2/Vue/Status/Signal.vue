@@ -9,7 +9,7 @@ const target = ref(null);
 
 <!-- -->
 <template>
-    <div data-transparent ref="target" class="ui-indicator" color-scheme="" v-bind="$attrs">
+    <div data-transparent ref="target" class="ui-indicator" color-scheme="dynamic-transparent" v-bind="$attrs">
         <LucideIcon
             name="wifi,wifi-off,wifi-high,wifi-low,wifi-zero"
             class="icon-wrap ui-icon-state ui-network"

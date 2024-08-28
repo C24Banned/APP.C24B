@@ -38,16 +38,26 @@
     const toFocus = (ev)=>{ TaskManager.focus(props.id); }
     TaskManager.on("*", ()=>{ isActive.value = task().active; });
     //TaskManager.addTask(task, false);
+
+    //
+    const maximized = ref(true);
+    const toggleMaximize = ()=>{
+        const old = target.value.getAttribute("data-maximized");
+        //target.value.setAttribute("data-maximized", (!old || old == "false") ? true : false);
+        maximized.value = !maximized.value;
+    }
+
+
 </script>
 
 <!-- -->
 <template>
-    <div @pointerdown="toFocus" ref="target" :data-hidden="!isActive" :data-id="props.id" data-highlight="3" data-scheme="accent" style="--theme-accent-chroma: 0.9;" class="ui-frame ui-app-frame ui-default-theme ui-detached" v-bind="$attrs">
+    <div @pointerdown="toFocus" ref="target" :data-maximized="maximized" :data-hidden="!isActive" :data-id="props.id" data-highlight="3" data-scheme="accent" style="--theme-accent-chroma: 0.9;" class="ui-frame ui-app-frame ui-default-theme" v-bind="$attrs">
 
         <div class="ui-titlebar" data-transparent>
-            <button data-bg-dep class="max-button" type="button" style="grid-column: max-button; aspect-ratio: 1 / 1;"><LucideIcon name="maximize-2"/></button>
-            <button data-bg-dep class="back-button" type="button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
-            <div data-bg-dep data-transparent data-scheme="solid-transparent" class="ui-title-handle"></div>
+            <button class="max-button" type="button" style="grid-column: max-button; aspect-ratio: 1 / 1;" @click="toggleMaximize"><LucideIcon name="maximize-2"/></button>
+            <button class="back-button" type="button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
+            <div data-transparent data-scheme="solid-transparent" class="ui-title-handle"></div>
             <!--<LucideIcon name="menu" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" />-->
         </div>
 

@@ -195,7 +195,9 @@
             pointer-events: none;
 
             //
-            @include tm.ux-transparent;
+            //@include tm.ux-solid;
+            --theme-surface-alpha: 0;
+            --theme-surface-chroma: 1;
 
             //
             &, & * {
@@ -386,7 +388,9 @@
             pointer-events: none;
 
             //
-            @include tm.ux-transparent;
+            //@include tm.ux-solid;
+            --theme-surface-alpha: 0;
+            --theme-surface-chroma: 1;
         }
     }
 };

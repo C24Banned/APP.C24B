@@ -52,7 +52,7 @@
     //
     body {
         --taskbar-size: 3rem;
-        --titlebar-size: 3rem;
+        --titlebar-size: 2.5rem;
         --status-size: max(env(safe-area-inset-top, 0px), 2rem);
         --height-adjust: 0px;//var(--taskbar-size, 0px);
 

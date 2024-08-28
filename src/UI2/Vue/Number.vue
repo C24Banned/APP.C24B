@@ -38,8 +38,8 @@ onMounted(() => {
 
 <template>
     <div ref="target" data-scheme="accent" class="ui-input number-input" v-bind="$attrs" data-highlight="1" style="--theme-accent-chroma: 0.2;">
-        <button data-bg-dep type="button" @click="whenClickDown" class="icon-wrap f-minus" data-scheme="accent" data-highlight="1" data-highlight-hover="2" style="--theme-accent-chroma: 0.8;">
-            <LucideIcon data-bg-dep inert name="chevron-left"/>
+        <button type="button" @click="whenClickDown" class="icon-wrap f-minus" data-scheme="accent" data-highlight="1" data-highlight-hover="2" style="--theme-accent-chroma: 0.8;">
+            <LucideIcon inert name="chevron-left"/>
         </button>
         <div class="input-wrap hl-ms" data-scheme="solid-transparent" data-transparent>
             <input
@@ -54,11 +54,10 @@ onMounted(() => {
                 inputmode="numeric"
                 pattern="\d*"
                 virtualkeyboardpolicy="manual"
-                data-bg-dep
             />
         </div>
-        <button data-bg-dep type="button" @click="whenClickUp" class="icon-wrap f-plus" data-scheme="accent" data-highlight="1" data-highlight-hover="2" style="--theme-accent-chroma: 0.8;">
-            <LucideIcon data-bg-dep inert name="chevron-right"/>
+        <button type="button" @click="whenClickUp" class="icon-wrap f-plus" data-scheme="accent" data-highlight="1" data-highlight-hover="2" style="--theme-accent-chroma: 0.8;">
+            <LucideIcon inert name="chevron-right"/>
         </button>
     </div>
 </template>

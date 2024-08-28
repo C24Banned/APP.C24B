@@ -36,7 +36,7 @@
 </script>
 
 <template>
-    <div class="ui-title-label" data-transparent data-bg-dep data-scheme="dynamic">
+    <div class="ui-title-label" data-transparent data-scheme="dynamic">
         <LucideIcon inert name="wallpaper" class="ui-icon"/>
         <span>{{ "Wallpapers" }}</span>
     </div>

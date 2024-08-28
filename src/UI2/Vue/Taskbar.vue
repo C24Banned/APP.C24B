@@ -95,11 +95,11 @@
     </x-scrollbox>
 
     <!-- -->
-    <div class="ui-taskbar" v-bind="$attrs" data-scheme="transparent">
-        <div class="ui-app-menu" data-highlight-hover="2" data-transparent data-bg-dep>
+    <div class="ui-taskbar" v-bind="$attrs" data-scheme="solid">
+        <div class="ui-app-menu" data-highlight-hover="2" data-transparent data-scheme="dynamic-transparent">
             <LucideIcon inert name="layout-grid"></LucideIcon>
         </div>
-        <div class="ui-task-bar" data-transparent data-bg-dep>
+        <div class="ui-task-bar" data-transparent data-scheme="dynamic-transparent">
             <div v-for="task in tasks"
                 :class="{'ui-focus': task.id == currentHash, 'ui-active': task.active}"
                 :key="task.id"
@@ -107,25 +107,24 @@
                 class="ui-task"
                 :data-id="task.id"
                 data-highlight-hover="1"
-                data-transparent data-bg-dep
+                data-transparent
                 @click="focusTask"
             >
                 <LucideIcon inert :name="task.icon"></LucideIcon>
             </div>
         </div>
         <div class="ui-status" data-transparent>
-            <Signal data-bg-dep data-highlight="1" data-highlight-hover="2"></Signal>
-            <Battery data-bg-dep data-highlight="1" data-highlight-hover="2"></Battery>
-            <Time data-bg-dep data-highlight="1" data-highlight-hover="2"></Time>
+            <Signal data-highlight="1" data-highlight-hover="2"></Signal>
+            <Battery data-highlight="1" data-highlight-hover="2"></Battery>
+            <Time data-highlight="1" data-highlight-hover="2"></Time>
         </div>
     </div>
 
     <!-- -->
     <div class="ui-navbar" data-scheme="solid" data-highlight="2" v-bind="$attrs">
-        <button data-bg-dep data-transparent data-scheme="dynamic-transparent" class="back-button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
+        <button data-transparent data-scheme="dynamic-transparent" class="back-button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
         <div class="ui-title-handle" @pointerdown="toFocus">{{ label }}</div>
-        <button data-bg-dep data-transparent data-scheme="dynamic-transparent" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" @click="openPanel"><LucideIcon name="menu"/></button>
+        <button data-transparent data-scheme="dynamic-transparent" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" @click="openPanel"><LucideIcon name="menu"/></button>
     </div>
-
 
 </template>

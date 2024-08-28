@@ -66,6 +66,7 @@
                 //
                 &.selected {
                     @include tm.ux-inverse;
+                    --theme-surface-alpha: 1;
                 }
 
                 //
