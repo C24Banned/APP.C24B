@@ -1,5 +1,5 @@
 <script setup>
-    import LucideIcon from '@idc/UI2/Vue/WLucideIcon.vue';
+    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
     import { lang } from "@idc/Config/Config.ts";
     import { defineAsyncComponent, ref, shallowRef, computed } from 'vue'
 
@@ -13,9 +13,9 @@
 
     //
     const fieldByType = shallowRef({
-        "number": defineAsyncComponent(() => import('@idc/UI2/Vue/Number.vue')),
-        "switch": defineAsyncComponent(() => import('@idc/UI2/Vue/Switch.vue')),
-        "shape": defineAsyncComponent(() => import('@idc/UI2/Vue/ShapeSelect.vue')),
+        "number": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Number.vue')),
+        "switch": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Switch.vue')),
+        "shape": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/ShapeSelect.vue')),
     });
 
     //

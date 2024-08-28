@@ -1,7 +1,7 @@
 <script setup>
 import GestureControl from "@unite/scripts/interact/Gesture.ts";
 import {reactive, watch, ref, onMounted} from "vue";
-import LucideIcon from "./WLucideIcon.vue";
+import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
 import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
 import { objectAssign } from '@unite/scripts/reactive/AssignObject';
 

@@ -4,7 +4,6 @@
     import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
     import { objectAssign } from '@unite/scripts/reactive/AssignObject';
 
-
     //
     const props = defineProps({
         fields: Array,
@@ -78,20 +77,20 @@
         <div class="ui-edit-desc">
             <slot name="description"/>
         </div>
-            <div class="ui-field-block" v-for="F in fields">
-                <div inert class="field-label">{{F.label}}</div>
-                <input
-                    data-scheme="solid"
-                    class="field-input hl-1 hl-2h"
-                    data-highlight="1"
-                    data-highlight-hover="2"
-                    type="text"
-                    maxlength="1024"
-                    autocomplete="off"
-                    v-model="F.value"
-                    :name="F.name"
-                    :data-name="F.name"
-                    />
-            </div>
+        <div class="ui-field-block" v-for="F in fields">
+            <div inert class="field-label">{{F.label}}</div>
+            <input
+                data-scheme="solid"
+                class="field-input hl-1 hl-2h"
+                data-highlight="1"
+                data-highlight-hover="2"
+                type="text"
+                maxlength="1024"
+                autocomplete="off"
+                v-model="F.value"
+                :name="F.name"
+                :data-name="F.name"
+                />
+        </div>
     </form>
 </template>

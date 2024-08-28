@@ -2,9 +2,8 @@
     import {reactive, watch, ref, onMounted, shallowRef, shallowReactive, markRaw} from "vue";
 
     //
-    import ItemEdit from "./ItemEdit.vue";
-    import GridItem from "@idc/UI2/Vue/GridItem.vue";
-    import Frame from "@idc/UI2/Vue/Frame.vue";
+    import ItemEdit from "@idc/UI2/Vue/Input/ItemEdit.vue";
+    import Frame from "@idc/UI2/Vue/Overlay/Frame.vue";
     import stateMap from "@unite/scripts/reactive/StateManager.ts";
     import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
 

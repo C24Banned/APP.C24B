@@ -1,6 +1,6 @@
 <script setup>
     import {reactive, watch, ref, onMounted, useAttrs} from "vue";
-    import LucideIcon from "@idc/UI2/Vue/WLucideIcon.vue";
+    import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
 
     //
     const attrs = useAttrs();

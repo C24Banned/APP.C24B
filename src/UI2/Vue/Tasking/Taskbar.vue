@@ -1,13 +1,13 @@
 <script setup>
-    import LucideIcon from '@idc/UI2/Vue/WLucideIcon.vue';
+    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
     import {reactive, watch, ref, onMounted, computed} from "vue";
     import stateMap from "@unite/scripts/reactive/StateManager.ts";
     import { subscribe } from '@unite/scripts/reactive/ReactiveLib';
 
     //
-    import Signal from "./Status/Signal.vue";
-    import Battery from "./Status/Battery.vue";
-    import Time from "./Status/Time.vue";
+    import Signal from "@idc/UI2/Vue/Status/Signal.vue";
+    import Battery from "@idc/UI2/Vue/Status/Battery.vue";
+    import Time from "@idc/UI2/Vue/Status/Time.vue";
 
     //
     import TaskManager from "@idc/PreInit/TaskManager.ts";

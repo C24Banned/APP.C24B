@@ -15,7 +15,7 @@ export default async ()=>{
     const hideAllCtx = ()=>{
         initiators.clear();
         document.querySelectorAll(".ui-context-menu").forEach((el)=>{
-            el.dataset.hidden = true;
+            if (el) { (el as HTMLElement).dataset.hidden = "true"; };
         });
     }
 
@@ -38,9 +38,10 @@ export default async ()=>{
 
             //
             requestAnimationFrame(()=>{
-                const ctxMenu: HTMLElement | null = document.querySelector(".ui-context-menu[data-ctx-name=\""+ctxName+"\"]");
+                const ctxMenu = document.querySelector("#context-menu") as HTMLElement;
                 if (ctxMenu) {
-                    ctxMenu.dataset.hidden = false;
+                    ctxMenu.dataset.ctxName = ctxName;
+                    ctxMenu.dataset.hidden  = "false";
                     ctxMenu.style.setProperty("--click-x", ev.clientX as unknown as string, "");
                     ctxMenu.style.setProperty("--click-y", ev.clientY as unknown as string, "");
                 }
@@ -63,7 +64,7 @@ export default async ()=>{
         const target = ev.target as HTMLElement;
 
         //
-        const initiator = initiators.get(target.closest(".ui-context-menu").dataset.ctxName);
+        const initiator = initiators.get((target.closest(".ui-context-menu") as HTMLElement)?.dataset?.ctxName || "");
         actionMap?.get?.(target.dataset.action as string)?.({
             initiator
         });
@@ -82,7 +83,7 @@ export default async ()=>{
         }
 
         //
-        if (!MOC(target, ".ui-context-menu[data-ctx-name]") || target.matches("*[data-action]")) {
+        if (!MOC(target, "#context-menu") || target.matches("*[data-action]")) {
             requestAnimationFrame(()=>{
                 hideAllCtx();
             });

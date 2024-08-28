@@ -2,9 +2,9 @@
 import {reactive, watch, ref, onMounted} from "vue";
 
 //
-import Signal from "./Status/Signal.vue";
-import Battery from "./Status/Battery.vue";
-import Time from "./Status/Time.vue";
+import Signal from "@idc/UI2/Vue/Status/Signal.vue";
+import Battery from "@idc/UI2/Vue/Status/Battery.vue";
+import Time from "@idc/UI2/Vue/Status/Time.vue";
 
 //
 document.documentElement.addEventListener("contextmenu", (ev)=>{

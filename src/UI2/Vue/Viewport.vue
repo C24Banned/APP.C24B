@@ -1,7 +1,7 @@
 <script setup>
     import {reactive, watch, ref, onMounted, useAttrs} from "vue";
-    import LucideIcon from "@idc/UI2/Vue/WLucideIcon.vue";
-    import InputEdit from "@idc/UI2/Vue/InputEdit.vue";
+    import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
+    import InputEdit from "@idc/UI2/Vue/Overlay/InputEdit.vue";
 
     //
     const attrs = useAttrs();

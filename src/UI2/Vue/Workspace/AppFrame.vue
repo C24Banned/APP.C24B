@@ -1,6 +1,6 @@
 <script setup>
     import {reactive, watch, ref, onMounted} from "vue";
-    import LucideIcon from './WLucideIcon.vue';
+    import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
     import TaskManager from "@idc/PreInit/TaskManager.ts";
 
     //

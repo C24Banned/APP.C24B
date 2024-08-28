@@ -1,5 +1,5 @@
 <script setup>
-    import LucideIcon from '@idc/UI2/Vue/WLucideIcon.vue';
+    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
     import { observeAttribute } from '@unite/scripts/dom/Observer.ts';
     import { lang } from "@idc/Config/Config.ts";
 
