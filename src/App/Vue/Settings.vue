@@ -16,6 +16,7 @@
         "number": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Number.vue')),
         "switch": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Switch.vue')),
         "shape": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/ShapeSelect.vue')),
+        "checkbox": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Checkbox.vue')),
     });
 
     //
@@ -56,6 +57,12 @@
             icon: "palette",
             label: "Design",
             include: ["design"]
+        },
+        {
+            id: "experimental",
+            icon: "flask-conical",
+            label: "Experimental",
+            include: ["experimental"]
         }
     ];
 
@@ -86,6 +93,13 @@
             description: t('settings.design_desc'),
             fields: [
                 {label: t('settings.iconShape'), icon: "badge", type: "shape", name: "iconShape"},
+            ]
+        },
+        {
+            id: "experimental",
+            description: "Experimental",
+            fields: [
+                {label: "Checkbox", icon: "badge-check", type: "checkbox", name: "exp-checkbox"},
             ]
         }
     ]
