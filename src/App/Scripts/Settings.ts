@@ -42,8 +42,10 @@ export default async ()=>{
         }
 
         // setup radio boxes
-        const radio = target.querySelector("input:where([type=\"radio\"][name=\""+target?.dataset?.name+"\"][value=\""+state[target?.dataset?.name]+"\"])");
-        if (state && radio) { radio?.click?.(); };
+        if (state) {
+            const radio = target.querySelector("input:where([type=\"radio\"][name=\""+target?.dataset?.name+"\"][value=\""+state[target?.dataset?.name]+"\"])");
+            if (state && radio) { radio?.click?.(); };
+        }
 
         // setup check boxes
         const checkbox = target.querySelector("input:where([type=\"checkbox\"][name=\""+target?.dataset?.name+"\"]");

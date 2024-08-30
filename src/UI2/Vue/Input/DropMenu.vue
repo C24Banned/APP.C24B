@@ -1,10 +1,18 @@
 <script setup>
-    import { StateManager } from '@unite/scripts/reactive/StateManager.ts';
+    import StateManager from '@unite/scripts/reactive/StateManager.ts';
     import { subscribe } from '@unite/scripts/reactive/ReactiveLib.ts';
+    import {reactive, watch, ref, onMounted} from "vue";
+    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
 
     //
     const UIState = StateManager.get("UIState");
     const currentValue = ref(null);
+    const currentMenu  = ref(null);
+
+    //
+    subscribe(UIState, (v, prop)=>{
+        if (prop == "currentDropMenu") { currentMenu.value = v; };
+    });
 
     //
     const props = defineProps({
@@ -13,8 +21,13 @@
 
     //
     const dropMenu = ()=>{
-        UIState.currentDropMenu = props.menuList;
+        UIState.currentDropMenu = UIState.currentDropMenu ? null : props.menuList;
     };
+
+    //
+    const onChange = (ev)=>{
+        currentValue.value = ev.target.value;
+    }
 
     //
     /*watch(() => currentValue, (newVal, oldVal) => {
@@ -24,12 +37,15 @@
 
 <template>
 
-    <div class="ui-drop-menu ui-input" :data-name="props.menuList.menuName" v-bind="$attrs">
+    <div v-if="props.menuList" class="ui-drop-menu ui-input" :data-name="props.menuList.menuName" v-bind="$attrs">
 
         <!-- -->
-        <label class="ui-drop-menu" v-for="item in currentMenu.items" >
-            <button @click="dropMenu">{{menuList.items[currentValue].label}}</button>
-            <input v-model="currentValue" :name="menuList.menuName" type="text" value=""/>
+        <label class="ui-drop-menu" data-scheme="solid" :data-highlight="(currentMenu != UIState.currentDropMenu) ? 3 : 2" data-highlight-hover="3">
+            <button @click="dropMenu">
+                <LucideIcon inert :name="props.menuList.items[currentValue]?.icon ?? 'x'" :data-icon="props.menuList.items[currentValue]?.icon ?? 'x'"></LucideIcon>
+                <span inert>{{props.menuList.items[currentValue]?.label || 'Not Defined'}}</span>
+            </button>
+            <input @change="onChange" @input="onChange" v-model="currentValue" :name="props.menuList.menuName" type="text" value=""/>
         </label>
 
     </div>

@@ -42,7 +42,7 @@
 
     //
     const attrs = useAttrs();
-    const names = ref((props.name.split(",")||[props.name]));
+    const names = ref((props.name?.split?.(",")||[props.name]));
     //const icons = computed(() => Array.from(Object.entries(iconPack)).filter( ([K,I])=>names.value.indexOf(K)>=0 ));
 
     // reactive attribute...

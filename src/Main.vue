@@ -15,6 +15,7 @@
     //
     import StatusBar from "@idc/UI2/Vue/Tasking/StatusBar.vue";
     import Taskbar from "@idc/UI2/Vue/Tasking/Taskbar.vue";
+    import DropMenuList from "@idc/UI2/Vue/Input/DropMenuList.vue";
 
     //
     import Viewport from "@idc/UI2/Vue/Viewport.vue";
@@ -90,6 +91,7 @@
 
     <!-- -->
     <IconEdit></IconEdit>
+    <DropMenuList></DropMenuList>
     <ContextMenu :ctxList="contextMenus" data-ctx-name=""></ContextMenu>
 
     <!-- -->

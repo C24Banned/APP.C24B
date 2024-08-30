@@ -1,0 +1,153 @@
+//
+@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/CMixins" as cm;
+
+//
+@use "@unite/scss/design/ColorTheme";
+
+// button
+@layer ui-drop-menu {
+
+    //
+    .ui-drop-menu {
+        display: flex;
+        place-content: center;
+        place-items: center;
+        inline-size: 8rem;
+        block-size: 2rem;
+        min-inline-size: max-content;
+        pointer-events: none;
+
+        //
+        overflow: hidden;
+        border-radius: 0.125rem;
+
+        //
+        input { display: none; }
+        button {
+            min-inline-size: max-content;
+            inline-size: 100%;
+            block-size: 100%;
+
+            //
+            font-size: 0.9rem;
+            gap: 0.5rem;
+
+            //
+            padding-block: 0.5rem;
+            padding-inline: 0.75rem;
+
+            //
+            display: flex;
+            place-content: center;
+            place-items: center;
+
+            //
+            justify-content: start;
+            justify-items: start;
+
+            //
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        //
+        .icon-wrap {
+            block-size: 100%;
+            aspect-ratio: 1 / 1;
+        }
+    }
+
+    // drop list
+    // TODO! Official CSS anchor support!
+    .ui-drop-menu-list {
+        position: fixed;
+        inset: 0px;
+        pointer-events: auto;
+        border-radius: 0.125rem;
+        overflow: hidden;
+
+        //
+        container-type: inline-size;
+        block-size: max-content;
+        inline-size: max-content;
+        min-inline-size: max-content;
+        contain: content;
+
+        //
+        display: flex;
+        flex-direction: column;
+        place-content: center;
+        place-items: center;
+
+        //
+        z-index: 9999;
+
+        //
+        .icon-wrap {
+            block-size: 100%;
+            aspect-ratio: 1 / 1;
+        }
+
+        //
+        .space {
+            display: block;
+            flex-grow: 1;
+        }
+
+        //
+        .indicator {
+            inline-size: 0.5rem;
+            block-size: 0.5rem;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            justify-self: end;
+
+            //
+            &.selected {
+                background-color: var(--current-surface-color);
+                border: none;
+            }
+
+            //
+            &:not(.selected) {
+                background-color: transparent;
+                border: solid 1px var(--current-surface-color);
+            }
+        }
+
+        //
+        & > :where(*) {
+            cursor: pointer;
+            pointer-events: auto;
+            display: flex;
+            place-content: center;
+            place-items: center;
+
+            //
+            font-size: 0.9rem;
+            gap: 0.5rem;
+
+            //
+            justify-content: start;
+            justify-items: start;
+
+            //
+            inline-size: 100%;
+            block-size: 2rem;
+            min-block-size: max-content;
+
+            //
+            padding-block: 0.5rem;
+            padding-inline: 0.75rem;
+
+            //
+            label { pointer-events: auto; }
+            input {
+                display: none;
+                pointer-events: auto;
+            }
+        }
+    }
+
+}

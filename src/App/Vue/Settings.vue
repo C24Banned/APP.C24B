@@ -13,6 +13,7 @@
 
     //
     const fieldByType = shallowRef({
+        "drop-menu": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/DropMenu.vue')),
         "number": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Number.vue')),
         "switch": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Switch.vue')),
         "shape": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/ShapeSelect.vue')),
@@ -100,6 +101,13 @@
             description: "Experimental",
             fields: [
                 {label: "Checkbox", icon: "badge-check", type: "checkbox", name: "exp-checkbox"},
+                {label: "Drop-Menu", icon: "badge-check", type: "drop-menu", name: "exp-drop", menuList: {
+                    menuName: "exp-drop",
+                    items: {
+                        "github": { icon: "github", label: "Github", value: "github" },
+                        "gitlab": { icon: "gitlab", label: "Gitlab", value: "gitlab" }
+                    }
+                }},
             ]
         }
     ]
@@ -186,6 +194,7 @@
                                 :step="field?.params?.[2]"
                                 :data-state="props.stateName"
                                 :data-name="field.name"
+                                :menuList="field.menuList"
                             ></component>
                         </div>
                     </div>
