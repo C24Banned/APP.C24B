@@ -16,9 +16,14 @@ export default async ()=>{
                 state[target.dataset.name] = input.valueAsNumber ?? input.value;
             }
 
-            //
-            if (input?.matches(".ui-shape input[type=\"radio\"]:checked")) {
+            // any radio-box
+            if (input?.matches("input[type=\"radio\"]:checked")) {
                 state[target.dataset.name] = input.value;
+            }
+
+            // any check-box
+            if (input?.matches("input[type=\"checkbox\"]")) {
+                state[target.dataset.name] = input.checked;
             }
         }
     };
@@ -34,6 +39,17 @@ export default async ()=>{
         if (state && input) {
             input.value = state[target?.dataset?.name];
             input.dispatchEvent(new Event("change", { bubbles: false, cancelable: true, }))
+        }
+
+        // setup radio boxes
+        const radio = target.querySelector("input:where([type=\"radio\"][name=\""+target?.dataset?.name+"\"][value=\""+state[target?.dataset?.name]+"\"])");
+        if (state && radio) { radio?.click?.(); };
+
+        // setup check boxes
+        const checkbox = target.querySelector("input:where([type=\"checkbox\"][name=\""+target?.dataset?.name+"\"]");
+        if (state && checkbox) {
+            checkbox.checked = !!state[target?.dataset?.name];
+            checkbox.dispatchEvent(new Event("change", { bubbles: false, cancelable: true, }))
         }
     }
 

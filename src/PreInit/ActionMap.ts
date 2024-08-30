@@ -22,7 +22,8 @@ import {
 export const UIState = makeReactive({
     taskPanelOpen: false,
     itemOnEdit: null,
-    currentGridPage: "main"
+    currentGridPage: "main",
+    currentDropMenu: null
 }, "UIState");
 //UIState
 

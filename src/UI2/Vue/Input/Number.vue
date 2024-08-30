@@ -37,7 +37,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="target" data-scheme="accent" class="ui-input number-input" v-bind="$attrs" data-highlight="1" style="--theme-accent-chroma: 0.2;">
+    <div ref="target" data-scheme="accent" class="ui-input number-input" data-highlight="1" style="--theme-accent-chroma: 0.2;" v-bind="$attrs">
         <button type="button" @click="whenClickDown" class="icon-wrap f-minus" data-scheme="accent" data-highlight="1" data-highlight-hover="2" style="--theme-accent-chroma: 0.8;">
             <LucideIcon inert name="chevron-left"/>
         </button>
