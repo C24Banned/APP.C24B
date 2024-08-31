@@ -44,6 +44,19 @@
     });
 
     //
+    document.addEventListener("scroll", ()=>{
+        if (currentMenu.value) {
+            const dropWith = document.querySelector(".ui-input[data-name=\""+currentMenu.value?.menuName+"\"]");
+            const bbox = dropWith.getBoundingClientRect();
+
+            //
+            target.value.style.insetInlineStart = `calc(${bbox.left   + "px"} / var(--zoom, 1))`;
+            target.value.style.insetBlockStart  = `calc(${bbox.bottom + "px"} / var(--zoom, 1))`;
+            target.value.style.inlineSize       = `calc(${bbox.width  + "px"} / var(--zoom, 1))`;
+        }
+    });
+
+    //
     document.addEventListener("click", (ev)=>{
         const target = ev.target;
 
