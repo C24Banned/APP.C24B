@@ -86,6 +86,13 @@
             currentValue.value = ev.target.value;
         }
     });
+
+    // try also when mounted
+    onMounted(()=>{
+        requestAnimationFrame(()=>{
+            currentValue.value = document.querySelector("input[type=\"text\"][name=\""+currentMenu.value?.menuName+"\"]")?.value;
+        });
+    });
 </script>
 
 <template>

@@ -9,16 +9,26 @@
     //
     const input  = ref(null);
     const target = ref(null);
+    const value  = ref(0);
+
+    //
+    const iconSet = new Map([
+        [-1, "moon"],
+        [0, "sun-moon"],
+        [1, "sun"],
+    ]);
 
     //
     const whenChange = (ev)=>{
         const inp = ev.target;
+        value.value = inp.valueAsNumber;
         (target.value).style.setProperty("--value-mod", (inp.valueAsNumber - inp.min) / (inp.max - inp.min), "");
     }
 
     //
     onMounted(()=>{
         const inp = input.value;
+        value.value = inp.valueAsNumber;
         (target.value).style.setProperty("--value-mod", (inp.valueAsNumber - inp.min) / (inp.max - inp.min), "");
     });
 
@@ -26,10 +36,22 @@
 
 <!-- -->
 <template>
-    <label ref="target" class="ui-input ui-switch" data-scheme="solid-transparent" v-bind="$attrs">
-        <input ref="input" data-scheme="solid-transparent" @change="whenChange" @input="whenChange" type="range" min="-1" max="1" step="1"/>
-        <div data-chroma="0.2" data-scheme="inverse" data-highlight="4" class="fill" ></div>
-        <div data-scheme="solid"  data-highlight="2" class="track" ></div>
-        <div data-chroma="0.05" data-scheme="solid"  data-highlight="3" class="thumb icon-sign"><LucideIcon name="circle"/></div>
+    <label ref="target" class="ui-input ui-switch" data-transparent data-scheme="solid-transparent" v-bind="$attrs">
+        <input ref="input" data-scheme="solid-transparent" @change="whenChange" @input="whenChange" type="range" value="0" min="-1" max="1" step="1"/>
+
+        <div data-scheme="solid" class="bg">
+            <div data-chroma="0.15" data-highlight="1" data-scheme="inverse" class="active"></div>
+            <div data-chroma="0.15" data-highlight="1" data-scheme="solid"   class="in-active"></div>
+        </div>
+        <div class="thumb" data-scheme="solid-transparent" data-transparent>
+            <div data-chroma="0.3" data-highlight="2" :data-scheme="'solid'" inert class="inner">
+                <LucideIcon
+                    :data-icon="iconSet.get(value) || 'circle'"
+                    :name="iconSet.get(value) || 'circle'"
+                ></LucideIcon>
+            </div>
+        </div>
     </label>
 </template>
+
+
