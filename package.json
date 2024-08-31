@@ -17,6 +17,7 @@
         "@csstools/css-tokenizer": "^3.0.0",
         "@effective/eslint-config": "^5.4.7",
         "@happy-js/happy-opfs": "npm:@jsr/happy-js__happy-opfs@^1.8.4",
+        "@intlify/unplugin-vue-i18n": "^4.0.0",
         "@luca/cases": "npm:@jsr/luca__cases@^1.0.0",
         "@material/material-color-utilities": "^0.2.7",
         "@sass-fairy/list": "^1.2.4",

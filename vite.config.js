@@ -18,6 +18,7 @@ import tsconfig from "./tsconfig.json" with { type: "json" };
 import vue from '@vitejs/plugin-vue'
 import { viteSingleFile } from "vite-plugin-singlefile"
 import json5Plugin from 'vite-plugin-json5'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 
 import cssnano from "cssnano";
 import deduplicate from "postcss-discard-duplicates";
@@ -66,6 +67,9 @@ const config = defineConfig({
                     isCustomElement: (tag) => ['x-scrollbox'].includes(tag),
                 }
             }
+        }),
+        VueI18n({
+            runtimeOnly: true
         }),
         viteSingleFile({
             useRecommendedBuildConfig: false,

@@ -1,13 +1,13 @@
 <script setup>
     import StateManager from '@unite/scripts/reactive/StateManager.ts';
     import { subscribe } from '@unite/scripts/reactive/ReactiveLib.ts';
-    import {reactive, watch, ref, onMounted} from "vue";
+    import {reactive, watch, ref, shallowRef, onMounted} from "vue";
     import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
 
     //
     const UIState = StateManager.get("UIState");
     const currentValue = ref(null);
-    const currentMenu  = ref(null);
+    const currentMenu  = shallowRef(null);
 
     //
     subscribe(UIState, (v, prop)=>{
@@ -37,7 +37,7 @@
 
 <template>
 
-    <div v-if="props.menuList" class="ui-drop-menu ui-input" :data-name="props.menuList.menuName" v-bind="$attrs">
+    <div :style="{'anchorName': (currentMenu == UIState.currentDropMenu) ? '--drop-current' : ''}" v-if="props.menuList" class="ui-drop-menu ui-input" :data-name="props.menuList.menuName" v-bind="$attrs">
 
         <!-- -->
         <label class="ui-drop-menu" data-scheme="solid" data-chroma="0.05" :data-highlight="(currentMenu == UIState.currentDropMenu) ? 2 : 3" data-highlight-hover="3">
