@@ -52,7 +52,7 @@
 
 <!-- -->
 <template>
-    <div @pointerdown="toFocus" ref="target" :data-maximized="maximized" :data-hidden="!isActive" :data-id="props.id" data-highlight="3" data-scheme="accent" style="--theme-accent-chroma: 0.9;" class="ui-frame ui-app-frame ui-default-theme" v-bind="$attrs">
+    <div @pointerdown="toFocus" ref="target" :data-maximized="maximized" :data-hidden="!isActive" :data-id="props.id" data-highlight="3" data-scheme="solid" style="--theme-accent-chroma: 0.9;" class="ui-frame ui-app-frame ui-default-theme" v-bind="$attrs">
 
         <div class="ui-titlebar" data-transparent>
             <button class="max-button" type="button" style="grid-column: max-button; aspect-ratio: 1 / 1;" @click="toggleMaximize"><LucideIcon name="maximize-2"/></button>

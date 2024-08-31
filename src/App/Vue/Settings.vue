@@ -171,7 +171,7 @@
         <x-scrollbox class="ui-side" data-scheme="solid" data-highlight="2.5" ref="sideBar">
             <!--<div></div>-->
 
-            <div v-for="tab in tabs"  @click="()=>setCurrentTab(tab.id)" data-highlight="2.5" :data-scheme="currentTab==tab.id ? 'inverse' : 'solid'" :class="{'ui-selected': currentTab==tab.id}" class="ui-block-decor pe-none ui-tab" style="--decor-size: 3rem;" data-highlight-hover="3">
+            <div v-for="tab in tabs"  @click="()=>setCurrentTab(tab.id)" data-highlight="2.5" :data-chroma="currentTab==tab.id ? 0.2 : 0.0" :data-scheme="currentTab==tab.id ? 'inverse' : 'solid'" :class="{'ui-selected': currentTab==tab.id}" class="ui-block-decor pe-none ui-tab" style="--decor-size: 3rem;" data-highlight-hover="3">
                 <span class="tab-label">{{tab.label}}</span>
                 <LucideIcon data-place="icon" :name="tab.icon"/>
             </div>
@@ -180,7 +180,7 @@
         <x-scrollbox class="ui-space">
 
             <div is="flex-like" data-gap="16">
-                <div data-scheme="solid" data-highlight="1" v-for="form in filteredForms" data-page class="form-wrap" :key="form.id">
+                <div data-scheme="solid" data-highlight="2" v-for="form in filteredForms" data-page class="form-wrap" :key="form.id">
                     <div class="form-description">{{form.description}}</div>
                     <div v-if="form.fields" v-for="field in form.fields" :key="field.name" class="ui-block-decor pe-none" :class="{'layout-alt': field.type == 'shape'}" style="--decor-size: 4rem;" >
                         <span class="opt-label">{{field.label}}</span>

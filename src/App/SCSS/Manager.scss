@@ -64,12 +64,6 @@
                 }
 
                 //
-                &.selected {
-                    @include tm.ux-inverse;
-                    --theme-surface-alpha: 1;
-                }
-
-                //
                 & .name {
                     text-align: start;
                     justify-self: start;

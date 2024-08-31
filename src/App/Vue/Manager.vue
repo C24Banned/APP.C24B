@@ -69,7 +69,9 @@
                     :data-filename="file.name"
                     class="file"
                     v-bind:class="{selected: state.selectedFilename == file.name}"
-                    data-scheme
+                    :data-scheme="state.selectedFilename == file.name ? 'inverse' : 'solid'"
+                    :data-chroma="state.selectedFilename == file.name ? 0.2 : 0.0"
+                    :data-alpha="state.selectedFilename == file.name ? 1.0 : 0.0"
                     data-highlight-hover="1"
                     :key="name"
                 >

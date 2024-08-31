@@ -43,7 +43,9 @@ onMounted(()=>{
         :data-action="gridItem.action"
         :data-href="gridItem.href"
         :data-type="props.type"
-        data-scheme="transparent"
+        data-transparent
+        data-scheme="accent"
+        data-alpha="0.0"
         class="ux-grid-item ui-item-label"
         inert>
     {{ gridItem.label }}
