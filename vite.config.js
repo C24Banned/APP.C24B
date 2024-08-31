@@ -44,6 +44,8 @@ const config = defineConfig({
     base: './',
     resolve: {
         alias: {
+            "vue-i18n": 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
+            "vue": 'vue/dist/vue.esm-bundler.js',
             "@node_modules": path.resolve("./node_modules"),
             "@culori": path.resolve("./node_modules/culori"),
             "@material": path.resolve("./node_modules/@material"),
@@ -168,9 +170,6 @@ const config = defineConfig({
                 }],
             }), postcssPresetEnv({ stage: 0 })],
         },
-    },
-    html: {
-        cspNonce: 'VITE_NONCE'//"allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' 'inline-speculation-rules' 'script-src-elem'; object-src 'self'; child-src 'self';"
     },
     optimizeDeps: {
         esbuildOptions: {target: "esnext", supported: {bigint: true}},

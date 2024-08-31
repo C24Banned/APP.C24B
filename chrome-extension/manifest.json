@@ -38,7 +38,6 @@
         "newtab": "index.html"
     },
     "content_security_policy": {
-        "extension_pages": "script-src 'self'; worker-src 'self'",
-        "sandbox": "sandbox script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' 'nonce-VITE_NONCE' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*; object-src 'self'; child-src 'self'; worker-src 'self'"
+        "extension_page":"script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
     }
 }
