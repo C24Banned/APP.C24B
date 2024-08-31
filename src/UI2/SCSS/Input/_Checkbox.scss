@@ -51,7 +51,7 @@
 
         //
         & { --on-active: 0%; };
-        &:has(input:checked) { --on-active: calc(0.75rem + (100% - 0.75rem));  }
+        &:has(input:checked) { --on-active: 100%;  }
 
         //
         & > :where(*) {
@@ -104,7 +104,8 @@
                 //
                 position: absolute;
                 inset: auto;
-                pointer-events: none;
+                pointer-events: auto;
+                cursor: pointer;
 
                 //
                 display: flex;
