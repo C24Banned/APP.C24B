@@ -40,7 +40,7 @@
     <div :style="{'anchorName': (currentMenu == UIState.currentDropMenu) ? '--drop-current' : ''}" v-if="props.menuList" class="ui-drop-menu ui-input" :data-name="props.menuList.menuName" v-bind="$attrs">
 
         <!-- -->
-        <label class="ui-drop-menu" data-scheme="solid" data-chroma="0.05" :data-highlight="(currentMenu == UIState.currentDropMenu) ? 2 : 3" data-highlight-hover="3">
+        <label class="ui-drop-menu" data-scheme="solid" data-chroma="0.05" :data-highlight="(currentMenu == UIState.currentDropMenu) ? 3 : 4" data-highlight-hover="4">
             <button @click="dropMenu">
                 <LucideIcon inert :name="props.menuList.items[currentValue]?.icon ?? 'x'" :data-icon="props.menuList.items[currentValue]?.icon ?? 'x'"></LucideIcon>
                 <span inert>{{props.menuList.items[currentValue]?.label || 'Not Defined'}}</span>

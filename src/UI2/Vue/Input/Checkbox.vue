@@ -19,11 +19,11 @@
         <input ref="input" data-scheme="solid-transparent" @change="onCheck" @input="onCheck" type="checkbox" v-observe:checked="(v)=>{checked=(v?true:false)}"/>
 
         <div data-scheme="solid" class="bg">
-            <div data-chroma="0.15" data-highlight="1" data-scheme="inverse" class="active"></div>
-            <div data-chroma="0.15" data-highlight="1" data-scheme="solid"   class="in-active"></div>
+            <div data-chroma="0.6" data-highlight="2" data-scheme="inverse" class="active"></div>
+            <div data-chroma="0.6" data-highlight="2" data-scheme="solid"   class="in-active"></div>
         </div>
         <div class="thumb" data-scheme="solid-transparent" data-transparent>
-            <div data-chroma="0.3" data-highlight="2" :data-scheme="checked ? 'inverse' : 'solid'" class="inner"><LucideIcon inert :data-icon="checked ? 'check' : 'x'" :name="checked ? 'check' : 'x'"></LucideIcon></div>
+            <div data-highlight="2" data-highlight-hover="3" style="--theme-accent-chroma: 0.8;" :data-scheme="checked ? 'inverse' : 'solid'" class="inner"><LucideIcon inert :data-icon="checked ? 'check' : 'x'" :name="checked ? 'check' : 'x'"></LucideIcon></div>
         </div>
     </label>
 </template>

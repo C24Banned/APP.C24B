@@ -40,11 +40,11 @@
         <input ref="input" data-scheme="solid-transparent" @change="whenChange" @input="whenChange" type="range" value="0" min="-1" max="1" step="1"/>
 
         <div data-scheme="solid" class="bg">
-            <div data-chroma="0.15" data-highlight="1" data-scheme="inverse" class="active"></div>
-            <div data-chroma="0.15" data-highlight="1" data-scheme="solid"   class="in-active"></div>
+            <div data-chroma="0.6" data-highlight="2" data-scheme="inverse" class="active"></div>
+            <div data-chroma="0.6" data-highlight="2" data-scheme="solid"   class="in-active"></div>
         </div>
         <div class="thumb" data-scheme="solid-transparent" data-transparent>
-            <div data-chroma="0.3" data-highlight="2" :data-scheme="'solid'" inert class="inner">
+            <div data-highlight="2" data-highlight-hover="3" style="--theme-accent-chroma: 0.8;" :data-scheme="'solid'" inert class="inner">
                 <LucideIcon
                     :data-icon="iconSet.get(value) || 'circle'"
                     :name="iconSet.get(value) || 'circle'"

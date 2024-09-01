@@ -2,9 +2,9 @@ name: IDC-L2 WebApp Package (Deploy)
 
 on:
   push:
-    branches: [ "unite" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "unite" ]
+    branches: [ "main" ]
 
 jobs:
   build:
