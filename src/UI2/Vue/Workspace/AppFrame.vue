@@ -65,9 +65,9 @@
     <div @pointerdown="toFocus" ref="target" :data-maximized="maximized" :data-hidden="!isActive" :data-id="props.id" data-highlight="3" data-scheme="solid" style="--theme-accent-chroma: 0.9;" class="ui-frame ui-app-frame ui-default-theme" v-bind="$attrs">
 
         <div class="ui-titlebar" data-transparent>
-            <button class="max-button" type="button" style="grid-column: max-button; aspect-ratio: 1 / 1;" @click="toggleMaximize"><LucideIcon name="maximize-2"/></button>
-            <button class="back-button" type="button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
-            <div data-transparent data-scheme="solid-transparent" class="ui-title-handle"></div>
+            <button scheme="dynamic-transparent" data-transparent class="max-button" type="button" style="grid-column: max-button; aspect-ratio: 1 / 1;" @click="toggleMaximize"><LucideIcon name="maximize-2"/></button>
+            <button scheme="dynamic-transparent" data-transparent class="back-button" type="button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
+            <div data-scheme="dynamic-transparent" data-transparent class="ui-title-handle"></div>
             <!--<LucideIcon name="menu" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" />-->
         </div>
 

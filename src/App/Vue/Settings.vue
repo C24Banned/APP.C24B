@@ -151,7 +151,7 @@
 
 <!-- -->
 <template>
-    <div class="ui-title-label" data-transparent data-scheme="dynamic">
+    <div class="ui-title-label" data-transparent scheme="dynamic-transparent">
         <LucideIcon inert name="settings" class="ui-icon"/>
         <span>{{ "Settings" }}</span>
     </div>
