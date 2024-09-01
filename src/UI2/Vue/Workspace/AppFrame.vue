@@ -2,6 +2,7 @@
     import {reactive, watch, ref, onMounted} from "vue";
     import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
     import TaskManager from "@idc/PreInit/TaskManager.ts";
+    import { zoomOf } from "@unite/scripts/utils/Zoom.ts";
 
     //
     const target = ref(null);
@@ -45,6 +46,15 @@
         const old = target.value.getAttribute("data-maximized");
         //target.value.setAttribute("data-maximized", (!old || old == "false") ? true : false);
         maximized.value = !maximized.value;
+
+        //
+        requestAnimationFrame(()=>{
+            if (target.value) {
+                const f = target.value;
+                f.style.setProperty("--drag-x", (f.parentNode.clientWidth - Math.min(Math.max(f.offsetWidth, 64*16), f.parentNode.clientWidth)) * (zoomOf() / 2), "");
+                f.style.setProperty("--drag-y", (f.parentNode.clientHeight - Math.min(Math.max(f.offsetHeight, 36*16), f.parentNode.clientHeight)) * (zoomOf() / 2), "");
+            }
+        });
     }
 
 
