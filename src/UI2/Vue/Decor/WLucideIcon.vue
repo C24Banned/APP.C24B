@@ -1,6 +1,8 @@
 <script setup>
     import { computed, onMounted, ref } from 'vue';
     import * as iconPack from "lucide-vue-next";
+    import { useAttrs } from 'vue';
+    import { observeAttribute } from '@unite/scripts/dom/Observer.ts';
 
     //
     const camelize = (str) => {
@@ -37,17 +39,13 @@
     });
 
     //
-    import { useAttrs } from 'vue';
-    import { observeAttribute } from '@unite/scripts/dom/Observer.ts';
-
-    //
-    const attrs = useAttrs();
-    const names = ref((props.name?.split?.(",")||[props.name]));
-    //const icons = computed(() => Array.from(Object.entries(iconPack)).filter( ([K,I])=>names.value.indexOf(K)>=0 ));
+    const target  = ref(null);
+    const attrs   = useAttrs();
+    const current = ref(null);
+    const names   = computed(()=>{ const ns = props.name?.split?.(",")?.map?.((s)=>(s?.trim?.()||""))||[props.name]; current.value = ns[0]; return ns; });
 
     // reactive attribute...
-    const target = ref(null);
-    const current = ref(names.value[0]);
+    current.value = names.value[0];
 
     //
     onMounted(()=>{
