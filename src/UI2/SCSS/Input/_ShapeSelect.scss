@@ -6,12 +6,22 @@
 
 //
 @layer ui-shape-select {
+
+    //
     .ui-shape-selector {
+
+        //
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 1rem;
         block-size: max-content;
         min-block-size: 4rem;
+        inline-size: 100%;
+
+        //
+        place-content: center;
+        place-items: center;
 
         //
         .ui-shape-frame {
@@ -19,8 +29,14 @@
             grid-template-columns: minmax(0px, 100%);
             grid-template-rows: minmax(0px, 100%);
 
-            block-size: 3rem;
-            inline-size: 3rem;
+            //
+            aspect-ratio: 1 / 1;
+            min-block-size: 0px;
+            min-inline-size: 0px;
+
+            //flex-basis: 3rem;//min(3rem, 100%);
+            block-size: auto;
+            inline-size: min(3rem, 16cqi);
             border-radius: 0.5rem;
             place-content: center;
             place-items: center;
@@ -35,6 +51,7 @@
                 block-size: 100%;
                 grid-column: 1 / 1 span;
                 grid-row: 1 / 1 span;
+                aspect-ratio: 1 / 1;
             }
 
             //
@@ -60,6 +77,7 @@
 
                 max-block-size: none;
                 max-inline-size: none;
+                aspect-ratio: 1 / 1;
 
                 cursor: pointer;
                 background-color: var(--current-surface-color);
