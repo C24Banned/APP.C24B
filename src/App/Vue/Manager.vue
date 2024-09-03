@@ -44,6 +44,12 @@
     <div ref="target" class="ui-screen ui-content ui-manager" :id="props.id.replace(/^\#/i,'')" v-bind="$attrs" data-scheme="solid">
 
         <div class="ui-nav" data-scheme="solid" style="pointer-events: auto;" data-highlight="2.5">
+            <button class="menu-act hl-1 hl-2h" data-tooltip="Menu" data-scheme="solid-transparent" data-transparent data-highlight-hover="1" @click="openSidebar">
+                <Icon inert slot="icon" name="menu" class="icon"/>
+            </button>
+
+            <div class="f-space"></div>
+
             <button data-tooltip="Use as Wallpaper" class="use-item" data-scheme="solid-transparent" data-highlight-hover="1" @click="(ev)=>useItemEv(ev, state)">
                 <Icon inert name="image-play" class="icon"/>
             </button>

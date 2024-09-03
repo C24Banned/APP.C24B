@@ -71,6 +71,9 @@
             place-content: center start;
 
             //
+            gap: 0rem;
+
+            //
             .f-space {//
                 inline-size: 100%;
                 block-size: 100%;
@@ -78,6 +81,10 @@
                 //
                 flex-grow: 1;
             }
+
+            //
+            //& > :where(*):last-of-type  { padding-inline-end  : calc(0.5rem + 0.4rem); }
+            //& > :where(*):first-of-type { padding-inline-start: calc(0.5rem + 0.4rem); }
 
             //
             button {
@@ -89,16 +96,14 @@
 
                 //
                 box-sizing: border-box;
-                padding-inline: 1rem;
+                padding-inline: 0.5rem;
                 padding-block: 0.5rem;
 
                 //
+                //aspect-ratio: 1 / 1;
+                min-inline-size: 3rem;
                 inline-size: max-content;
-                block-size: stretch;
-
-                //
-                min-block-size: max-content;
-                max-block-size: 3rem;
+                block-size: 100%;
 
                 //
                 gap: 0.4rem;
