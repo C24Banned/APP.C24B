@@ -1,5 +1,5 @@
 <script setup>
-    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
+    import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
     import {reactive, watch, ref, onMounted} from "vue";
 
     //
@@ -45,10 +45,10 @@
         </div>
         <div class="thumb" data-scheme="solid-transparent" data-transparent>
             <div data-highlight="2" data-highlight-hover="3" style="--theme-accent-chroma: 0.8;" :data-scheme="'solid'" inert class="inner">
-                <LucideIcon
+                <Icon
                     :data-icon="iconSet.get(value) || 'circle'"
                     :name="iconSet.get(value) || 'circle'"
-                ></LucideIcon>
+                ></Icon>
             </div>
         </div>
     </label>

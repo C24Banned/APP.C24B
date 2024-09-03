@@ -1,5 +1,5 @@
 <script setup>
-    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
+    import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
     import {reactive, watch, ref, onMounted, computed} from "vue";
     import stateMap from "@unite/scripts/reactive/StateManager.ts";
     import { subscribe } from '@unite/scripts/reactive/ReactiveLib';
@@ -88,16 +88,16 @@
             :data-scheme="task.id == currentHash ? 'inverse' : 'solid-transparent'"
             :data-id="task.id"
             :key="task.id">
-            <LucideIcon inert data-place="icon" :name="task.icon" data-transparent/>
+            <Icon inert data-place="icon" :name="task.icon" data-transparent/>
             <span data-transparent inert class="tab-label">{{task.label||""}}</span>
-            <LucideIcon inert data-place="element" name="chevron-right" data-transparent/>
+            <Icon inert data-place="element" name="chevron-right" data-transparent/>
         </div>
     </x-scrollbox>
 
     <!-- -->
     <div class="ui-taskbar" v-bind="$attrs" data-scheme="solid">
         <div class="ui-app-menu" data-highlight-hover="2" data-transparent data-scheme="dynamic-transparent">
-            <LucideIcon inert name="layout-grid"></LucideIcon>
+            <Icon inert name="layout-grid"></Icon>
         </div>
         <div class="ui-task-bar" data-transparent data-scheme="dynamic-transparent">
             <div v-for="task in tasks"
@@ -110,7 +110,7 @@
                 data-transparent
                 @click="focusTask"
             >
-                <LucideIcon inert :name="task.icon"></LucideIcon>
+                <Icon inert :name="task.icon"></Icon>
             </div>
         </div>
         <div class="ui-status" data-transparent>
@@ -122,9 +122,9 @@
 
     <!-- -->
     <div class="ui-navbar" data-scheme="solid" data-highlight="2" v-bind="$attrs">
-        <button data-transparent data-scheme="dynamic-transparent" class="back-button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
+        <button data-transparent data-scheme="dynamic-transparent" class="back-button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><Icon name="chevron-down"/></button>
         <div class="ui-title-handle" @pointerdown="toFocus">{{ label }}</div>
-        <button data-transparent data-scheme="dynamic-transparent" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" @click="openPanel"><LucideIcon name="menu"/></button>
+        <button data-transparent data-scheme="dynamic-transparent" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" @click="openPanel"><Icon name="menu"/></button>
     </div>
 
 </template>

@@ -48,7 +48,7 @@ export default async ()=>{
             input?.blur?.();
 
             //
-            fieldEdit?.setAttribute("data-hidden", true);
+            fieldEdit?.setAttribute("data-hidden", "true");
 
             //
             targetInput = null;
@@ -92,7 +92,7 @@ export default async ()=>{
                 targetInput = from;
 
                 //
-                fieldEdit?.setAttribute("data-hidden", false);
+                fieldEdit?.setAttribute("data-hidden", "false");
             }
         }
 

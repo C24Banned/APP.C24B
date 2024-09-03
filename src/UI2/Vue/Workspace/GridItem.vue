@@ -1,7 +1,7 @@
 <script setup>
 import GestureControl from "@unite/scripts/interact/Gesture.ts";
 import {reactive, watch, ref, onMounted} from "vue";
-import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
+import Icon from "@idc/UI2/Vue/Decor/Icon.vue";
 import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
 import { objectAssign } from '@unite/scripts/reactive/AssignObject';
 
@@ -69,7 +69,7 @@ onMounted(()=>{
             @click="(ev)=>{props.onClick(ev);}"
             data-scheme="accent-inverse">
 
-            <LucideIcon inert :name="gridItem.icon" :data-icon="gridItem.icon"></LucideIcon>
+            <Icon inert :name="gridItem.icon" :data-icon="gridItem.icon"></Icon>
 
         </div>
     </div>

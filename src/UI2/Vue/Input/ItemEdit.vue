@@ -73,7 +73,7 @@
 
 <!-- -->
 <template>
-    <form ref="elRef" class="ui-edit-form" autocomplete="off">
+    <form ref="elRef" class="ui-edit-form" autocomplete="off" v-bind="$attrs">
         <div class="ui-edit-desc">
             <slot name="description"/>
         </div>

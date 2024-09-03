@@ -1,5 +1,5 @@
 <script setup>
-import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
+import Icon from "@idc/UI2/Vue/Decor/Icon.vue";
 import { pickFromCenter } from '@unite/scripts/stylework/ColorTheme';
 import { ref } from "vue";
 
@@ -10,12 +10,12 @@ const target = ref(null);
 <!-- -->
 <template>
     <div data-transparent ref="target" class="ui-indicator" color-scheme="dynamic-transparent" v-bind="$attrs">
-        <LucideIcon
+        <Icon
             name="wifi,wifi-off,wifi-high,wifi-low,wifi-zero"
             class="icon-wrap ui-icon-state ui-network"
             data-transparent
             data-icon="wifi"
             :hook="(v)=>{ target = v; }"
-        ></LucideIcon>
+        ></Icon>
     </div>
 </template>

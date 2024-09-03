@@ -13,7 +13,7 @@ export default async ()=>{
         //
         if (state) {
             if (input.matches("input:where([type=\"text\"], [type=\"number\"], [type=\"range\"])")) {
-                state[target.dataset.name] = input.valueAsNumber ?? input.value;
+                state[target.dataset.name] = (input.valueAsNumber != null && !isNaN(input.valueAsNumber)) ? input.valueAsNumber : input.value;
             }
 
             // any radio-box
@@ -48,7 +48,7 @@ export default async ()=>{
         }
 
         // setup check boxes
-        const checkbox = target.querySelector("input:where([type=\"checkbox\"][name=\""+target?.dataset?.name+"\"]");
+        const checkbox = target.querySelector("input:where([type=\"checkbox\"])");
         if (state && checkbox) {
             checkbox.checked = !!state[target?.dataset?.name];
             checkbox.dispatchEvent(new Event("change", { bubbles: false, cancelable: true, }))

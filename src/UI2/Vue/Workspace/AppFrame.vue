@@ -1,6 +1,6 @@
 <script setup>
     import {reactive, watch, ref, onMounted} from "vue";
-    import LucideIcon from "@idc/UI2/Vue/Decor/WLucideIcon.vue";
+    import Icon from "@idc/UI2/Vue/Decor/Icon.vue";
     import TaskManager from "@idc/PreInit/TaskManager.ts";
     import { zoomOf } from "@unite/scripts/utils/Zoom.ts";
 
@@ -65,10 +65,10 @@
     <div @pointerdown="toFocus" ref="target" :data-maximized="maximized" :data-hidden="!isActive" :data-id="props.id" data-highlight="3" data-scheme="solid" style="--theme-accent-chroma: 0.9;" class="ui-frame ui-app-frame ui-default-theme" v-bind="$attrs">
 
         <div class="ui-titlebar" data-transparent>
-            <button scheme="dynamic-transparent" data-transparent class="max-button" type="button" style="grid-column: max-button; aspect-ratio: 1 / 1;" @click="toggleMaximize"><LucideIcon name="maximize-2"/></button>
-            <button scheme="dynamic-transparent" data-transparent class="back-button" type="button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><LucideIcon name="chevron-down"/></button>
+            <button scheme="dynamic-transparent" data-transparent class="max-button" type="button" style="grid-column: max-button; aspect-ratio: 1 / 1;" @click="toggleMaximize"><Icon name="maximize-2"/></button>
+            <button scheme="dynamic-transparent" data-transparent class="back-button" type="button" style="grid-column: back-button; aspect-ratio: 1 / 1;"><Icon name="chevron-down"/></button>
             <div data-scheme="dynamic-transparent" data-transparent class="ui-title-handle"></div>
-            <!--<LucideIcon name="menu" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" />-->
+            <!--<Icon name="menu" class="menu-button" style="grid-column: menu-button; aspect-ratio: 1 / 1;" />-->
         </div>
 
         <!--<slot></slot>-->

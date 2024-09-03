@@ -2,7 +2,7 @@
     import StateManager from '@unite/scripts/reactive/StateManager.ts';
     import { subscribe } from '@unite/scripts/reactive/ReactiveLib.ts';
     import {reactive, watch, ref, shallowRef, onMounted} from "vue";
-    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
+    import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
 
     //
     const UIState = StateManager.get("UIState");
@@ -42,7 +42,7 @@
         <!-- -->
         <label class="ui-drop-menu" data-scheme="solid" data-chroma="0.05" :data-highlight="(currentMenu == UIState.currentDropMenu) ? 3 : 4" data-highlight-hover="4">
             <button @click="dropMenu">
-                <LucideIcon inert :name="props.menuList.items[currentValue]?.icon ?? 'x'" :data-icon="props.menuList.items[currentValue]?.icon ?? 'x'"></LucideIcon>
+                <Icon inert :name="props.menuList.items[currentValue]?.icon ?? 'x'" :data-icon="props.menuList.items[currentValue]?.icon ?? 'x'"></Icon>
                 <span inert>{{props.menuList.items[currentValue]?.label || 'Not Defined'}}</span>
             </button>
             <input @change="onChange" @input="onChange" v-model="currentValue" :name="props.menuList.menuName" type="text" value=""/>

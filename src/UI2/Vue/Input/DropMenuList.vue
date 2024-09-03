@@ -2,7 +2,7 @@
     import StateManager from '@unite/scripts/reactive/StateManager.ts';
     import { subscribe } from '@unite/scripts/reactive/ReactiveLib.ts';
     import {reactive, watch, ref, shallowRef, onMounted} from "vue";
-    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
+    import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
 
     //
     const UIState      = StateManager.get("UIState");
@@ -105,7 +105,7 @@
 
         <!-- -->
         <label v-for="item in currentMenu.items" data-highlight="1.5" data-highlight-hover="3" class="ui-menu-item">
-            <LucideIcon inert :key="currentMenu.menuName" :name="item.icon"></LucideIcon>
+            <Icon inert :key="currentMenu.menuName" :name="item.icon"></Icon>
             <span inert class="item-label" :key="currentMenu.menuName" >{{item.label}}</span>
             <input :key="currentMenu.menuName" @change="whenChange" @input="whenChange" type="radio" :name="currentMenu.menuName" :value="item.value"/>
             <div class="space"></div>

@@ -1,5 +1,5 @@
 <script setup>
-    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
+    import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
     import { lang } from "@idc/Config/Config.ts";
     import { defineAsyncComponent, ref, shallowRef, computed } from 'vue'
 
@@ -152,7 +152,7 @@
 <!-- -->
 <template>
     <div class="ui-title-label" data-transparent scheme="dynamic-transparent">
-        <LucideIcon inert name="settings" class="ui-icon"/>
+        <Icon inert name="settings" class="ui-icon"/>
         <span>{{ "Settings" }}</span>
     </div>
 
@@ -160,11 +160,11 @@
 
         <div class="ui-nav" data-scheme="solid" data-highlight="2.5">
             <button class="menu-act hl-1 hl-2h" data-tooltip="Menu" data-scheme="solid-transparent" data-transparent data-highlight-hover="1" @click="openSidebar">
-                <LucideIcon inert slot="icon" name="menu" class="icon"/>
+                <Icon inert slot="icon" name="menu" class="icon"/>
             </button>
             <div class="f-space"></div>
             <button class="back-act hl-1 hl-2h" data-tooltip="Back" data-scheme="solid-transparent" data-transparent data-highlight-hover="1">
-                <LucideIcon inert slot="icon" name="arrow-left" class="icon"/>
+                <Icon inert slot="icon" name="arrow-left" class="icon"/>
             </button>
         </div>
 
@@ -173,7 +173,7 @@
 
             <div v-for="tab in tabs"  @click="()=>setCurrentTab(tab.id)" data-highlight="2.5" :data-chroma="currentTab==tab.id ? 0.2 : 0.0" :data-scheme="currentTab==tab.id ? 'inverse' : 'solid'" :class="{'ui-selected': currentTab==tab.id}" class="ui-block-decor pe-none ui-tab" style="--decor-size: 3rem;" data-highlight-hover="3">
                 <span class="tab-label">{{tab.label}}</span>
-                <LucideIcon data-place="icon" :name="tab.icon"/>
+                <Icon data-place="icon" :name="tab.icon"/>
             </div>
         </x-scrollbox>
 
@@ -184,7 +184,7 @@
                     <div class="form-description">{{form.description}}</div>
                     <div v-if="form.fields" v-for="field in form.fields" :key="field.name" class="ui-block-decor pe-none" :class="{'layout-alt': field.type == 'shape'}" style="--decor-size: 4rem;" >
                         <span class="opt-label">{{field.label}}</span>
-                        <LucideIcon data-place="icon" :name="field.icon"/>
+                        <Icon data-place="icon" :name="field.icon"/>
 
                         <div data-place="element">
                             <component

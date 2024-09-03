@@ -107,7 +107,7 @@ subscribe(state, (v, prop) => {
 //
 state.items.set("import", state.items.get("import") || makeReactive({
     id: "import",
-    cell: [1, 0],
+    cell: [0, 0],
     icon: "upload",
     label: "Import Data",
     pointerId: -1,
@@ -118,7 +118,7 @@ state.items.set("import", state.items.get("import") || makeReactive({
 //
 state.items.set("export", state.items.get("export") || makeReactive({
     id: "export",
-    cell: [2, 0],
+    cell: [1, 0],
     icon: "download",
     label: "Export Data",
     pointerId: -1,
@@ -130,7 +130,7 @@ state.items.set("export", state.items.get("export") || makeReactive({
 //
 state.items.set("settings", state.items.get("settings") || makeReactive({
     id: "settings",
-    cell: [0, 0],
+    cell: [2, 0],
     icon: "settings",
     label: "Settings",
     pointerId: -1,

@@ -1,5 +1,5 @@
 <script setup>
-    import LucideIcon from '@idc/UI2/Vue/Decor/WLucideIcon.vue';
+    import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
     import {reactive, watch, ref, onMounted} from "vue";
 
     //
@@ -23,7 +23,7 @@
             <div data-chroma="0.6" data-highlight="2" data-scheme="solid"   class="in-active"></div>
         </div>
         <div class="thumb" data-scheme="solid-transparent" data-transparent>
-            <div data-highlight="2" data-highlight-hover="3" style="--theme-accent-chroma: 0.8;" :data-scheme="checked ? 'inverse' : 'solid'" class="inner"><LucideIcon inert :data-icon="checked ? 'check' : 'x'" :name="checked ? 'check' : 'x'"></LucideIcon></div>
+            <div data-highlight="2" data-highlight-hover="3" style="--theme-accent-chroma: 0.8;" :data-scheme="checked ? 'inverse' : 'solid'" class="inner"><Icon inert :data-icon="checked ? 'check' : 'x'" :name="checked ? 'check' : 'x'"></Icon></div>
         </div>
     </label>
 </template>

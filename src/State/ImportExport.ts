@@ -117,12 +117,7 @@ export const exportSettings = async () => {
     const exports = {
         items: state.items,
         grids: state.grids,
-        settings: {
-            scaling: settings.scaling || 1,
-            columns: settings.columns || 4,
-            rows: settings.rows || 8,
-            useZoom: settings.useZoom ?? true
-        },
+        settings: settings,
     };
 
     //
@@ -139,16 +134,13 @@ export const importSettings = async (data) => {
     const obj = JSOX.parse(data);
 
     //
-    settings.scaling = obj.settings.scaling;
-    settings.columns = obj.settings.columns;
-    settings.rows = obj.settings.rows;
-    settings.useZoom = obj.settings.useZoom ?? true;
+    if (settings) {
+        Object.assign(settings, obj.settings);
+    }
 
     //
     state.items = obj.items;
     state.grids = obj.grids;
-
-    //
     state.lists = toMapSet(Array.from(state.grids?.values?.() || []).map((gs: GridPageType) => [gs?.id || "", gs?.list || []]));
 
     //

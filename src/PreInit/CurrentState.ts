@@ -1,26 +1,31 @@
+import {JSOX} from 'jsox';
+
+//
 import {makeReactive} from "@unite/scripts/reactive/ReactiveLib.ts";
 import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
 import { changeZoom } from "@unite/scripts/utils/Zoom.ts";
 
 //
-export const settings = makeReactive({
-    iconShape: localStorage.getItem("@icon-shape") || "wavy",
-    columns: parseInt(localStorage.getItem("@settings:@columns")) || 4,
-    rows: parseInt(localStorage.getItem("@settings:@rows")) || 8,
-    theme: parseInt(localStorage.getItem("@settings:@theme")) || 0,
-    orientation: parseInt(localStorage.getItem("@settings:@orientation")) || "auto",
-    scaling: parseFloat(localStorage.getItem("@settings:@scaling")) || 1,
-    useZoom: !!localStorage.getItem("@settings:@use-zoom") || true
-}, "settings");
+export const settings = makeReactive(Object.assign({
+    iconShape: "wavy",
+    columns: 4,
+    rows: 8,
+    theme: 0,
+    orientation: 0,
+    scaling: 1,
+    useZoom: true
+}, JSOX.parse(localStorage.getItem("@settings") || "{}") || {}), "settings")
 
 //
-changeZoom(parseFloat(localStorage.getItem("@settings:@scaling")) || 1);
+changeZoom(settings.scaling || 1);
+
+//
+subscribe(settings, () => {
+    localStorage.setItem("@settings", JSOX.stringify(settings));
+})
 
 //
 subscribe(settings, (v) => {
-    localStorage.setItem("@settings:@use-zoom", v);
-
-    //
     document.documentElement.classList.remove("__exp-use-zoom");
     document.documentElement.classList.remove("__use_font-size");
 
@@ -37,9 +42,6 @@ subscribe(settings, (v) => {
 
 //
 subscribe(settings, (v) => {
-    localStorage.setItem("@settings:@theme", v);
-
-    //
     const target = document.documentElement;
     if (v == -1) { target.setAttribute("data-theme", "dark"); }
     if (v ==  0) { target.removeAttribute("data-theme"); }
@@ -49,18 +51,18 @@ subscribe(settings, (v) => {
     localStorage.setItem("@settings:@theme", v || 0);
 }, "theme");
 
+//
 subscribe(settings, (v) => {
     document.documentElement.dataset["orientation"] = v || "auto";
-    localStorage.setItem("@settings:@orientation", v || "auto");
     (async () => {
         switch (v || "auto") {
             case "auto":
-                await screen.orientation.lock(screen.orientation.type);
+                await screen.orientation?.lock?.(screen.orientation.type);
                 await screen.orientation.unlock();
                 break;
 
             default:
-                await screen.orientation.lock(v || "any");
+                await screen.orientation?.lock?.(v || "any");
                 break;
         }
     })().catch(console.warn.bind(console));
@@ -70,24 +72,21 @@ subscribe(settings, (v) => {
 //
 subscribe(settings, (v) => {
     document.documentElement.style.setProperty("--layout-c", v || 4);
-    localStorage.setItem("@settings:@columns", v || 4);
 }, "columns");
 
 //
 subscribe(settings, (v) => {
     document.documentElement.style.setProperty("--layout-r", v || 8);
-    localStorage.setItem("@settings:@rows", v || 8);
 }, "rows");
 
 //
 subscribe(settings, (v) => {
-    localStorage.setItem("@settings:@scaling", changeZoom(v || 1));
+    changeZoom(v || 1);
 }, "scaling");
 
 //
 subscribe(settings, (v) => {
-    const grid = document.querySelector(".ui-desktop-grid");
-    localStorage.setItem("@icon-shape", v || "wavy");
+    const grid = document.querySelector(".ui-desktop-grid") as HTMLElement;
     if (grid) { grid.dataset.shape = v; };
 }, "iconShape");
 
