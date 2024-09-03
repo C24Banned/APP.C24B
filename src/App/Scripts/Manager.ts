@@ -31,8 +31,7 @@ export const downloadImage = async (file) => {
     // @ts-ignore
     if (window?.showSaveFilePicker) {
         // @ts-ignore
-        const fileHandle = await self
-            ?.showSaveFilePicker?.({
+        const fileHandle = await self?.showSaveFilePicker?.({
                 suggestedName: filename
             })
             ?.catch?.(console.warn.bind(console));
