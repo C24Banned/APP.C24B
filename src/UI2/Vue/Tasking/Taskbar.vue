@@ -88,9 +88,9 @@
             :data-scheme="task.id == currentHash ? 'inverse' : 'solid-transparent'"
             :data-id="task.id"
             :key="task.id">
-            <Icon inert data-place="icon" :name="task.icon" data-transparent/>
+            <Icon data-transparent inert data-place="icon" :name="task.icon"/>
             <span data-transparent inert class="tab-label">{{task.label||""}}</span>
-            <Icon inert data-place="element" name="chevron-right" data-transparent/>
+            <Icon data-transparent inert data-place="element" name="chevron-right"/>
         </div>
     </x-scrollbox>
 
@@ -113,7 +113,7 @@
                 <Icon inert :name="task.icon"></Icon>
             </div>
         </div>
-        <div class="ui-status" data-transparent>
+        <div class="ui-status" data-transparent data-scheme="dynamic-transparent">
             <Signal data-highlight="1" data-highlight-hover="2"></Signal>
             <Battery data-highlight="1" data-highlight-hover="2"></Battery>
             <Time data-highlight="1" data-highlight-hover="2"></Time>

@@ -11,6 +11,7 @@ const target = ref(null);
 <template>
     <div data-transparent ref="target" class="ui-indicator" color-scheme="dynamic-transparent" v-bind="$attrs">
         <Icon
+            color-scheme="dynamic-transparent"
             name="battery-charging,battery,battery-full,battery-low,battery-medium,battery-warning"
             class="icon-wrap ui-icon-state ui-battery"
             data-transparent

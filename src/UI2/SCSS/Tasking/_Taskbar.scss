@@ -225,7 +225,7 @@
             transition-property: --data-taskbar-shift;
             transition-duration: 0.25s;
             transition-timing-function: linear;
-            transition-delay: 0.25s;
+            transition-delay: 0.2s;
 
             //
             place-content: center;
@@ -260,6 +260,11 @@
             //
             grid-template-rows: minmax(0px, var(--taskbar-size));
             block-size: var(--taskbar-size);
+        }
+
+        //
+        &:active {
+            transition-delay: 0s;
         }
 
         //
@@ -372,11 +377,18 @@
 
         //
         @at-root body:has(.ui-app-frame[data-hidden="false"]) & {
-            --data-taskbar-shift: 2.5rem;
+            & {
+                --data-taskbar-shift: 2.5rem;
+            }
 
             //
             &:hover, &:active {
                 --data-taskbar-shift: 0px;
+            }
+
+            //
+            &:not(:hover, :active) {
+                --data-taskbar-shift: 2.5rem;
             }
         }
 

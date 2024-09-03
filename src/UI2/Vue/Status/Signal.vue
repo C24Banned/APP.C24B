@@ -11,6 +11,7 @@ const target = ref(null);
 <template>
     <div data-transparent ref="target" class="ui-indicator" color-scheme="dynamic-transparent" v-bind="$attrs">
         <Icon
+            color-scheme="dynamic-transparent"
             name="wifi,wifi-off,wifi-high,wifi-low,wifi-zero"
             class="icon-wrap ui-icon-state ui-network"
             data-transparent
