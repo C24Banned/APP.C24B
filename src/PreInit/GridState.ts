@@ -43,24 +43,127 @@ export const layout: [number, number] = makeReactive([settings.columns || 4, set
 export const size: [number, number] = makeReactive([0, 0], "grid-size");
 
 //
-const loadState = JSOX.parse(localStorage.getItem("@states") || "{}") || {};
+const preLoadState = JSOX.parse(localStorage.getItem("@states") || "{}") || {};
 
 /* TODO: makeObjectAssignable */
 export const state: GridsStateType = makeReactive(makeObjectAssignable({
-    grids: toMap(loadState.grids || []),
-    items: toMap(loadState.items || []),
+    ...preLoadState,
+    grids: toMap(preLoadState.grids || []),
+    items: toMap(preLoadState.items || []),
     lists: createReactiveMap<string, Set<string>>()
 }), "desktop");
 
 //
-const toStorage = (state)=>{
-    const st = {
-        ...state,
+export const prepareState = (st: Object | null = null)=>{
+    return {
+        ...(st || {}),
         grids: Array.from(state.grids?.values?.()) || [],
         items: Array.from(state.items?.values?.()) || []
     };
-    localStorage.setItem("@states", JSOX.stringify(st));
 }
+
+//
+const toStorage = (state = {})=>{
+    localStorage.setItem("@states", JSOX.stringify(prepareState(state)));
+}
+
+//
+export const loadState = (st = preLoadState)=>{
+    Object.assign(state, {});
+
+    //
+    state.grids = toMap(st.grids || []);
+    state.items = toMap(st.items || []);
+
+    //
+    state.grids.set("backup", {
+        id: "backup",
+        size: size,
+        layout: layout,
+        list: []
+    });
+
+    //
+    state.grids.set("main", state.grids.get("main") || makeReactive({
+        id: "main",
+        size: size,
+        layout: layout,
+        list: ["settings", "import", "export", "wallpapers"]
+    }));
+
+    //
+    state.lists = toMapSet(Array.from(state.grids?.values?.() || []).map((gs: GridPageType) => [gs?.id || "", gs?.list || []]));
+
+    //
+    subscribe(state.lists, (v, prop) => {
+        const changed = state.grids.get(prop);
+        if (changed) {
+            changed.list = [...(v?.[extractSymbol] || v || [])];
+            state.grids.set(prop, changed);
+        }
+
+        //
+        toStorage(state);
+    });
+
+    //
+    state.items.set("import", state.items.get("import") || makeReactive({
+        id: "import",
+        cell: [0, 0],
+        icon: "upload",
+        label: "Import Data",
+        pointerId: -1,
+        action: "import-data",
+        href: "#"
+    }));
+
+    //
+    state.items.set("export", state.items.get("export") || makeReactive({
+        id: "export",
+        cell: [1, 0],
+        icon: "download",
+        label: "Export Data",
+        pointerId: -1,
+        action: "export-data",
+        href: "#"
+    }));
+
+    //
+    state.items.set("settings", state.items.get("settings") || makeReactive({
+        id: "settings",
+        cell: [2, 0],
+        icon: "settings",
+        label: "Settings",
+        pointerId: -1,
+        action: "open-settings",
+        href: "#control-center"
+    }));
+
+    //
+    state.items.set("wallpapers", state.items.get("wallpapers") || makeReactive({
+        id: "wallpapers",
+        cell: [3, 0],
+        icon: "wallpaper",
+        label: "Wallpapers",
+        pointerId: -1,
+        action: "open-manager",
+        href: "#control-center"
+    }));
+
+    //
+    const ls = state.lists.get("main");
+    ls.add("settings");
+    ls.add("import");
+    ls.add("export");
+    ls.add("wallpapers");
+    state.lists.set("main", ls);
+
+    //
+    toStorage(state);
+}
+
+//
+loadState(preLoadState);
 
 //
 subscribe(settings, (v) => (layout[0] = v), "columns");
@@ -84,94 +187,9 @@ subscribe(state.items, (v, p) => {
 });
 
 //
-state.grids.set("backup", {
-    id: "backup",
-    size: size,
-    layout: layout,
-    list: []
-});
-
-//
-state.grids.set("main", state.grids.get("main") || makeReactive({
-    id: "main",
-    size: size,
-    layout: layout,
-    list: ["settings", "import", "export", "wallpapers"]
-}));
-
-//
-state.lists = toMapSet(Array.from(state.grids?.values?.() || []).map((gs: GridPageType) => [gs?.id || "", gs?.list || []]));
-
-//
-subscribe(state.lists, (v, prop) => {
-    const changed = state.grids.get(prop);
-    if (changed) {
-        changed.list = [...(v?.[extractSymbol] || v || [])];
-        state.grids.set(prop, changed);
-    }
-
-    //
-    toStorage(state);
-});
-
-//
 subscribe(state, (v, prop) => {
     toStorage(state);
 });
-
-//
-state.items.set("import", state.items.get("import") || makeReactive({
-    id: "import",
-    cell: [0, 0],
-    icon: "upload",
-    label: "Import Data",
-    pointerId: -1,
-    action: "import-data",
-    href: "#"
-}));
-
-//
-state.items.set("export", state.items.get("export") || makeReactive({
-    id: "export",
-    cell: [1, 0],
-    icon: "download",
-    label: "Export Data",
-    pointerId: -1,
-    action: "export-data",
-    href: "#"
-}));
-
-
-//
-state.items.set("settings", state.items.get("settings") || makeReactive({
-    id: "settings",
-    cell: [2, 0],
-    icon: "settings",
-    label: "Settings",
-    pointerId: -1,
-    action: "open-settings",
-    href: "#control-center"
-}));
-
-
-//
-state.items.set("wallpapers", state.items.get("wallpapers") || makeReactive({
-    id: "wallpapers",
-    cell: [3, 0],
-    icon: "wallpaper",
-    label: "Wallpapers",
-    pointerId: -1,
-    action: "open-manager",
-    href: "#control-center"
-}));
-
-//
-const ls = state.lists.get("main");
-ls.add("settings");
-ls.add("import");
-ls.add("export");
-ls.add("wallpapers");
-state.lists.set("main", ls);
 
 // reactive objects is unable (currently) to as save state, and vue doesn't call state changes
 addEventListener("beforeunload", (event) => {

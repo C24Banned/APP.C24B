@@ -2,7 +2,7 @@ import {JSOX} from 'jsox';
 
 //
 import {settings} from "../PreInit/CurrentState.ts";
-import {state, toMapSet, toMap, fromMap} from "../PreInit/GridState.ts";
+import {state, toMapSet, toMap, fromMap, loadState, prepareState} from "../PreInit/GridState.ts";
 import stateMap from "@unite/scripts/reactive/StateManager.ts"
 import {subscribe, extractSymbol} from "@unite/scripts/reactive/ReactiveLib.ts";
 
@@ -114,14 +114,10 @@ export const pickBinaryFromFS = async () => {
 
 //
 export const exportSettings = async () => {
-    const exports = {
-        items: state.items,
-        grids: state.grids,
-        settings: settings,
-    };
-
-    //
-    return JSOX.stringify(exports);
+    return JSOX.stringify({
+        states: prepareState(),
+        settings: {...settings},
+    });
 };
 
 //
@@ -129,25 +125,10 @@ export const importSettings = async (data) => {
     if (!data) return;
 
     //
-    //const binary = Buffer.from(data, "base64");
-    //const obj = decode(binary);
     const obj = JSOX.parse(data);
-
-    //
-    if (settings) {
-        Object.assign(settings, obj.settings);
-    }
-
-    //
-    state.items = obj.items;
-    state.grids = obj.grids;
-    state.lists = toMapSet(Array.from(state.grids?.values?.() || []).map((gs: GridPageType) => [gs?.id || "", gs?.list || []]));
-
-    //
-    subscribe(state.lists, (v, prop) => {
-        const changed = state.grids.get(prop);
-        if (changed) {changed.list = [...(v?.[extractSymbol] || v || [])];}
-    });
+    console.log(obj, settings);
+    if (settings) { Object.assign(settings, obj.settings); }
+    loadState(obj.states);
 
     //
     return obj;

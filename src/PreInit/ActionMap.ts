@@ -97,6 +97,7 @@ const actionMap = makeReactive(new Map<string, Function>([
                 (await pickBinaryFromFS().catch(console.warn.bind(console))) ||
                 ""
             ).catch(console.warn.bind(console)).then(() => {
+                // currently, I'm unable to fix assign of grid states
                 setTimeout(() => location.reload(true), 100);
             });
 
