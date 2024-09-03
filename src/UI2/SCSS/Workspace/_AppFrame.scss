@@ -291,7 +291,7 @@
         //
         @media #{d.$isMobile} { @include whenMobile; };
         @media #{d.$isDesktop} { @include whenDesktop; };
-        @container ui-windowed (width < #{d.$mobileWidth}) { @include whenMobile; };
+        //@container ui-windowed (width < #{d.$mobileWidth}) { @include whenMobile; };
 
         //
         &[data-maximized="true"] {

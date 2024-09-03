@@ -2,10 +2,7 @@ import {JSOX} from 'jsox';
 
 //
 import {settings} from "../PreInit/CurrentState.ts";
-import {state, toMapSet, toMap, fromMap, loadState, prepareState} from "../PreInit/GridState.ts";
-import stateMap from "@unite/scripts/reactive/StateManager.ts"
-import {subscribe, extractSymbol} from "@unite/scripts/reactive/ReactiveLib.ts";
-
+import {loadState, prepareState} from "../PreInit/GridState.ts";
 
 // Function to download data to a file
 export const saveBinaryToFS = async (data, filename = "settings") => {
@@ -34,8 +31,7 @@ export const saveBinaryToFS = async (data, filename = "settings") => {
     // @ts-ignore
     if (window?.showSaveFilePicker) {
         // @ts-ignore
-        const fileHandle = await self
-            ?.showSaveFilePicker?.({
+        const fileHandle = await self?.showSaveFilePicker?.({
                 suggestedName: filename,
                 types: [
                     {
@@ -89,7 +85,8 @@ export const pickBinaryFromFS = async () => {
     try {
         // @ts-ignore
         fileBlob = fpc
-            .then((fx) =>
+            .then((fx: any) =>
+                // @ts-ignore
                 (fx?.showOpenFilePicker ?? self?.showOpenFilePicker)({
                     types: [
                         {

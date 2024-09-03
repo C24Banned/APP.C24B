@@ -37,7 +37,7 @@
 
     //
     const toFocus = (ev)=>{ TaskManager.focus(props.id); }
-    TaskManager.on("*", ()=>{ isActive.value = task().active; });
+    TaskManager.on("*", ()=>{ isActive.value = task()?.active || false; });
     //TaskManager.addTask(task, false);
 
     //

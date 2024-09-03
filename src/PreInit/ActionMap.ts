@@ -39,11 +39,14 @@ export const UUIDv4 = () => {
 
 //
 export const pickWallpaperImage = async () => {
+    // @ts-ignore
     const fpc = self?.showOpenFilePicker
         ? new Promise((r) =>
             r({
-                showOpenFilePicker: window.showOpenFilePicker.bind(window),
-                showSaveFilePicker: window.showSaveFilePicker.bind(window),
+                // @ts-ignore
+                showOpenFilePicker: self?.showOpenFilePicker?.bind(window),
+                // @ts-ignore
+                showSaveFilePicker: self?.showSaveFilePicker?.bind(window),
             })
         )
         : /* webpackPrefetch: true */ import(
@@ -52,6 +55,8 @@ export const pickWallpaperImage = async () => {
 
     //
     const fx = await fpc;
+
+    // @ts-ignore
     return (fx?.showOpenFilePicker ?? window?.showOpenFilePicker)({
         types: [
             {
@@ -76,10 +81,6 @@ export const pickWallpaperImage = async () => {
 };
 
 //
-//export const windowManager = new WindowManager();
-
-
-//
 const actionMap = makeReactive(new Map<string, Function>([
 
     [
@@ -98,7 +99,7 @@ const actionMap = makeReactive(new Map<string, Function>([
                 ""
             ).catch(console.warn.bind(console)).then(() => {
                 // currently, I'm unable to fix assign of grid states
-                setTimeout(() => location.reload(true), 100);
+                setTimeout(() => location.reload(), 100);
             });
 
 
@@ -119,11 +120,11 @@ const actionMap = makeReactive(new Map<string, Function>([
     }, 100)],
 
 
-    ["open-manager", ({initiator}) => {
+    ["open-manager", ({}) => {
         if (location.hash != "#manager")
             {
                 const oldHash = location.hash;
-                history.replaceState(null, null, "#manager");
+                history.replaceState(null, "", "#manager");
                 window.dispatchEvent(new HashChangeEvent("hashchange", {
                     oldURL: oldHash,
                     newURL: location.hash
@@ -131,11 +132,11 @@ const actionMap = makeReactive(new Map<string, Function>([
             };
     }],
 
-    ["open-settings", ({initiator}) => {
+    ["open-settings", ({}) => {
         if (location.hash != "#settings")
             {
                 const oldHash = location.hash;
-                history.replaceState(null, null, "#settings");
+                history.replaceState(null, "", "#settings");
                 window.dispatchEvent(new HashChangeEvent("hashchange", {
                     oldURL: oldHash,
                     newURL: location.hash
@@ -145,9 +146,7 @@ const actionMap = makeReactive(new Map<string, Function>([
 
     [
         "open-link-in-frame",
-        ({
-            initiator
-        }) => {
+        (_) => {
             // unsupported...
         },
     ],

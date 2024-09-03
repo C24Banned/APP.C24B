@@ -1,14 +1,14 @@
 {
-    "include": ["./src/**/*", "./unite/**/*"],
+    "include": ["**/*.ts", "**/*.mjs", "**/*.js", "**/*.d.ts", "**/*.tsx"],
     "exclude": ["./node_modules", "../node_modules"],
     "compilerOptions": {
         "types": ["./global.d.ts"],
         "paths": {
-            "@": ["./"],
-            "@idc": ["./src/"],
-            "@src": ["./src/"],
-            "@unite": ["./unite/"],
-            "@assets": ["./assets/"]
+            "@/*": ["*"],
+            "@idc/*": ["src/*"],
+            "@src/*": ["src/*"],
+            "@unite/*": ["unite/*"],
+            "@assets/*": ["assets/*"]
         },
         "baseUrl": "./",
         "composite": true,

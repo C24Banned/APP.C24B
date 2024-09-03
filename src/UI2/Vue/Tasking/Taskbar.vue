@@ -22,7 +22,7 @@
     //
     const focusTask = (ev)=>{
         const target = ev.target;
-        if (TaskManager.inFocus(target.dataset.id) && !matchMedia("(width < 9in) or (orientation: portrait)").matches) {
+        if (TaskManager.inFocus(target.dataset.id) && !matchMedia("not (((hover: hover) or (pointer: fine)) and ((width >= #{$mobileWidth}) or (orientation: landscape)))").matches) {
             TaskManager.deactivate(target.dataset.id);
         } else {
             TaskManager.focus(target.dataset.id);

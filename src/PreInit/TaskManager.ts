@@ -1,14 +1,15 @@
-import { makeReactive } from "@unite/scripts/reactive/ReactiveLib.ts";
+//
+type FX = ((a: any)=>any);
 
 //
 export class TaskManager {
-    #tasks = [];
-    #events = new Map([]);
+    #tasks: any[] = [];
+    #events = new Map<string, FX[]>([]);
 
     //
     constructor(tasks = []) {
         this.#tasks  = tasks || [];
-        this.#events = new Map<string, Function[]>([]);
+        this.#events = new Map<string, FX[]>([]);
 
         //
         const hist = (_) => {
@@ -26,11 +27,11 @@ export class TaskManager {
     //
     trigger(name, ev = {}) {
         {
-            const events: Function[] = this.#events.get(name) || [];
+            const events: FX[] = this.#events.get(name) || [];
             events.forEach((cb)=>cb(ev));
         };
         {
-            const events: Function[] = this.#events.get("*") || [];
+            const events: FX[] = this.#events.get("*") || [];
             events.forEach((cb)=>cb(ev));
         };
         return this;
@@ -38,7 +39,7 @@ export class TaskManager {
 
     //
     on(name, cb) {
-        const events: Function[] = this.#events.get(name) || [];
+        const events: FX[] = this.#events.get(name) || [];
         events.push(cb);
         this.#events.set(name, events);
         return this;
@@ -99,7 +100,7 @@ export class TaskManager {
         if (location.hash != taskId)
             {
                 const oldHash = location.hash;
-                history.replaceState(null, null, taskId);
+                history.replaceState(null, "", taskId);
                 window.dispatchEvent(new HashChangeEvent("hashchange", {
                     oldURL: oldHash,
                     newURL: taskId
@@ -115,7 +116,7 @@ export class TaskManager {
         const index = this.tasks.findIndex((t)=>t.id == taskId);
         if (index >= 0) {
             const task = this.tasks[index];
-            if (task.active) {
+            if (task?.active) {
                 task.active = false;
                 this.trigger("deactivate", {task, self: this, index});
             }
@@ -125,7 +126,7 @@ export class TaskManager {
         if (location.hash == taskId)
             {
                 const oldHash = location.hash;
-                history.replaceState(null, null, "#");
+                history.replaceState(null, "", "#");
                 window.dispatchEvent(new HashChangeEvent("hashchange", {
                     oldURL: oldHash,
                     newURL: "#"
@@ -138,10 +139,10 @@ export class TaskManager {
 
     //
     activate(taskId: string) {
-        const index = this.tasks.findIndex((t)=>t.id == taskId);
+        const index = this.tasks.findIndex((t)=>t?.id == taskId);
         if (index >= 0) {
             const task = this.tasks[index];
-            if (!task.active) {
+            if (!task?.active) {
                 task.active = true;
                 this.trigger("activate", {task, self: this, index});
             }
@@ -159,7 +160,7 @@ export class TaskManager {
 
     //
     addTask(task, doFocus = true) {
-        const index = this.tasks.findIndex((t)=>(t == task || t.id == task.id));
+        const index = this.tasks.findIndex((t)=>(t == task || t?.id == task.id));
         const last = this.tasks.length;
         if (index < 0) {
             task.order = last;
@@ -181,7 +182,7 @@ export class TaskManager {
 
     //
     removeTask(taskId: string) {
-        const index = this.tasks.findIndex((t)=>t.id == taskId);
+        const index = this.tasks.findIndex((t)=>t?.id == taskId);
         if (index >= 0) {
             const task = this.tasks[index];
             this.tasks.splice(index, 1);
@@ -196,7 +197,7 @@ const Manager = new TaskManager();
 export default Manager;
 
 //
-history.pushState(null, null, location.hash = location.hash || "#");
+history.pushState(null, "", location.hash = location.hash || "#");
 addEventListener("popstate", (ev)=>{
     ev.preventDefault();
     ev.stopPropagation();
