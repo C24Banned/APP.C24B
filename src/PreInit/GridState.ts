@@ -29,7 +29,8 @@ export const toMapSet = <K, V>(list) => {
 
 //
 export const toMap = <K, V>(list) => {
-    return createReactiveMap<K, V>(list.map((obj) => [obj.id, makeReactive(obj)]));
+    const array = (list instanceof Map) ? Array.from(list.values()) : list;
+    return createReactiveMap<K, V>(array.map((obj) => [obj.id, makeReactive(obj)]));
 };
 
 //
@@ -41,30 +42,45 @@ export const fromMap = <K, V>(map: Map<K, V>): V[] => {
 export const layout: [number, number] = makeReactive([settings.columns || 4, settings.rows || 8], "grid-layout");
 export const size: [number, number] = makeReactive([0, 0], "grid-size");
 
+//
+const loadState = JSOX.parse(localStorage.getItem("@states") || "{}") || {};
+
 /* TODO: makeObjectAssignable */
 export const state: GridsStateType = makeReactive(makeObjectAssignable({
-    grids: toMap(JSOX.parse(localStorage.getItem("@gridsState") || "[]")),
-    items: toMap(JSOX.parse(localStorage.getItem("@itemsState") || "[]")),
+    grids: toMap(loadState.grids || []),
+    items: toMap(loadState.items || []),
     lists: createReactiveMap<string, Set<string>>()
 }), "desktop");
 
 //
+const toStorage = (state)=>{
+    const st = {
+        ...state,
+        grids: Array.from(state.grids?.values?.()) || [],
+        items: Array.from(state.items?.values?.()) || []
+    };
+    localStorage.setItem("@states", JSOX.stringify(st));
+}
+
+//
 subscribe(settings, (v) => (layout[0] = v), "columns");
 subscribe(settings, (v) => (layout[1] = v), "rows");
+
+//
 subscribe(size, (v, p) => {for (const gp of state.grids.values()) {gp.size = size;};});
 subscribe(layout, (v, p) => {
     for (const gp of state.grids.values()) {gp.layout = layout;};
-    localStorage.setItem("@gridsState", JSOX.stringify(Array.from(state.grids.values())));
+    toStorage(state);
 });
 
 //
 subscribe(state.grids, (v, p) => {
-    localStorage.setItem("@gridsState", JSOX.stringify(Array.from(state.grids.values())));
+    toStorage(state);
 });
 
 //
 subscribe(state.items, (v, p) => {
-    localStorage.setItem("@itemsState", JSOX.stringify(Array.from(state.items.values())));
+    toStorage(state);
 });
 
 //
@@ -95,13 +111,12 @@ subscribe(state.lists, (v, prop) => {
     }
 
     //
-    localStorage.setItem("@gridsState", JSOX.stringify(Array.from(state.grids?.values() || v)));
+    toStorage(state);
 });
 
 //
 subscribe(state, (v, prop) => {
-    if (prop == "grids") localStorage.setItem("@gridsState", JSOX.stringify(Array.from(v?.values() || v)));
-    if (prop == "items") localStorage.setItem("@itemsState", JSOX.stringify(Array.from(v?.values() || v)));
+    toStorage(state);
 });
 
 //
@@ -160,8 +175,7 @@ state.lists.set("main", ls);
 
 // reactive objects is unable (currently) to as save state, and vue doesn't call state changes
 addEventListener("beforeunload", (event) => {
-    localStorage.setItem("@gridsState", JSOX.stringify(Array.from(state.grids?.values() || v)));
-    localStorage.setItem("@itemsState", JSOX.stringify(Array.from(state.items?.values() || v)));
+    toStorage(state);
 });
 
 //
