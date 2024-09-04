@@ -18,9 +18,12 @@ export default async ()=>{
         return (el && MOC(el, InputValidSelector)) || (document?.activeElement && (MOC(document?.activeElement as HTMLElement, InputValidSelector)));
     }
 
+    //
     const focusOn = (input) => {
         //requestAnimationFrame(()=>input?.focus?.())
-        if (document.activeElement != input) { input?.focus?.(); }
+        if (fieldEdit?.dataset?.hidden == null || fieldEdit?.dataset?.hidden != "true") {
+            if (document.activeElement != input) { input?.focus?.(); }
+        }
     }
 
     //
@@ -31,7 +34,9 @@ export default async ()=>{
         pasteButton ||= fieldEdit?.querySelector(".field-paste") || null;
 
         //
-        requestAnimationFrame(() => focusOn(input));
+        if (fieldEdit?.dataset?.hidden == null || fieldEdit?.dataset?.hidden != "true") {
+            requestAnimationFrame(() => focusOn(input));
+        }
     });
 
     //
@@ -72,7 +77,9 @@ export default async ()=>{
             const prevActive = document.activeElement;
             if (prevActive != input) {
                 requestAnimationFrame(() => {
-                    focusOn(input);
+                    if (fieldEdit?.dataset?.hidden == null || fieldEdit?.dataset?.hidden != "true") {
+                        focusOn(input);
+                    }
                     if (document.activeElement == input && prevActive == targetInput) {
                         input?.setSelectionRange?.(...range);
                     }

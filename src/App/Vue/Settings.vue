@@ -185,11 +185,12 @@
                 <div data-scheme="solid" data-highlight="2" v-for="form in filteredForms" data-page class="form-wrap" :key="form.id">
                     <div class="form-description">{{form.description}}</div>
                     <div v-if="form.fields" v-for="field in form.fields" :key="field.name" class="ui-block-decor pe-none" :class="{'layout-alt': field.type == 'shape' || field.type == 'titlebar'}" style="--decor-size: 4rem;" >
-                        <span class="opt-label">{{field.label}}</span>
-                        <Icon data-place="icon" :name="field.icon"/>
+                        <span class="opt-label" :key="field.name">{{field.label}}</span>
+                        <Icon data-place="icon" :key="field.name" :name="field.icon"/>
 
-                        <div data-place="element">
+                        <div data-place="element" :key="field.name">
                             <component
+                                :key="field.name"
                                 :is="fieldByType[field.type]"
                                 :min="field?.params?.[0]"
                                 :max="field?.params?.[1]"

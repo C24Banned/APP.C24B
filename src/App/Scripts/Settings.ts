@@ -44,7 +44,7 @@ export default async ()=>{
         // setup radio boxes
         if (state) {
             const radio = target.querySelector("input:where([type=\"radio\"][name=\""+target?.dataset?.name+"\"][value=\""+state[target?.dataset?.name]+"\"])");
-            if (state && radio) { radio?.click?.(); };
+            if (state && radio && !radio?.checked) { radio?.click?.(); };
         }
 
         // setup check boxes
@@ -57,15 +57,19 @@ export default async ()=>{
 
     //
     observeBySelector(document.documentElement, ".ui-input", (mutations)=>{
-        mutations.addedNodes.forEach((target)=>{
-            updateInput(target);
+        requestAnimationFrame(()=>{
+            mutations.addedNodes.forEach((target)=>{
+                updateInput(target);
+            });
         });
     });
 
     //
     document.documentElement.addEventListener("ux-appear", ()=>{
-        document.querySelectorAll(".ui-input").forEach((target)=>{
-            updateInput(target);
+        requestAnimationFrame(()=>{
+            document.querySelectorAll(".ui-input").forEach((target)=>{
+                updateInput(target);
+            });
         });
     });
 }

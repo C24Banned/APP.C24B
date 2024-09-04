@@ -83,7 +83,7 @@ export default async ()=>{
         }
 
         //
-        if (!MOC(target, "#context-menu") || target.matches("*[data-action]")) {
+        if (!MOC(target, "#context-menu, input") || target.matches("*[data-action]")) {
             requestAnimationFrame(()=>{
                 hideAllCtx();
             });

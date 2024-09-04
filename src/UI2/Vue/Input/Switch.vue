@@ -22,14 +22,14 @@
     const whenChange = (ev)=>{
         const inp = ev.target;
         value.value = inp.valueAsNumber;
-        (target.value).style.setProperty("--value-mod", (inp.valueAsNumber - inp.min) / (inp.max - inp.min), "");
+        (target.value)?.style?.setProperty("--value-mod", (inp.valueAsNumber - inp.min) / (inp.max - inp.min), "");
     }
 
     //
     onMounted(()=>{
         const inp = input.value;
         value.value = inp.valueAsNumber;
-        (target.value).style.setProperty("--value-mod", (inp.valueAsNumber - inp.min) / (inp.max - inp.min), "");
+        (target.value)?.style?.setProperty("--value-mod", (inp.valueAsNumber - inp.min) / (inp.max - inp.min), "");
     });
 
 </script>

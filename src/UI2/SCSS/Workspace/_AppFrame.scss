@@ -83,7 +83,7 @@
         transition: outline-color 200ms;
 
         //
-        transform: translate3d(var(--translate-x), var(--translate-y), 0px) scale3d(var(--scale, 1), var(--scale, 1), 1);
+        transform: translate3d(0px, 0px, 0px) scale3d(var(--scale, 1), var(--scale, 1), 1);
 
         //
         will-change:
@@ -104,6 +104,10 @@
         inset: 0px;
         z-index: calc(999 + var(--z-index, 0));
         display: grid;
+
+        //
+        inset-inline-start: var(--rx, 0px);
+        inset-block-start: var(--ry, 0px);
 
         //
         place-self: start;
@@ -297,6 +301,12 @@
         &[data-maximized="true"] {
             --translate-x: 0px;
             --translate-y: 0px;
+
+            //
+            inset-inline-start: 0px;
+            inset-block-start: 0px;
+
+            //
             inline-size: 100%;
             block-size: 100%;
             max-inline-size: 100%;

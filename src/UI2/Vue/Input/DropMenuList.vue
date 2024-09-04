@@ -37,11 +37,11 @@
                 const bbox = dropWith.getBoundingClientRect();
 
                 //
-                if (!CSS.supports("anchor-name", "--carter")) {
+                /*if (!CSS.supports("anchor-name", "--carter")) {
                     target.value.style.insetInlineStart = `calc(${(bbox.left   * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                     target.value.style.insetBlockStart  = `calc(${(bbox.bottom * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                     target.value.style.inlineSize       = `calc(${(bbox.width  * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
-                }
+                }*/
             }
         });
     });
@@ -53,11 +53,11 @@
             const bbox = dropWith.getBoundingClientRect() * fixedClientZoom();
 
             //
-            if (!CSS.supports("anchor-name", "--carter")) {
+            /*if (!CSS.supports("anchor-name", "--carter")) {
                 target.value.style.insetInlineStart = `calc(${(bbox.left   * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                 target.value.style.insetBlockStart  = `calc(${(bbox.bottom * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                 target.value.style.inlineSize       = `calc(${(bbox.width  * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
-            };
+            };*/
         }
     });
 
