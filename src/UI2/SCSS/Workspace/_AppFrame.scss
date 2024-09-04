@@ -35,8 +35,8 @@
         //--status-size: 0px;
 
         //
-        @include u.clamped-width(min(64rem, 100cqi), calc(80rem + var(--resize-x, 0) * var(--zpx, 1px)), calc(100cqi - calc(var(--drag-x, 0) * var(--zpx, 1px))));
-        @include u.clamped-height(min(36rem, 100cqb), calc(45rem + var(--resize-y, 0) * var(--zpx, 1px)), calc(100cqb - calc(var(--drag-y, 0) * var(--zpx, 1px)) - var(--height-adjust, 0px)));
+        @include u.clamped-width(min(48rem, 100cqi), calc(48rem + var(--resize-x, 0) * var(--zpx, 1px)), calc(100cqi - calc(var(--drag-x, 0) * var(--zpx, 1px))));
+        @include u.clamped-height(min(32rem, 100cqb), calc(32rem + var(--resize-y, 0) * var(--zpx, 1px)), calc(100cqb - calc(var(--drag-y, 0) * var(--zpx, 1px)) - var(--height-adjust, 0px)));
     };
 
     //

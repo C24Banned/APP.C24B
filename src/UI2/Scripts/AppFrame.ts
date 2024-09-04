@@ -161,10 +161,10 @@ export default async ()=>{
         //
         if (frameElement) {
             // @ts-ignore
-            frameElement.style.setProperty("--drag-x", (frameElement.parentNode.clientWidth - Math.min(Math.max(frameElement.offsetWidth, 64*16/0.8), frameElement.parentNode.clientWidth)) * (zoomOf() / 2), "");
+            frameElement.style.setProperty("--drag-x", (frameElement.parentNode.clientWidth - Math.min(Math.max(frameElement.offsetWidth, 48*16/0.8), frameElement.parentNode.clientWidth)) * (zoomOf() / 2), "");
 
             // @ts-ignore
-            frameElement.style.setProperty("--drag-y", (frameElement.parentNode.clientHeight - Math.min(Math.max(frameElement.offsetHeight, 36*16/0.8), frameElement.parentNode.clientHeight)) * (zoomOf() / 2), "");
+            frameElement.style.setProperty("--drag-y", (frameElement.parentNode.clientHeight - Math.min(Math.max(frameElement.offsetHeight, 24*16/0.8), frameElement.parentNode.clientHeight)) * (zoomOf() / 2), "");
         }
     }
 
