@@ -97,7 +97,7 @@
     }}, "items")
 
     //
-    const lastShape = localStorage?.getItem?.('@icon-shape') || 'wavy';
+    const lastShape = settings?.iconShape || 'wavy';
 </script>
 
 <!-- -->

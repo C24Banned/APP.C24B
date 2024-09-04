@@ -1,10 +1,12 @@
 
 <script setup>
     import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
+    import {reactive, watch, ref, onMounted} from "vue";
 
     //
     const current = localStorage.getItem("@icon-shape") || "wavy";
     const vib = ()=>requestAnimationFrame(()=>navigator?.vibrate?.([10]));
+    const name = ref("");
 
     //
     const types = [
@@ -23,9 +25,9 @@
 
 <template>
 
-    <div class="ui-titlebar-select ui-input ui-typic-select" v-bind="$attrs" data-scheme="accent" data-transparent>
+    <div v-observe:data-name="(v)=>(name=v)" class="ui-titlebar-select ui-input ui-typic-select" v-bind="$attrs" data-scheme="accent" data-transparent>
         <label v-for="t in types" class="ui-select-frame" data-scheme="inverse" @click="vib">
-            <input type="radio" name="titlebar" value="win" :checked="current == 'win'"></input>
+            <input type="radio" :name="name" value="win" :checked="current == 'win'"></input>
             <div class="ui-select-bg" data-scheme="solid" data-highlight="3" data-highlight-hover="4" data-chroma="0.1"></div>
 
             <div class="ui-select-box" data-scheme="solid-transparent">
