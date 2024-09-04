@@ -45,8 +45,8 @@
         ],
         "extraResources": [
             {
-                "from": "../webapp/",
-                "to": "./webapp"
+                "from": "../index/",
+                "to": "./index"
             },
             {
                 "from": "../https/",
