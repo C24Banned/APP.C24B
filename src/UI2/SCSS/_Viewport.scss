@@ -6,13 +6,15 @@
 
     //
     .ui-viewport {
-        @include cl.vp-vars;
+        translate: 0px 0px !important;
+        transform: none !important;
+        margin: 0px !important;
 
         //
         container-type: size;
         contain: content;
         display: grid;
-        position: fixed;
+        position: relative;
         overflow: visible;
         pointer-events: none;
 
@@ -21,10 +23,17 @@
         z-index: 0;
 
         //
-        inline-size: var(--vp-i-size, 100dvi);
-        block-size: var(--vp-b-size, 100dvb);
-        max-inline-size: var(--vp-i-size, 100dvi);
-        max-block-size: var(--vp-b-size, 100dvb);
+        //inset-block-end: auto;
+        //inset-inline-end: auto;
+
+        //
+        inline-size: 100%;
+        block-size: 100%;
+        max-inline-size: 100%;
+        max-block-size: 100%;
+
+        //
+        place-self: center;
 
         //
         background-color: transparent !important;
@@ -61,7 +70,6 @@
 
             //
             .ui-viewport-content {
-                @include cl.vp-vars;
                 @include cl.grid-based-box;
 
                 //
@@ -74,10 +82,10 @@
                 contain: content;
 
                 //
-                inline-size: var(--vp-i-size, 100dvi);
-                block-size: var(--vp-b-size, 100dvb);
-                max-inline-size: var(--vp-i-size, 100dvi);
-                max-block-size: var(--vp-b-size, 100dvb);
+                inline-size: 100cqi;
+                block-size: 100cqb;
+                max-inline-size: 100cqi;
+                max-block-size: 100cqb;
             }
         }
     }

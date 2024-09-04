@@ -54,7 +54,7 @@ const App = async ()=>{
             });
         }
     });
-    app.mount(document.body);
+    app.mount(document.querySelector(".app-container") || document.body);
 
     //
     (await loading).map((mod)=>{

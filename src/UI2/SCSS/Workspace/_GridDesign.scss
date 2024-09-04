@@ -41,6 +41,11 @@
         //
         inline-size: 100%;
         block-size: 100%;
+        zoom: 1;
+
+        //
+        container-type: size;
+        contain: strict;
 
         //
         pointer-events: auto;
@@ -51,7 +56,6 @@
 
         //
         overflow: visible;
-        contain: content;
 
         //
         padding-inline: var(--padding-h);

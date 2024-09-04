@@ -8,14 +8,8 @@
 </script>
 
 <template>
-    <div
-        class="ui-viewport fixed"
-        data-scheme="accent"
-        v-bind="$attrs"
-    >
-        <div class="ui-viewport-box">
-            <div class="ui-viewport-content"><slot></slot></div>
-        </div>
-        <InputEdit></InputEdit>
+    <div class="ui-viewport-box">
+        <div class="ui-viewport-content"><slot></slot></div>
     </div>
+    <InputEdit></InputEdit>
 </template>
