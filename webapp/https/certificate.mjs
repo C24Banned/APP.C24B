@@ -16,13 +16,9 @@ const probeDirectory = async (dirList, agr = "local/") => {
 
 //
 const probe = await probeDirectory([
-    "../https/",
-    "./https/",
     "./",
     "./webapp/https/",
     "../webapp/https/",
-    "./dist/https/",
-    "../dist/https/"
 ], "local/");
 
 //

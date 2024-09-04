@@ -12,7 +12,7 @@ import {compression} from "vite-plugin-compression2";
 import {nodePolyfills} from "vite-plugin-node-polyfills";
 import {VitePWA} from "vite-plugin-pwa";
 import {viteStaticCopy} from "vite-plugin-static-copy";
-import certificate from "./https/certificate.mjs";
+import certificate from "./webapp/https/certificate.mjs";
 import pkg from "./package.json" with { type: "json" };
 import tsconfig from "./tsconfig.json" with { type: "json" };
 import vue from '@vitejs/plugin-vue'
@@ -107,8 +107,8 @@ const config = defineConfig({
                     dest: "./", // 2️⃣
                 },
                 {
-                    src: "./https/*",
-                    dest: "./https/", // 2️⃣
+                    src: "./webapp/https/*",
+                    dest: "./webapp/https/", // 2️⃣
                 },
             ],
         })
