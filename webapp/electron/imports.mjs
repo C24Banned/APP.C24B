@@ -15,4 +15,4 @@ const probeDirectory = async (dirList, agr = "") => {
 };
 
 //
-export default {"@webapp": probeDirectory(["../webapp/", "./webapp/"]) };
+export default {"@webapp": probeDirectory(["../index/", "./index/", "../../webapp/index/", "../webapp/index/", "./webapp/index/"]) };
