@@ -18,6 +18,7 @@
         "switch": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Switch.vue')),
         "shape": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/ShapeSelect.vue')),
         "checkbox": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/Checkbox.vue')),
+        "titlebar": defineAsyncComponent(() => import('@idc/UI2/Vue/Input/TitlebarSelect.vue')),
     });
 
     //
@@ -108,6 +109,7 @@
                         "gitlab": { icon: "gitlab", label: "Gitlab", value: "gitlab" }
                     }
                 }},
+                {label: "Titlebar-Select", icon: "badge-check", type: "titlebar", name: "exp-titlebar"},
             ]
         }
     ]
@@ -182,7 +184,7 @@
             <div is="flex-like" data-gap="16">
                 <div data-scheme="solid" data-highlight="2" v-for="form in filteredForms" data-page class="form-wrap" :key="form.id">
                     <div class="form-description">{{form.description}}</div>
-                    <div v-if="form.fields" v-for="field in form.fields" :key="field.name" class="ui-block-decor pe-none" :class="{'layout-alt': field.type == 'shape'}" style="--decor-size: 4rem;" >
+                    <div v-if="form.fields" v-for="field in form.fields" :key="field.name" class="ui-block-decor pe-none" :class="{'layout-alt': field.type == 'shape' || field.type == 'titlebar'}" style="--decor-size: 4rem;" >
                         <span class="opt-label">{{field.label}}</span>
                         <Icon data-place="icon" :name="field.icon"/>
 

@@ -1,0 +1,242 @@
+@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Utils" as u;
+
+//
+@use "@unite/scss/design/ColorTheme" as tm;
+
+//
+@layer ui-shape-select {
+
+    //
+    .ui-typic-select {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        block-size: max-content;
+        min-block-size: 4rem;
+        inline-size: 100%;
+
+        //
+        place-content: center;
+        place-items: center;
+
+        //
+        .ui-select-frame {
+            display: grid;
+            grid-template-columns: minmax(0px, 1fr);
+            grid-template-rows: minmax(0px, 1fr);
+
+            //
+            inline-size: max-content;
+            block-size: max-content;
+            position: relative;
+
+            //
+            min-block-size: 0px;
+            min-inline-size: 0px;
+            padding: 0rem;
+            margin: 0rem;
+
+            //
+            border-radius: 0.5rem;
+            place-content: center;
+            place-items: center;
+            cursor: pointer;
+            pointer-events: auto;
+            background-color: transparent;
+            overflow: hidden;
+
+            //
+            input {
+                inline-size: 0px;
+                block-size: 0px;
+                inset: 0px;
+                pointer-events: none;
+                position: absolute;
+                opacity: 0;
+            }
+
+            //
+            & > :where(*) {
+                inline-size: 100%;
+                block-size: 100%;
+                grid-column: 1 / 1 span;
+                grid-row: 1 / 2 span;
+                max-inline-size: none;
+                max-block-size: none;
+                min-inline-size: 0px;
+                min-block-size: 0px;
+                //aspect-ratio: 1 / 1;
+                //pointer-events: none;
+
+                //
+                place-content: center;
+                place-items: center;
+            }
+
+            //
+            &:has(:checked) {
+                outline: solid 0.125rem var(--current-surface-color);
+            }
+
+
+
+
+            // shaped type!
+
+            //
+            & .ui-select-box {
+                display: grid;
+
+                grid-template-columns: minmax(0px, 1fr);
+                grid-template-rows: minmax(0px, max-content) minmax(0px, 1fr);
+
+                pointer-events: none;
+                min-inline-size: max-content;
+                min-block-size: max-content;
+
+                place-content: center;
+                place-items: center;
+
+                //
+                &:has(.ui-shape) {
+                    padding: 0.4rem;
+                }
+
+                //
+                &:has(.ui-select-decor) {
+                    inline-size: min(16rem, 40cqi);
+                }
+            }
+
+            //
+            & .ui-shape {
+                z-index: 1;
+
+                //
+                aspect-ratio: 1 / 1;
+                block-size: auto;
+                inline-size: min(2.5rem, 12cqi);
+
+                //
+                grid-column: 1 / 1 span;
+                grid-row: 1 / 2 span;
+
+                //
+                pointer-events: none;
+                display: flex;
+                position: relative;
+                //inline-size: calc(100% - 0.666rem);
+                //block-size: calc(100% - 0.666rem);
+                place-content: center;
+                place-items: center;
+
+                max-block-size: none;
+                max-inline-size: none;
+
+                cursor: pointer;
+                background-color: var(--current-surface-color);
+            }
+
+            //
+            .ui-select-label {
+                font-size: 0.8rem;
+                place-content: start;
+                place-items: start;
+
+                //
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 0.5rem;
+
+                //
+                inline-size: 100%;
+                block-size: max-content;
+                max-inline-size: 100%;
+                max-block-size: 100%;
+                min-block-size: 4rem;
+
+                //
+                padding: 0.75rem;
+
+                //
+                grid-row: 2 / 2 span;
+
+                //
+                & > :where(*) {
+                    block-size: 1rem;
+                }
+            }
+
+            //
+            .ui-select-decor {
+                display: grid;
+                grid-template-columns:
+                    [icon] minmax(0px, max-content)
+                    [title] minmax(0px, 1fr)
+                    [button] minmax(0px, max-content);
+                grid-template-rows: minmax(0px, max-content);
+                font-size: 0.7rem;
+
+                //
+                flex-direction: row;
+                flex-wrap: nowrap;
+                place-content: center;
+                place-items: center;
+                gap: 0.5rem;
+
+                //
+                container-type: inline-size;
+                block-size : max-content;
+                min-inline-size: max-content;
+                inline-size: 100%;
+
+                //
+                padding: 0.5rem;
+
+                //
+                grid-row: 1 / 1 span;
+                justify-content: space-between;
+
+                //
+                & > :where(*) {
+                    block-size: 1rem;
+                    grid-row: 1 / 1 span;
+                }
+
+                //
+                & .title {
+                    display: flex;
+                    min-inline-size: max-content;
+                    min-block-size: max-content;
+                    inline-size: 100%;
+                    block-size: 100%;
+
+                    place-content: center;
+                    place-items: center;
+
+                    justify-content: start;
+                }
+
+                //
+                &.ui-win {
+                    grid-template-columns:
+                    [icon] minmax(0px, max-content)
+                    [title] minmax(0px, 1fr)
+                    [button] minmax(0px, max-content);
+                }
+
+                //
+                &.ui-mac {
+                    grid-template-columns:
+                    [button] minmax(0px, max-content)
+                    [title] minmax(0px, 1fr)
+                    [icon] minmax(0px, max-content);
+                }
+            }
+        }
+
+    }
+};

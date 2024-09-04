@@ -2,34 +2,25 @@
 <script setup>
     const current = localStorage.getItem("@icon-shape") || "wavy";
     const vib = ()=>requestAnimationFrame(()=>navigator?.vibrate?.([10]));
+
+
+    const shapes = [
+        "tear",
+        "wavy",
+        "circle",
+        "square"
+    ]
 </script>
 
 <template>
 
-    <div class="ui-shape-selector ui-input" v-bind="$attrs" data-scheme="accent" data-transparent>
-        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
-            <div class="ui-shape-bg" data-scheme="solid" data-highlight="4" data-highlight-hover="5"></div>
-            <div class="wavy-shaped ui-shape" data-scheme="inverse" style="--theme-accent-chroma: 0.6;">
-                <input type="radio" name="shape" value="wavy" :checked="current == 'wavy'"></input>
+    <div class="ui-shape-selector ui-input ui-typic-select" v-bind="$attrs" data-scheme="accent" data-transparent>
+        <label v-for="shape in shapes" class="ui-select-frame" data-scheme="inverse" data-chroma="0.6" @click="vib" :key="shape">
+            <div class="ui-select-bg" data-scheme="solid" data-highlight="4" data-highlight-hover="5" data-chroma="0.1"></div>
+            <div class="ui-select-box">
+                <div class="ui-shape" :class="{[shape+'-shaped']: true}" data-scheme="inverse" data-chroma="0.6"></div>
             </div>
-        </label>
-        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
-            <div class="ui-shape-bg" data-scheme="solid" data-highlight="4" data-highlight-hover="5"></div>
-            <div class="tear-shaped ui-shape" data-scheme="inverse" style="--theme-accent-chroma: 0.6;">
-                <input type="radio" name="shape" value="tear" :checked="current == 'tear'"></input>
-            </div>
-        </label>
-        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
-            <div class="ui-shape-bg" data-scheme="solid" data-highlight="4" data-highlight-hover="5"></div>
-            <div class="circle-shaped ui-shape" data-scheme="inverse" style="--theme-accent-chroma: 0.6;">
-                <input type="radio" name="shape" value="circle" :checked="current == 'circle'" ></input>
-            </div>
-        </label>
-        <label class="ui-shape-frame" data-scheme="inverse" @click="vib">
-            <div class="ui-shape-bg" data-scheme="solid" data-highlight="4" data-highlight-hover="5"></div>
-            <div class="square-shaped ui-shape" data-scheme="inverse">
-                <input type="radio" name="shape" value="square" :checked="current == 'square'"></input>
-            </div>
+            <input type="radio" name="shape" :value="shape" :checked="current == shape"></input>
         </label>
     </div>
 
