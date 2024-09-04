@@ -3,6 +3,7 @@
     import { subscribe } from '@unite/scripts/reactive/ReactiveLib.ts';
     import {reactive, watch, ref, shallowRef, onMounted} from "vue";
     import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
+    import { fixedClientZoom } from "@unite/scripts/utils/Zoom.ts";
 
     //
     const UIState      = StateManager.get("UIState");
@@ -37,9 +38,9 @@
 
                 //
                 if (!CSS.supports("anchor-name", "--carter")) {
-                    target.value.style.insetInlineStart = `calc(${bbox.left   + "px"} / var(--zoom, 1))`;
-                    target.value.style.insetBlockStart  = `calc(${bbox.bottom + "px"} / var(--zoom, 1))`;
-                    target.value.style.inlineSize       = `calc(${bbox.width  + "px"} / var(--zoom, 1))`;
+                    target.value.style.insetInlineStart = `calc(${(bbox.left   * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
+                    target.value.style.insetBlockStart  = `calc(${(bbox.bottom * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
+                    target.value.style.inlineSize       = `calc(${(bbox.width  * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                 }
             }
         });
@@ -49,13 +50,13 @@
     document.addEventListener("scroll", ()=>{
         if (currentMenu.value) {
             const dropWith = document.querySelector(".ui-input[data-name=\""+currentMenu.value?.menuName+"\"]");
-            const bbox = dropWith.getBoundingClientRect();
+            const bbox = dropWith.getBoundingClientRect() * fixedClientZoom();
 
             //
             if (!CSS.supports("anchor-name", "--carter")) {
-                target.value.style.insetInlineStart = `calc(${bbox.left   + "px"} / var(--zoom, 1))`;
-                target.value.style.insetBlockStart  = `calc(${bbox.bottom + "px"} / var(--zoom, 1))`;
-                target.value.style.inlineSize       = `calc(${bbox.width  + "px"} / var(--zoom, 1))`;
+                target.value.style.insetInlineStart = `calc(${(bbox.left   * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
+                target.value.style.insetBlockStart  = `calc(${(bbox.bottom * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
+                target.value.style.inlineSize       = `calc(${(bbox.width  * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
             };
         }
     });
