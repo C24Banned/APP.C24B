@@ -24,7 +24,7 @@ const __dirname = (await probeDirectory(["../webapp/", "./webapp/", "../", "./"]
 //
 export default async function (fastify, options) {
     //
-    await fastify.register(import("@fastify/compress"), {
+    /*await fastify.register(import("@fastify/compress"), {
         global: true,
         inflateIfDeflated: true,
         encodings: ["deflate", "gzip", "brotli"],
@@ -36,7 +36,7 @@ export default async function (fastify, options) {
             },
         },
         zlibOptions: { level: 9 },
-    });
+    });*/
 
     //
     const cacheControl = [
@@ -88,7 +88,7 @@ export default async function (fastify, options) {
     });
 
     //
-    fastify.register(cors, {
+    await fastify.register(cors, {
         hook: "preHandler",
         delegator: (req, callback) => {
             const corsOptions = { origin: false };
@@ -100,8 +100,9 @@ export default async function (fastify, options) {
         cacheControl,
     });
 
+    /*
     //
-    fastify.register(fastifyStatic, {
+    await fastify.register(fastifyStatic, {
         prefix: "/assets/",
         root: path.join(__dirname, "assets/"),
         decorateReply: false,
@@ -109,7 +110,7 @@ export default async function (fastify, options) {
     });
 
     //
-    fastify.register(fastifyStatic, {
+    await fastify.register(fastifyStatic, {
         prefix: `/modules/`,
         root: path.join(__dirname, `modules/`),
         decorateReply: false,
@@ -117,16 +118,17 @@ export default async function (fastify, options) {
     });
 
     //
-    fastify.register(fastifyStatic, {
+    await fastify.register(fastifyStatic, {
         prefix: "/",
         root: path.join(__dirname, ""),
         decorateReply: true,
         list: true,
     });
+    */
 }
 
 //
-let port = 8000;
+let port = 443;
 if (Array.from(process.argv).some((e) => e.endsWith("port"))) {
     const index = Array.from(process.argv).findIndex((e) => e.endsWith("port"));
     port = parseInt(process.argv[index + 1]);

@@ -6,7 +6,7 @@ const app = await server();
 
 // Start listening.
 try {
-    await app.listen({ ...options, port: process.env.PORT || 8000 }, (err) => {
+    await app.listen({ ...options, port: process.env.PORT || 443 }, (err) => {
         if (err) {
             app.log.error(err);
         }

@@ -2,10 +2,10 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite --cors",
         "build": "vite build",
         "preview": "vite preview",
-        "start": "node index.mjs"
+        "start": "node ./vite-fastify/index.mjs",
+        "dev": "node ./vite-fastify/index.mjs --dev"
     },
     "browserslist": [
         "last 1 chrome version",

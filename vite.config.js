@@ -88,7 +88,7 @@ const config = defineConfig({
             devOptions: {
                 enabled: true,
                 resolveTempFolder: () => {
-                    return "./webapp";
+                    return "./webapp/index";
                 },
             },
             workbox: {
@@ -152,7 +152,7 @@ const config = defineConfig({
         modulePreload: true,
         target: ["esnext"],
         sourcemap: sourceMapsInProduction,
-        outDir: "./webapp",
+        outDir: "./webapp/index",
         emptyOutDir: true,
         cssCodeSplit: false,
         rollupOptions: {
@@ -180,6 +180,10 @@ const config = defineConfig({
     },
 });
 
+//
+export default config;
+export {config};
+
 // Load path aliases from the tsconfig.json file
 const aliases = tsconfig.compilerOptions.paths;
 
@@ -200,5 +204,3 @@ for (const alias in aliases) {
     }
 }
 
-//
-export default config;

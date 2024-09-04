@@ -169,25 +169,16 @@ original/
 original/*
 
 #
-./webapp
-./webapp/
-webapp
-webapp/
+./webapp/client/
+./webapp/client
+webapp/client/
+webapp/client
 
-./webapp-dist
-./webapp-dist/
-webapp-dist
-webapp-dist/
-
-./webapp-remote
-./webapp-remote/
-webapp-remote
-webapp-remote/
-
-./webapp-idc-lc
-./webapp-idc-lc/
-webapp-idc-lc
-webapp-idc-lc/
+#
+./webapp/index/
+./webapp/index
+webapp/index/
+webapp/index
 
 #
 build
