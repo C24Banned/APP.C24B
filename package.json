@@ -4,8 +4,8 @@
     "scripts": {
         "build": "vite build",
         "preview": "vite preview",
-        "start": "node ./vite-fastify/index.mjs",
-        "dev": "node ./vite-fastify/index.mjs --dev"
+        "start": "vite",
+        "dev": "vite dev"
     },
     "browserslist": [
         "last 1 chrome version",
