@@ -2,6 +2,7 @@
     import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
     import { lang } from "@idc/Config/Config.ts";
     import { defineAsyncComponent, ref, shallowRef, computed } from 'vue'
+    import {MOC, MOCElement} from "@unite/scripts/utils/Utils.ts";
 
     //
     import { useI18n } from "vue-i18n";
@@ -128,6 +129,11 @@
     const sideBar = ref(null);
     document.addEventListener("click", (ev)=>{
         if (ev.target != sideBar && !ev.target.closest(".ui-side") && !ev.target.matches(".menu-act")) {
+            sideBar.value.dataset.open = false;
+        }
+
+        //
+        if (MOC(ev.target, ".ui-tab") && !matchMedia("(((hover: hover) or (pointer: fine)) and ((width >= 9in) or (orientation: landscape)))").matches) {
             sideBar.value.dataset.open = false;
         }
     });

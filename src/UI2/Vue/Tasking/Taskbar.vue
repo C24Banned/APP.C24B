@@ -11,6 +11,7 @@
 
     //
     import TaskManager from "@idc/PreInit/TaskManager.ts";
+    import {MOC, MOCElement} from "@unite/scripts/utils/Utils.ts";
 
     //
     const UIState = stateMap.get("UIState");
@@ -52,13 +53,13 @@
 
     //
     document.documentElement.addEventListener("click", (ev)=>{
-        if (!ev.target.matches(".ui-task-panel, .menu-button, .back-button, .ui-navbar")) {
+        if (!MOC(".ui-task-panel, .menu-button, .back-button, .ui-navbar")) {
             UIState.taskPanelOpen = false;
             requestAnimationFrame(()=>navigator?.vibrate?.([10]))
         }
 
         // mobile switch fix
-        if (ev.target.matches(".ui-tab-item") && !matchMedia("(((hover: hover) or (pointer: fine)) and ((width >= 9in) or (orientation: landscape)))").matches) {
+        if (MOC(".ui-tab-item") && !matchMedia("(((hover: hover) or (pointer: fine)) and ((width >= 9in) or (orientation: landscape)))").matches) {
             UIState.taskPanelOpen = false;
             requestAnimationFrame(()=>navigator?.vibrate?.([10]))
         }
