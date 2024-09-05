@@ -118,6 +118,9 @@
 
         //
         will-change:
+            inset,
+            inset-inline-start,
+            inset-block-start,
             inline-size,
             block-size,
             transform,
