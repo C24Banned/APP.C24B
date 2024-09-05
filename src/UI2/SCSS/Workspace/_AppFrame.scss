@@ -11,6 +11,33 @@
 
 //
 @layer ui-app-frame {
+
+    //
+    @mixin maximized {
+        & {
+            --drag-x: 0px;
+            --drag-y: 0px;
+
+            //
+            --rx: 0px;
+            --ry: 0px;
+
+            //
+            --translate-x: 0px;
+            --translate-y: 0px;
+
+            //
+            inset-inline-start: 0px;
+            inset-block-start: 0px;
+
+            //
+            inline-size: 100%;
+            block-size: 100%;
+            max-inline-size: 100%;
+            max-block-size: 100%;
+        }
+    }
+
     //
     @mixin fullscreen {
         display: contents;
@@ -51,6 +78,9 @@
         .ui-titlebar {
             display: none;
         }
+
+        //
+        @include maximized;
     };
 
     //
@@ -83,7 +113,8 @@
         transition: outline-color 200ms;
 
         //
-        transform: translate3d(0px, 0px, 0px) scale3d(var(--scale, 1), var(--scale, 1), 1);
+        transform: translate3d(0px, 0px, 0px) scale3d(var(--scale, 1), var(--scale, 1), 1) !important;
+        translate: 0px 0px 0px !important;
 
         //
         will-change:
@@ -295,22 +326,10 @@
         //
         @media #{d.$isMobile} { @include whenMobile; };
         @media #{d.$isDesktop} { @include whenDesktop; };
-        //@container ui-windowed (width < #{d.$mobileWidth}) { @include whenMobile; };
 
         //
         &[data-maximized="true"] {
-            --translate-x: 0px;
-            --translate-y: 0px;
-
-            //
-            inset-inline-start: 0px;
-            inset-block-start: 0px;
-
-            //
-            inline-size: 100%;
-            block-size: 100%;
-            max-inline-size: 100%;
-            max-block-size: 100%;
+            @include maximized;
         }
     };
 };

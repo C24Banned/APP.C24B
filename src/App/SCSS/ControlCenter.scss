@@ -31,16 +31,49 @@
         overflow: hidden;
 
         //
-        @media #{d.$isDesktop} {
-            --sidebar-size: 100%;//min(20rem, 100cqi);
-            --sidebar-space: min(16rem, 100cqi);
+        .ui-side {
+            inline-size: var(--sidebar-size);
+            block-size: 100%;
+            transition: translate 0.1s linear;
+
+            //
+            grid-column: 1 / 1 span;
+            grid-row: 2 / 2 span;
+            z-index: 9;
+
+            //
+            &::part(content-box) {
+                display: flex;
+                flex-direction: column;
+            }
+
+            //
+            & :where(.ui-tab) {
+                cursor: pointer !important;
+                pointer-events: auto !important;
+            }
         }
 
         //
-        @media not #{d.$isDesktop} {
-            --sidebar-size: 100cqi;//100%;//min(20rem, 100cqi);
-            --sidebar-space: 0px;
+        @container ui-windowed (width >= 8in) {
+            --sidebar-size: 100%;
+            --sidebar-space: min(16rem, 100cqi);
+
+            //
+            & .ui-side { translate: 0px 0px;  };
         }
+
+        //
+        @container ui-windowed (width < 8in) {
+            --sidebar-size: 100cqi;
+            --sidebar-space: 0px;
+
+            //
+            & .ui-side {
+                translate: calc(100% * -1) 0px;
+                &[data-open="true"] { translate: 0px 0px; };
+            }
+        };
 
         //
         &.ui-settings {

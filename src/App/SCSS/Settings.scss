@@ -23,36 +23,6 @@
         }
 
         //
-        .ui-side {
-            inline-size: var(--sidebar-size);
-            block-size: 100%;
-            transition: translate 0.1s linear;
-
-            //
-            grid-column: 1 / 1 span;
-            grid-row: 2 / 2 span;
-            z-index: 9;
-
-            //
-            @media not #{d.$isDesktop} {
-                translate: calc(100% * -1) 0px;
-                &[data-open="true"] { translate: 0px 0px; };
-            }
-
-            //
-            &::part(content-box) {
-                display: flex;
-                flex-direction: column;
-            }
-
-            //
-            & :where(.ui-tab) {
-                cursor: pointer !important;
-                pointer-events: auto !important;
-            }
-        }
-
-        //
         .form-wrap {
             //inset-inline: 1rem;
             //inline-size: calc(100% - 2rem);
