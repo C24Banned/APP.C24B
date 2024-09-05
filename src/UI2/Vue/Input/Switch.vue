@@ -44,7 +44,7 @@
             <div data-chroma="0.6" data-highlight="2" data-scheme="solid"   class="in-active"></div>
         </div>
         <div class="thumb" data-scheme="solid-transparent" data-transparent>
-            <div data-highlight="2" data-highlight-hover="3" style="--theme-accent-chroma: 0.8;" :data-scheme="'solid'" inert class="inner">
+            <div data-highlight="3" data-highlight-hover="4" style="--theme-accent-chroma: 0.8;" :data-scheme="'solid'" inert class="inner">
                 <Icon
                     :data-icon="iconSet.get(value) || 'circle'"
                     :name="iconSet.get(value) || 'circle'"
