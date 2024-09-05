@@ -198,20 +198,13 @@
             --theme-surface-chroma: 1;
 
             //
-            &, & * {
-                --highlight-coefficient: 0;
-            }
-
-            //
-            & .ui-title-handle {
-                pointer-events: none;
-            }
-
-            //
-            & .back-button {
-                display: none;
-            }
+            &, & * { --highlight-coefficient: 0; }
+            & .ui-title-handle { pointer-events: none; }
         }
+
+        //
+        @at-root body:not(:has(.ui-app-frame[data-hidden="false"])):not(:has(.ui-task-panel[data-hidden="false"]))
+        {& .back-button { display: none; }}
     }
 
     //

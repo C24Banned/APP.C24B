@@ -54,7 +54,13 @@
     document.documentElement.addEventListener("click", (ev)=>{
         if (!ev.target.matches(".ui-task-panel, .menu-button, .back-button, .ui-navbar")) {
             UIState.taskPanelOpen = false;
-            //requestAnimationFrame(()=>navigator?.vibrate?.([10]))
+            requestAnimationFrame(()=>navigator?.vibrate?.([10]))
+        }
+
+        // mobile switch fix
+        if (ev.target.matches(".ui-tab-item") && !matchMedia("(((hover: hover) or (pointer: fine)) and ((width >= 9in) or (orientation: landscape)))").matches) {
+            UIState.taskPanelOpen = false;
+            requestAnimationFrame(()=>navigator?.vibrate?.([10]))
         }
     });
 
