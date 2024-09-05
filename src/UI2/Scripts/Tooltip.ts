@@ -8,6 +8,21 @@ export default async ()=>{
 
     //
     const timer = Symbol("@disappear");
+    const fixTooltip = (ev)=>{
+        const tooltip = document.querySelector(".ui-tooltip") as HTMLElement;
+        if (tooltip && (ev?.target as HTMLElement)?.dataset?.tooltip) {
+            tooltip.style.setProperty("--hover-x", (ev?.clientX || tooltip.style.getPropertyValue("--hover-x") || 0) as unknown as string, "");
+            tooltip.style.setProperty("--hover-y", (ev?.clientY || tooltip.style.getPropertyValue("--hover-y") || 0) as unknown as string, "");
+            requestAnimationFrame(()=>{
+                tooltip.style.setProperty("--hover-x", (pointerMap.get(ev.pointerId)?.current?.[0] || ev?.clientX || tooltip.style.getPropertyValue("--hover-x") || 0) as unknown as string, "");
+                tooltip.style.setProperty("--hover-y", (pointerMap.get(ev.pointerId)?.current?.[1] || ev?.clientY || tooltip.style.getPropertyValue("--hover-y") || 0) as unknown as string, "");
+            });
+        }
+    }
+
+    //
+    document.addEventListener("pointerover", fixTooltip);
+    document.addEventListener("pointerdown", fixTooltip);
 
     //
     const controller = new AxGesture(document.documentElement);
@@ -26,10 +41,7 @@ export default async ()=>{
 
             //
             tooltip.innerHTML = initiator.dataset.tooltip;
-            if (pointerMap.get(ev.pointerId)?.current) {
-                tooltip.style.setProperty("--hover-x", (pointerMap.get(ev.pointerId)?.current?.[0] || 0), "");
-                tooltip.style.setProperty("--hover-y", (pointerMap.get(ev.pointerId)?.current?.[1] || 0), "");
-            }
+            fixTooltip(ev);
             tooltip.dataset.hidden = false;
             tooltip[timer] = setTimeout(()=>{
                 tooltip.dataset.hidden = true;
@@ -38,13 +50,22 @@ export default async ()=>{
     });
 
     //
-    document.documentElement.addEventListener("click", ()=>{
+    const hideTooltip = (ev)=>{
         const tooltip = document.querySelector(".ui-tooltip");
         if (tooltip) {
             if (tooltip[timer]) clearTimeout(tooltip[timer]);
             tooltip.dataset.hidden = true;
             tooltip[timer] = null;
         }
+    }
+
+    //
+    document.documentElement.addEventListener("pointerout", (ev)=>{
+        if ((ev?.target as HTMLElement)?.dataset?.tooltip) {
+            hideTooltip(ev);
+        }
     });
+    document.documentElement.addEventListener("click", hideTooltip);
+    document.documentElement.addEventListener("pointerup", hideTooltip);
 
 };

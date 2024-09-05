@@ -98,5 +98,5 @@
     <StatusBar></StatusBar>
 
     <!-- -->
-    <div data-hidden="true" class="ui-tooltip" data-scheme="solid" v-bind="$attrs"></div>
+    <div data-hidden="true" data-delay-hide="400" class="ui-tooltip" data-scheme="solid" v-bind="$attrs"></div>
 </template>
