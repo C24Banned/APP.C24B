@@ -1,18 +1,8 @@
-@use "@unite/scss/core/CMixins" as cm;
-@use "@unite/scss/core/Utils" as u;
-
-//
-@use "@unite/scss/design/ColorTheme" as tm;
+@use "@unite/scss/core/Profile" as ps;
+@use "@unite/scss/design/ColorTheme";
 
 //
 @layer ui-inputs {
-
-    //
-    @property --value-mod {
-        syntax: "<number>";
-        inherits: true;
-        initial-value: 0;
-    }
 
     //
     @property --on-active {
@@ -22,15 +12,24 @@
     }
 
     //
-    .ui-switch {
-        inline-size: 5rem;
-        block-size: 2rem;
-        pointer-events: none;
-        border-radius: 50%;
-        //cursor: pointer;
+    @property --value-mod {
+        syntax: "<number>";
+        inherits: true;
+        initial-value: 0;
+    }
+
+    //
+    .ui-switch, .ui-checkbox {
+        & {
+            block-size: 2rem;
+            pointer-events: none;
+            border-radius: 50%;
+            transition: --on-active 150ms;
+        }
 
         //
-        transition: --on-active 150ms;
+        &.ui-checkbox { inline-size: 3rem; }
+        &.ui-switch   { inline-size: 5rem; }
 
         //
         & {
@@ -49,29 +48,36 @@
         }
 
         //
-        & { --on-active: calc((100% - 1.5rem) * var(--value-mod)); };
+        &.ui-switch { --on-active: calc((100% - 1.5rem) * var(--value-mod)); };
+        &.ui-checkbox {
+            & { --on-active: 0%; };
+            &:has(input:checked) { --on-active: 100%;  }
+        }
 
         //
         & > :where(*) {
-            display: flex;
-            grid-row: 1 / 1 span;
-            grid-column: 1 / 5 span;
-            inline-size: 100%;
-            block-size: 100%;
-            place-content: center;
-            place-items: center;
-            pointer-events: none;
+            @include ps.stretch;
+
+            //
+            & {
+                grid-row: 1 / 1 span;
+                grid-column: 1 / 5 span;
+                pointer-events: none;
+            }
         }
 
         //
         & .bg {
-            display: grid;
-            grid-column: 1 / 5 span;
-            grid-row: 1 / 1 span;
-            grid-template-columns: subgrid;
-            grid-template-rows: minmax(0px, 1fr);
-            clip-path: inset(0px 0px 0px 0px round 1rem);
-            border-radius: 50%;
+            @include ps.grid-layout(subgrid, minmax(0px, 1fr));
+
+            //
+            & {
+                display: grid;
+                grid-column: 1 / 5 span;
+                grid-row: 1 / 1 span;
+                clip-path: inset(0px 0px 0px 0px round 1rem);
+                border-radius: 50%;
+            }
 
             //
             & > :where(*) {
@@ -91,38 +97,37 @@
 
         //
         & .thumb {
-            grid-column: thumb;
-            position: relative;
-            overflow: visible;
+            & {
+                grid-column: thumb;
+                position: relative;
+                overflow: visible;
+            }
 
             //
             & .inner {
-                //translate: -50% calc(1rem - 50%);
-
-                //
-                position: absolute;
                 inset: auto;
-                pointer-events: none;
+                cursor: pointer;
+                pointer-events: auto;
+                position: absolute;
 
                 //
                 display: flex;
-                place-content: center;
-                place-items: center;
-
-                //
+                padding: 0.5rem;
                 inline-size: 2.1rem;
                 block-size: 2.1rem;
-
-                //
-                padding: 0.5rem;
-
-                //
                 border-radius: 50%;
             }
         }
 
         //
-        input {//
+        & input[type="checkbox"] {
+            opacity: 0;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        //
+        & input[type="range"] {//
             inline-size: 100%;
             block-size: 100%;
             border-radius: 50%;
@@ -155,7 +160,9 @@
         }
 
     }
-};
+
+}
+
 
 //
 .ui-switch input[type="range"]::-moz-range-track {

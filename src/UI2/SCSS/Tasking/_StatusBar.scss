@@ -1,5 +1,4 @@
-@use "@unite/scss/core/Utils" as u;
-@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Profile" as ps;
 @use "@unite/scss/core/Detector" as d;
 
 //
@@ -10,89 +9,58 @@
 
     //
     :where(.ui-status-bar) {
-        //@include tm.ux-transparent;
-        //@include tm.ux-dynamic-transparent;
+        @include ps.limited-inline(100%);
+        @include ps.limited-block(2rem);
+        @include ps.grid-layout(
+            minmax(0px, max-content) minmax(0px, 1fr) minmax(0px, max-content),
+            minmax(0px, 1fr)
+        );
 
         //
-        inline-size: 100%;
+        & {
+            position: fixed;
+            z-index: 99999;
+            overflow: hidden;
+            pointer-events: none;
 
-        //
-        display: grid;
-        z-index: 99999;
-        overflow: hidden;
-        pointer-events: none;
-        place-content: center;
-
-        //
-        grid-template-columns: minmax(0px, max-content) minmax(0px, 1fr) minmax(0px, max-content);
-        grid-template-rows: minmax(0px, 1fr);
-        gap: 0px;
-
-        //
-        align-content: center;
-        justify-content: space-between;
-        place-items: stretch;
-
-        //
-        position: fixed;
-        //inset: auto;
-        //inset-block-end: 0px;
-        block-size: 2rem;
-        padding-inline: 1rem;
-
-        inset: auto;
-        inset-block-start: 0px;
-
-        //
-        & > * {
-            inline-size: 100%;
-            block-size: 100%;
-            display: flex;
-            place-items: center;
-            place-content: center;
-            background-color: transparent;
+            //
+            justify-content: space-between;
+            padding-inline: 1rem;
         }
 
         //
-        & * { background-color: transparent; }
-        .left   { grid-column: 1 / 1 span; grid-row: 1 / 1 span; justify-self: start; gap: 0rem; }
-        .center { grid-column: 2 / 2 span; grid-row: 1 / 1 span; justify-self: center; }
-        .right  { grid-column: 3 / 3 span; grid-row: 1 / 1 span; justify-self: end; gap: 0rem; }
-        .left, .right { inline-size: max-content; }
+        & > * {
+            @include ps.stretch;
+
+            //
+            & { background-color: transparent; };
+        }
 
         //
-        .icon-wrap {//
-            inline-size: 100%;
-            block-size: 100%;
-            display: flex;
-            place-items: center;
-            place-content: center;
+        & *             { background-color: transparent; }
+        & .left         { grid-column: 1 / 1 span; grid-row: 1 / 1 span; justify-self: start; gap: 0rem; }
+        & .center       { grid-column: 2 / 2 span; grid-row: 1 / 1 span; justify-self: center; }
+        & .right        { grid-column: 3 / 3 span; grid-row: 1 / 1 span; justify-self: end; gap: 0rem; }
+        & .left, .right { inline-size: max-content; }
+
+        //
+        .icon-wrap {
+            @include ps.stretch;
 
             //
             aspect-ratio: 1 / 1;
-
-            //
             padding: 0.25rem;
-            box-sizing: border-box;
         }
 
         //
         .ui-indicator {
-            display: inline-block;
             inline-size: max-content;
             block-size: max-content;
         }
 
         //
-        /*@media #{d.$isMobile} {
-            inset: auto;
-            inset-block-start: 0px;
-        }*/
-
-        //
         @media #{d.$isDesktop} {
             display: none;
         }
-
     }
 };

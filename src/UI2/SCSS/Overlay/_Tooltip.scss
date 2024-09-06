@@ -1,57 +1,51 @@
 @use "@unite/scss/design/ColorTheme";
-@use "@unite/scss/core/CMixins" as cm;
-@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/Profile" as ps;
 
 //
 @layer ui-tooltip {
+
+    //
     .ui-tooltip {
-        inset: 0px;
+        @include ps.clamped-inline(max-content, max-content, 80cqi);
+        @include ps.clamped-block(max-content, max-content, 80cqb);
 
         //
-        inset-inline-end: auto;
-        inset-block-end: auto;
+        & {
+            //
+            --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - calc(50cqi - 50%));
+            --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - calc(50cqb - 50%));
 
-        //
-        place-self: start;
-
-        //
-        position: fixed;
-        padding: 0.5rem;
-        overflow: hidden;
-        border-radius: 0.125rem;
-        box-sizing: border-box;
-
-        //
-        pointer-events: none;
-
-        //
-        place-items: center;
-        place-content: center;
-
-        //
-        z-index: 99999;
-        font-size: 0.8rem;
-
-        //
-        --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - calc(50cqi - 50%));
-        --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - calc(50cqb - 50%));
-
-        //
-        --translate-x: clamp(0px, calc(calc(50cqi - 50%) + var(--rx)), calc(100cqi - 100%));
-        --translate-y: clamp(0px, calc(calc(50cqb - 50%) + var(--ry)), calc(100cqb - 100%));
-
-        //
-        transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale, 1));
-        outline: solid 0.5px oklch(from var(--current-glyph-color) l c h / 0.125);
-
-        //
-        @include u.clamped-width(max-content, max-content, 80cqi);
-        @include u.clamped-height(max-content, max-content, 80cqb);
+            //
+            --translate-x: clamp(0px, calc(calc(50cqi - 50%) + var(--rx)), calc(100cqi - 100%));
+            --translate-y: clamp(0px, calc(calc(50cqb - 50%) + var(--ry)), calc(100cqb - 100%));
+        }
 
         //
         @media screen and (hover: none) and (pointer: coarse) {
             --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - 50cqi);
             --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - 50cqb);
+        }
+
+        //
+        & {
+            place-self: start;
+
+            //
+            position: fixed;
+            overflow: hidden;
+            border-radius: 0.125rem;
+
+            //
+            pointer-events: none;
+
+            //
+            z-index: 99999;
+            font-size: 0.8rem;
+
+            //
+            transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale, 1));
+            outline: solid 0.5px oklch(from var(--current-glyph-color) l c h / 0.125);
+            padding: 0.5rem;
         }
     }
 };

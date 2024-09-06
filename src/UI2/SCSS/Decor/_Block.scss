@@ -1,132 +1,104 @@
-@use "@unite/scss/core/CMixins" as cm;
-@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/Profile" as ps;
 
 //
 @layer ui-decors {
     .ui-block-decor {
-        @include cm.no-wrap;
+        @include ps.no-wrap;
+        @include ps.limited-inline(100%);
+        @include ps.clamped-block(var(--decor-size), max-content, none);
+        @include ps.grid-layout(
+            minmax(var(--decor-size), max-content) minmax(0px, 1fr) minmax(var(--decor-size), max-content),
+            minmax(var(--decor-size), max-content)
+        );
 
         //
-        position: relative;
-        inline-size: stretch;
-        container-type: normal;
-        contain: none;
+        & { --decor-size: 2.8rem; };
 
         //
-        max-block-size: stretch;
-        min-inline-size: max-content;
-        pointer-events: none;
+        & {
+            position: relative;
+            container-type: normal;
+            contain: none;
+            pointer-events: none;
 
-        //
-        --decor-size: 2.8rem;
+            //
+            cursor: pointer;
+            overflow: visible;
 
-        //
-        display: grid;
-        box-sizing: border-box;
-        place-content: center;
-        place-items: center;
-
-        //
-        grid-template-columns: minmax(var(--decor-size), max-content) minmax(0px, 1fr) minmax(var(--decor-size), max-content);
-        grid-template-rows: minmax(var(--decor-size), max-content);
-        block-size: max-content;
-        min-block-size: max-content;
-
-        //
-        padding: 0px;
-        margin: 0px;
-        cursor: pointer;
-        overflow: visible;
-
-        //
-        justify-content: space-between;
+            //
+            place-content: center;
+            place-items: center;
+            justify-content: space-between;
+        }
 
         //
         & > :where(*) {
-            @include cm.no-wrap;
+            @include ps.no-wrap;
+            @include ps.stretch;
 
             //
-            inline-size: 100%;
-            block-size: 100%;
-
-            //
-            max-inline-size: none;
-            max-block-size: none;
-
-            //
-            pointer-events: none;
-            place-items: center;
-            place-content: center;
-
-            //
-            min-inline-size: max-content;
-            min-block-size: max-content;
-
-            //
-            box-sizing: border-box;
-            background-clip: border-box;
-            background-origin: content-box;
-            background-color: transparent;
-            background-image: none;
-            padding-inline: calc(var(--decor-size) * 0.3);
-            padding-block: calc(var(--decor-size) * 0.3);
-            overflow: visible;
+            & {
+                pointer-events: none;
+                box-sizing: border-box;
+                background-clip: border-box;
+                background-origin: content-box;
+                background-color: transparent;
+                background-image: none;
+                padding-inline: calc(var(--decor-size) * 0.3);
+                padding-block: calc(var(--decor-size) * 0.3);
+                overflow: visible;
+                flex-grow: 0;
+                flex-basis: auto;
+                flex-shrink: 0;
+            }
         }
 
+        //
         & > *:where([data-place="label"], :not([data-place])) {
-            @include cm.no-wrap;
+            @include ps.no-wrap;
+            @include ps.stretch;
 
             //
-            inline-size: 100%;
-            block-size: 100%;
+            & {
+                padding-inline: calc(var(--decor-size) * 0.2);
 
-            //
-            padding-inline: calc(var(--decor-size) * 0.2);
-
-            //
-            text-align: start;
-            justify-self: start;
-            justify-content: start;
-            justify-items: start;
+                //
+                text-align: start;
+                justify-self: start;
+                justify-content: start;
+                justify-items: start;
+            }
         }
 
         //
         & > *[data-place="element"] {
-            //
-            pointer-events: none;
-            place-content: center;
-            place-items: center;
+            @include ps.limited-inline(max-content);
 
             //
-            min-inline-size: max-content;
-            inline-size: max-content;
-            max-inline-size: stretch;
-            aspect-ratio: auto;
-
-            justify-self: end;
+            & {
+                pointer-events: none;
+                aspect-ratio: auto;
+                justify-self: end;
+            }
         }
 
         //
         & > *[data-place="icon"] {
-            color: var(--current-glyph-color);
-            aspect-ratio: 1 / 1;
-            max-inline-size: var(--decor-size);//calc(var(--decor-size) * 1.333);
-            max-block-size: var(--decor-size);//calc(var(--decor-size) * 1.333);
+            @include ps.limited-inline(var(--decor-size));
+            @include ps.limited-block(var(--decor-size));
 
-            justify-self: start;
+            //
+            & {
+                stroke: var(--current-glyph-color);
+                color : var(--current-glyph-color);
+                aspect-ratio: 1 / 1;
+                justify-self: start;
+            }
         }
 
         //
-        & > *[data-place="icon"] {
-            grid-column: 1 / 1 span;
-            grid-row: 1 / 1 span;
-        }
-
-        & > *[data-place="element"] {
-            grid-column: 3 / 3 span;
-            grid-row: 1 / 1 span;
-        }
-
+        & > *[data-place="icon"]    { grid-column: 1 / 1 span; grid-row: 1 / 1 span; }
+        & > *[data-place="element"] { grid-column: 3 / 3 span; grid-row: 1 / 1 span; }
         & > *:where([data-place="label"], :not([data-place])) {
             grid-column: 2 / 2 span;
             grid-row: 1 / 1 span;
@@ -134,28 +106,21 @@
 
         //
         &.layout-alt {
-            grid-template-columns: minmax(var(--decor-size), max-content) minmax(0px, 1fr);
-            grid-template-rows: minmax(var(--decor-size), max-content) minmax(var(--decor-size), max-content);
-            overflow: visible;
+            //
+            @include ps.grid-layout(
+                minmax(var(--decor-size), max-content) minmax(0px, 1fr),
+                minmax(var(--decor-size), max-content) minmax(var(--decor-size), max-content)
+            );
 
             //
-            min-block-size: max-content;
-            //block-size: 9rem;
+            & {
+                overflow: visible;
+                block-size: max-content;
+            }
 
             //
-            & > *[data-place="icon"] {
-                grid-column: 1 / 1 span;
-                grid-row: 1 / 1 span;
-                justify-self: start;
-            }
-
-            & > *[data-place="element"] {
-                grid-column: 1 / 2 span;
-                grid-row: 2 / 2 span;
-                justify-self: start;
-                align-self: start;
-            }
-
+            & > *[data-place="icon"]    { grid-column: 1 / 1 span; grid-row: 1 / 1 span; justify-self: start;}
+            & > *[data-place="element"] { grid-column: 1 / 2 span; grid-row: 2 / 2 span; justify-self: start; align-self: start; }
             & > *:where([data-place="label"], :not([data-place])) {
                 grid-column: 2 / 2 span;
                 grid-row: 1 / 1 span;

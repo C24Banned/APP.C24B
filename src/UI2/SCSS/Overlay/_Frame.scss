@@ -1,55 +1,51 @@
 @use "@unite/scss/design/ColorTheme";
-@use "@unite/scss/core/CMixins" as cm;
-@use "@unite/scss/core/Utils" as u;
+@use "@unite/scss/core/Profile" as ps;
 
 //
 @layer ui-modal-frame {
+
+    //
     .ui-modal-frame {
-        inset: 0px;
-        direction: ltr;
 
         //
-        inset-inline-end: auto;
-        inset-block-end: auto;
+        @include ps.clamped-inline(max-content, 0px, 80cqi);
+        @include ps.clamped-block(max-content, max-content, 80cqb);
 
         //
-        place-self: start;
+        & {
+            --rx: 0px;
+            --ry: 0px;
+
+            //
+            --translate-x: clamp(0px, calc(calc(50cqi - 50%) + var(--rx)), calc(100cqi - 100%));
+            --translate-y: clamp(0px, calc(calc(50cqb - 50%) + var(--ry)), calc(100cqb - 100%));
+        }
 
         //
-        position: fixed;
-        padding: 0.25rem;
-        overflow: hidden;
-        border-radius: 0.25rem;
-        box-sizing: border-box;
+        & {
+            direction: ltr;
+            place-self: start;
+            flex-grow: 0;
+            flex-shrink: 1;
+            flex-basis: 0px;
 
-        //
-        pointer-events: auto;
+            //
+            position: fixed;
+            overflow: hidden;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
 
-        //
-        place-items: center;
-        place-content: center;
+            //
+            pointer-events: auto;
 
-        //
-        z-index: 99999;
-        font-size: 0.8rem;
+            //
+            z-index: 99999;
+            font-size: 0.8rem;
 
-        //
-        --rx: 0px;
-        --ry: 0px;
-
-        //
-        --translate-x: clamp(0px, calc(calc(50cqi - 50%) + var(--rx)), calc(100cqi - 100%));
-        --translate-y: clamp(0px, calc(calc(50cqb - 50%) + var(--ry)), calc(100cqb - 100%));
-
-        //
-        transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale, 1));
-
-        //
-        box-shadow: 0px 0px 1rem 1px #00000070;
-
-        //
-        @include u.clamped-width(max-content, 12rem, 80cqi);
-        @include u.clamped-height(max-content, max-content, 80cqb);
+            //
+            transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale, 1));
+            box-shadow: 0px 0px 1rem 1px #00000070;
+        }
 
         //
         &.ui-context-menu {
@@ -66,28 +62,23 @@
             & .ui-ctx-item {
                 pointer-events: auto;
             }
+
+            //
+            & {
+                max-inline-size: 12rem;
+            }
         }
 
         //
         .cut-space {
-            padding: 0rem;
-            margin: 0rem;
+            @include ps.limited-inline(100%);
+            @include ps.limited-block(100%);
 
             //
-            border-radius: 0.2rem;
-            overflow: hidden;
-
-            //
-            min-inline-size: max-content;
-            min-block-size: max-content;
-
-            //
-            inline-size: stretch;
-            block-size: stretch;
-
-            //
-            max-inline-size: 80cqi;
-            max-block-size: 80cqb;
+            & {
+                border-radius: 0.2rem;
+                overflow: hidden;
+            }
         }
     }
 };

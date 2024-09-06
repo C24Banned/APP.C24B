@@ -1,5 +1,4 @@
-@use "@unite/scss/core/Utils" as u;
-@use "@unite/scss/core/CMixins" as cm;
+@use "@unite/scss/core/Profile" as ps;
 @use "@unite/scss/core/Detector" as d;
 
 //
@@ -49,12 +48,15 @@
 
     //
     body {
-        --taskbar-size: 3rem;
-        --titlebar-size: 2.5rem;
-        --status-size: max(env(safe-area-inset-top, 0px), 2rem);
-        --height-adjust: 0px;//var(--taskbar-size, 0px);
-
         @include dFont.applyFont(0.9rem);
+
+        //
+        & {
+            --taskbar-size: 3rem;
+            --titlebar-size: 2.5rem;
+            --status-size: max(env(safe-area-inset-top, 0px), 2rem);
+            --height-adjust: 0px;
+        }
 
         //
         @media #{d.$isMobile} { @include whenMobile; }
@@ -63,13 +65,11 @@
 
     //
     :where(.icon-wrap) {
-        will-change: auto;
-        transform: none;
+        @include ps.fit-by-block(100%);
 
         //
-        block-size: 100%;
-        inline-size: auto;
-        aspect-ratio: 1 / 1;
+        will-change: auto;
+        transform: none;
         pointer-events: none;
     }
 

@@ -1,76 +1,63 @@
-@use "@unite/scss/core/CMixins" as cm;
-@use "@unite/scss/core/ClassLets" as cl;
+@use "@unite/scss/core/Profile" as ps;
 
 //
 @layer ui-viewport {
 
     //
     .ui-viewport {
-        translate: 0px 0px !important;
-        transform: none !important;
-        margin: 0px !important;
-
-        //
-        container-type: size;
-        contain: content;
-        display: grid;
-        position: relative;
-        overflow: visible;
-        pointer-events: none;
-
-        //
-        inset: 0px;
-        z-index: 0;
-
-        //
-        //inset-block-end: auto;
-        //inset-inline-end: auto;
-
-        //
-        inline-size: 100%;
-        block-size: 100%;
-        max-inline-size: 100%;
-        max-block-size: 100%;
-
-        //
-        place-self: center;
-
-        //
-        background-color: transparent !important;
-        will-change: --keyboard-inset-bottom, --keyboard-inset-height, contents, inset;
-
-        //
-        grid-template-columns: minmax(0px, 1fr);
-        grid-template-rows:
+        @include ps.stretch;
+        @include ps.grid-layout(
+            minmax(0px, 1fr),
             [empty-space] minmax(0px, 1fr)
             [field-edit] minmax(3rem, max-content)
-            [v-keyboard] minmax(0px, var(--keyboard-inset-height, 0px));
+            [v-keyboard] minmax(0px, var(--keyboard-inset-height, 0px))
+        );
 
         //
-        & > * {
-            grid-row: empty-space;
+        & {
+            translate: 0px 0px !important;
+            transform: none !important;
+            margin: 0px !important;
+
+            //
+            container-type: size;
+            contain: content;
+
+            //
+            position: relative;
+            overflow: visible;
+            pointer-events: none;
+
+            //
+            inset: 0px;
+            z-index: 0;
+            place-self: center;
+
+            //
+            background-color: transparent !important;
+            will-change: --keyboard-inset-bottom, --keyboard-inset-height, contents, inset;
         }
 
         //
-        .ui-viewport-box {//
-            background-color: transparent !important;
+        & > * { grid-row: empty-space; }
+
+        //
+        .ui-viewport-box {
+            @include ps.stretch;
 
             //
-            inline-size: 100%;
-            block-size: 100%;
-
-            //
-            align-self: start;
-            position: relative;
-            overflow: visible;
-            inset: 0px;
-
-            //
-            grid-row: 1 / 1 span;
+            & {
+                background-color: transparent !important;
+                align-self: start;
+                position: relative;
+                overflow: visible;
+                inset: 0px;
+                grid-row: 1 / 1 span;
+            }
 
             //
             .ui-viewport-content {
-                @include cl.grid-based-box;
+                @include ps.grid-layout();
 
                 //
                 background-color: transparent !important;
@@ -84,8 +71,12 @@
                 //
                 inline-size: 100cqi;
                 block-size: 100cqb;
-                max-inline-size: 100cqi;
-                max-block-size: 100cqb;
+
+                //
+                & > :where(*) {
+                    grid-column: 1 / 1 span;
+                    grid-row: 1 / 1 span;
+                }
             }
         }
     }

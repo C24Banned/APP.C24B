@@ -103,7 +103,7 @@
 <!-- -->
 <template>
     <canvas is="w-canvas" :data-src="wp"></canvas>
-    <div dir="ltr" :key="state" ref="elRef" data-transparent :data-current-page="current" :data-shape="lastShape" data-ctx="grid-space" data-scheme="accent-inverse" class="ui-desktop-grid stretch grid-based-box pe-enable">
+    <div dir="ltr" :key="state" ref="elRef" data-transparent :data-current-page="current" :data-shape="lastShape" data-ctx="grid-space" data-scheme="accent-inverse" class="ui-desktop-grid stretch pe-enable">
 
         <div dir="ltr" class="ux-grid-layout ui-grid-page" data-transparent>
             <GridItemLabel v-if="items" v-for="item in items" :key="item.id" type="labels" :gridItem="pState.items.get(item.id)"></GridItemLabel>

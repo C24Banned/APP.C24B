@@ -1,46 +1,31 @@
-@use "@unite/scss/core/CMixins" as cm;
-@use "@unite/scss/core/Utils" as u;
-
-//
+@use "@unite/scss/core/Profile" as ps;
 @use "@unite/scss/design/ColorTheme";
 
 //
 @layer ui-inputs {
     :where(.number-input) {
-        place-content: center;
-        place-items: center;
-        pointer-events: auto;
-        direction: ltr;
+        @include ps.grid-layout(
+            var(--block-size) minmax(max-content, 1fr) var(--block-size),
+            minmax(max-content, var(--block-size))
+        );
 
         //
-        justify-items: stretch;
-        justify-content: space-between;
+        @include ps.limited-block(max-content, var(--block-size));
+        @include ps.limited-inline(max-content, 8rem);
 
         //
-        --block-size: 2rem;
+        & { --block-size: 2rem; };
+        & {
+            pointer-events: auto;
+            direction: ltr;
+            justify-items: stretch;
+            justify-content: space-between;
 
-        //
-        display: grid;
-        grid-template-columns:
-            var(--block-size)
-            minmax(max-content, 1fr)
-            var(--block-size);
-        grid-template-rows: minmax(max-content, var(--block-size));
-
-        //
-        min-inline-size: 0px;
-        min-block-size: 0px;
-        block-size: var(--block-size);
-        max-block-size: max-content;
-
-        //
-        overflow: hidden;
-        border-radius: 0.25rem;
-        inline-size: max-content;
-
-        //
-        padding: 0px;
-        box-sizing: border-box;
+            //
+            overflow: hidden;
+            border-radius: 0.25rem;
+            padding: 0px;
+        }
 
         //
         &,
@@ -59,115 +44,81 @@
         }
 
         //
-        & > :where(*) {//
-            max-inline-size: 100%;
-            max-block-size: 100%;
+        & > :where(*) {
+            @include ps.stretch;
 
             //
-            inline-size: 100%;
-            block-size: 100%;
-
-            //
-            min-inline-size: max-content;
-            min-block-size: max-content;
-
-            //
-            pointer-events: none;
-            place-content: center;
-            place-items: center;
-
-            //
-            display: flex;
-            background: transparent;
-            background-color: transparent;
+            & {
+                pointer-events: none;
+                background: transparent;
+                background-color: transparent;
+            }
         }
 
         //
         & .input-wrap {
-            min-inline-size: max-content;
+            @include ps.stretch;
 
             //
-            inline-size: 100%;
-            block-size: 100%;
-            display: contents;
-
-            //
-            background-color: var(--current-surface-color);
-            overflow: visible;
+            & {
+                display: contents;
+                overflow: visible;
+                background-color: var(--current-surface-color);
+            }
         }
 
         //
         & input {
-            @include cm.no-wrap;
+            @include ps.no-wrap;
+            @include ps.stretch;
 
             //
-            block-size: 100%;
             min-inline-size: 4em;
             text-align: center;
 
             //
             pointer-events: none;
             cursor: default;
+            color: var(--current-glyph-color);
 
             //
+            opacity: 1;
             padding: 0px;
             overflow: visible;
-            inline-size: 100%;
-            display: inline-block;
-            opacity: 1;
             background: transparent;
             background-color: transparent;
-
             appearance: textfield;
             visibility: visible;
 
             //
             font-size: 0.7rem;
-            color: var(--current-glyph-color);
-
             line-height: 0px;
         }
 
         //
         & > :is(.f-minus, .f-plus) {
-            cursor: pointer;
-            background-color: var(--current-surface-color);
-            pointer-events: auto;
-            aspect-ratio: 1 / 1;
-            padding: 0.5rem;
+            @include ps.limited-inline(min(100%, var(--block-size)));
+            @include ps.limited-block(min(100%, var(--block-size)));
 
             //
-            display: flex;
-            place-content: center;
-            place-items: center;
-            box-sizing: border-box;
-
-            //
-            border-radius: 0px;
-
-            //
-            min-inline-size: 0px;
-            min-block-size: 0px;
-
-            //
-            max-inline-size: min(100%, var(--block-size));
-            max-block-size: min(100%, var(--block-size));
-
-            //
-            line-height: 0px;
+            & {
+                cursor: pointer;
+                background-color: var(--current-surface-color);
+                pointer-events: auto;
+                aspect-ratio: 1 / 1;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                border-radius: 0px;
+                line-height: 0px;
+            }
         }
 
         //
-        & > .icon-wrap {//
+        & > .icon-wrap {
+            @include ps.stretch;
+
+            //
             place-self: center;
-
-            //
-            inline-size: 100%;
-            block-size: 100%;
-
-            //
-            //min-inline-size: max-content;
-            //min-block-size: max-content;
             aspect-ratio: 1 / 1;
         }
     }
