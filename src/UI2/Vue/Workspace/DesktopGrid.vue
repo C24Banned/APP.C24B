@@ -66,7 +66,7 @@
 
     //
     onMounted(()=>{
-        if (gpRef.value) { stateMap.bindState(elRef.value, $state, ()=>{}) }
+        if (elRef.value) { stateMap.bindState(elRef.value, $state, ()=>{}) }
         changeLayout();
     });
 
