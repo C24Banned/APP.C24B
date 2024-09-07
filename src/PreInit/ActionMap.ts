@@ -99,7 +99,7 @@ const actionMap = makeReactive(new Map<string, Function>([
                 ""
             ).catch(console.warn.bind(console)).then(() => {
                 // currently, I'm unable to fix assign of grid states
-                setTimeout(() => location.reload(), 100);
+                //setTimeout(() => location.reload(), 100);
             });
 
 

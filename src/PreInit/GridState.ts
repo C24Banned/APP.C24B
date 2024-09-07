@@ -11,6 +11,7 @@ import {settings} from "./CurrentState.ts";
 
 //
 import type {GridItemType, GridsStateType, GridPageType} from "@unite/grid/GridItemUtils.ts";
+import { observeBorderBox, observeBySelector } from "@/unite/scripts/dom/Observer.ts";
 
 //
 const isArrayLike = (a) => {
@@ -200,5 +201,22 @@ addEventListener("beforeunload", (event) => {
 import("@idc/Core/Event.ts").then((m)=>{
     m?.default?.fire?.("grid-state-loaded", {
         state
+    });
+});
+
+
+
+//
+observeBySelector(document.documentElement, ".ui-desktop-grid", (mut)=>{
+    const desktop = mut?.addedNodes?.[0];
+    const grids: HTMLElement[] = Array.from(desktop?.querySelectorAll(".ui-grid-page") || []);
+    grids.forEach((grid)=>{
+        observeBorderBox(grid, (box)=>{
+            const idc = 0;
+
+            //
+            grid?.style?.setProperty?.(["--grid-w", "--grid-h"][idc], size[0] = box.inlineSize, "")
+            grid?.style?.setProperty?.(["--grid-h", "--grid-w"][idc], size[1] = box.blockSize, "")
+        })
     });
 });

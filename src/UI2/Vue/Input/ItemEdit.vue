@@ -3,6 +3,7 @@
     import { observeBySelector } from "@unite/scripts/dom/Observer.ts";
     import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
     import { objectAssign } from '@unite/scripts/reactive/AssignObject';
+    import { derivate } from "@unite/scripts/reactive/ReactiveLib";
 
     //
     const props = defineProps({
@@ -12,63 +13,33 @@
     });
 
     //
-    const whatEdit = reactive({...props.whatEdit});
-    subscribe(props.whatEdit, (v,p)=>{ if (whatEdit[p] !== v) { whatEdit[p] = v; } }) // react to vue
-    watch(() => whatEdit, (newVal, oldVal) => { for (const k in newVal) { if (props.whatEdit[k] !== newVal[k]) { objectAssign(props.whatEdit, newVal[k], k); } } }, {deep: true});
-    // please, save such pattern for future!
-
-    //
-    const fields = reactive([...props.fields]);
-    subscribe(props.fields, (v,p)=>{ if (state[p] !== v) { fields[p] = v; } }); // react to vue
-    watch(() => fields, (newVal, oldVal) => { for (const k in newVal) { if (props.fields[k] !== newVal[k]) { objectAssign(props.fields, newVal[k], k); } } }, {deep: true});
+    const whatEdit = derivate(props.whatEdit, reactive, watch);
+    const fields = derivate(props.fields, reactive, watch);
 
     //
     let elRef = ref(null);
+    const confirm = ()=>{
+        for (const F of fields) {
+            if (F.name in props.whatEdit) {
+                props.whatEdit[F.name] = F.value;
+            };
+        }
+    }
 
     //
-    const confirm = ()=>{
-        if (props.whatEdit) {
+    props?.setConfirm?.(confirm);
+    const synchronize = (whatFrom)=>{
+        if (whatEdit) {
             for (const F of fields) {
                 if (F.name in whatEdit) {
-                    props.whatEdit[F.name] = F.value;
+                    F.value = whatEdit[F.name];
                 };
             }
         }
     }
 
     //
-    if (props.setConfirm) {
-        props.setConfirm(confirm);
-    }
-
-    //
-    const synchronize = (whatFrom)=>{
-        //
-        /*if (whatFrom && whatFrom != whatEdit) {
-            whatEdit = whatFrom;
-        }*/
-
-        //
-        if (props.whatEdit) {
-            for (const F of fields) {
-                if (F.name in props.whatEdit) {
-                    F.value = props.whatEdit[F.name];
-                };
-            }
-        }
-    }
-
-    //
-    onMounted(()=>{
-        /*observeBySelector(elRef.value, ".ui-field-block", ()=>{
-            synchronize();
-        });*/
-
-        //
-        synchronize();
-    });
-
-    //@change="confirm"
+    onMounted(()=>synchronize());
 </script>
 
 <!-- -->
