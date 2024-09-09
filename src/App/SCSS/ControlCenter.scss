@@ -33,16 +33,26 @@
 
             //
             & {
+                translate: 0px 0px;
                 transition: translate 0.1s linear;
                 grid-column: 1 / 1 span;
                 grid-row: 2 / 2 span;
                 z-index: 9;
+
+                justify-self: start;
             }
 
             //
             &::part(content-box) {
+                //@include ps.stretch;
+
+                //
                 display: flex;
                 flex-direction: column;
+
+                //
+                place-content: start;
+                place-items: start;
             }
 
             //
@@ -54,8 +64,10 @@
 
         //
         @container ui-windowed (width >= 8in) {
-            --sidebar-size: 100%;
-            --sidebar-space: min(16rem, 100cqi);
+            & {
+                --sidebar-size: 100%;
+                --sidebar-space: min(16rem, 100cqi);
+            }
 
             //
             & .ui-side { translate: 0px 0px;  };
@@ -63,8 +75,10 @@
 
         //
         @container ui-windowed (width < 8in) {
-            --sidebar-size: 100cqi;
-            --sidebar-space: 0px;
+            & {
+                --sidebar-size: 12rem;
+                --sidebar-space: 0px;
+            }
 
             //
             & .ui-side {

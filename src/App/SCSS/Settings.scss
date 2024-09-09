@@ -18,6 +18,10 @@
             &::part(content-box) {
                 padding-inline: 1rem;
                 padding-block: 1rem;
+
+                //
+                place-content: start;
+                place-items: start;
             }
         }
 

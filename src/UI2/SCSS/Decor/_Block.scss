@@ -4,11 +4,11 @@
 @layer ui-decors {
     .ui-block-decor {
         @include ps.no-wrap;
-        @include ps.limited-inline(100%);
         @include ps.clamped-block(var(--decor-size), max-content, none);
+        @include ps.clamped-inline(max-content, 100%, 100%);
         @include ps.grid-layout(
-            minmax(var(--decor-size), max-content) minmax(0px, 1fr) minmax(var(--decor-size), max-content),
-            minmax(var(--decor-size), max-content)
+            minmax(max-content, var(--decor-size)) minmax(0px, 1fr) minmax(max-content, var(--decor-size)),
+            minmax(max-content, var(--decor-size))
         );
 
         //
@@ -16,9 +16,11 @@
 
         //
         & {
+            contain: none;
+
+            //
             position: relative;
             container-type: normal;
-            contain: none;
             pointer-events: none;
 
             //
@@ -26,20 +28,26 @@
             overflow: visible;
 
             //
-            place-content: center;
-            place-items: center;
-            justify-content: space-between;
+            place-self: end;
+            place-content: end;
+            place-items: end;
+            text-align: end;
+            justify-content: end;
         }
 
         //
         & > :where(*) {
             @include ps.no-wrap;
             @include ps.stretch;
+            @include ps.limited-inline(max-content);
+            @include ps.limited-block(100%);
 
             //
             & {
+                //place-self: start;
+                display: flex;
+                inset: 0px;
                 pointer-events: none;
-                box-sizing: border-box;
                 background-clip: border-box;
                 background-origin: content-box;
                 background-color: transparent;
@@ -50,6 +58,23 @@
                 flex-grow: 0;
                 flex-basis: auto;
                 flex-shrink: 0;
+                z-index: 99;
+
+                inset-inline-end: auto;
+                inset-block-end: auto;
+
+                //
+                text-align: center;
+                justify-self: end;
+                justify-content: center;
+                justify-items: center;
+
+                //
+                box-sizing: border-box;
+
+                //
+                grid-column: 1 / 1 span;
+                grid-row: 1 / 1 span;
             }
         }
 
@@ -57,6 +82,7 @@
         & > *:where([data-place="label"], :not([data-place])) {
             @include ps.no-wrap;
             @include ps.stretch;
+            @include ps.limited-inline(100%);
 
             //
             & {
@@ -64,7 +90,7 @@
 
                 //
                 text-align: start;
-                justify-self: start;
+                justify-self: end;
                 justify-content: start;
                 justify-items: start;
             }
