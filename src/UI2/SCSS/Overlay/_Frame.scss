@@ -23,11 +23,16 @@
 
         //
         & {
+            will-change: auto;
+            filter: none;
+
+            //
             direction: ltr;
             place-self: start;
             flex-grow: 0;
             flex-shrink: 1;
             flex-basis: 0px;
+            inset: auto;
 
             //
             position: fixed;
@@ -43,7 +48,11 @@
             font-size: 0.8rem;
 
             //
+            //transform: none;
+            translate: 0px 0px;
             transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale, 1));
+
+            //
             box-shadow: 0px 0px 1rem 1px #00000070;
         }
 

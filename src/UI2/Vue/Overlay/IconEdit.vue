@@ -4,8 +4,8 @@
     //
     import ItemEdit from "@idc/UI2/Vue/Input/ItemEdit.vue";
     import Frame from "@idc/UI2/Vue/Overlay/Frame.vue";
-    import stateMap from "@unite/scripts/reactive/StateManager.ts";
-    import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
+    import stateMap from "@ux-ts/reactive/StateManager.ts";
+    import {subscribe} from "@ux-ts/reactive/ReactiveLib.ts";
 
     //
     const gridItem = ref(null); //shallowRef(null); // you can't use full reactivity due stack exceeded issues...
@@ -28,10 +28,22 @@
     const setConfirm = (fx)=>{ confirm.value = fx; };
 
     //
-    const confirmWrap = (ev) => { confirm.value?.(); gridItem.value = null; }
+    const confirmWrap = (ev) => {
+        confirm.value?.(); gridItem.value = null;
+
+        //
+        requestAnimationFrame(()=>{
+            document.activeElement?.blur?.();
+        });
+    }
     const deleteWrap = (ev)=>{
         actionMap.get("delete-item")?.({
             initiator: document.querySelector(`.ux-grid-item[data-type=\"items\"][data-id=\"${gridItem.value?.id||""}\"]`)
+        });
+
+        //
+        requestAnimationFrame(()=>{
+            document.activeElement?.blur?.();
         });
     }
 

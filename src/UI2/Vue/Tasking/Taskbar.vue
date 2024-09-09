@@ -1,8 +1,8 @@
 <script setup>
     import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
     import {reactive, watch, ref, onMounted, computed} from "vue";
-    import stateMap from "@unite/scripts/reactive/StateManager.ts";
-    import { subscribe } from '@unite/scripts/reactive/ReactiveLib';
+    import stateMap from "@ux-ts/reactive/StateManager.ts";
+    import { subscribe } from '@ux-ts/reactive/ReactiveLib';
 
     //
     import Signal from "@idc/UI2/Vue/Status/Signal.vue";
@@ -11,7 +11,7 @@
 
     //
     import TaskManager from "@idc/PreInit/TaskManager.ts";
-    import {MOC, MOCElement} from "@unite/scripts/utils/Utils.ts";
+    import {MOC, MOCElement} from "@ux-ts/utils/Utils.ts";
 
     //
     const UIState = stateMap.get("UIState");

@@ -1,11 +1,11 @@
 import {state} from "./GridState.ts";
-import type {GridItemType} from "@unite/scripts/utils/GridItemUtils.ts";
-import {makeReactive} from "@unite/scripts/reactive/ReactiveLib.ts";
-import {redirectCell} from "@unite/scripts/utils/GridItemUtils.ts";
+import type {GridItemType} from "@ux-ts/utils/GridItemUtils.ts";
+import {makeReactive} from "@ux-ts/reactive/ReactiveLib.ts";
+import {redirectCell} from "@ux-ts/utils/GridItemUtils.ts";
 
 //
-import Timer from "@unite/scripts/performance/Time.ts";
-import stateMap from "@unite/scripts/reactive/StateManager.ts"
+import Timer from "@ux-ts/performance/Time.ts";
+import stateMap from "@ux-ts/reactive/StateManager.ts"
 
 //
 import TaskManager from "@idc/PreInit/TaskManager.ts";
@@ -50,7 +50,7 @@ export const pickWallpaperImage = async () => {
             })
         )
         : /* webpackPrefetch: true */ import(
-            "@unite/scripts/polyfill/showOpenFilePicker.mjs"
+            "@ux-ts/polyfill/showOpenFilePicker.mjs"
         );
 
     //

@@ -1,6 +1,6 @@
 <script setup>
     import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
-    import { observeAttribute } from '@unite/scripts/dom/Observer.ts';
+    import { observeAttribute } from '@ux-ts/dom/Observer.ts';
     import { lang } from "@idc/Config/Config.ts";
 
     //

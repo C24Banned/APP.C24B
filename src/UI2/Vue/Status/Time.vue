@@ -1,5 +1,5 @@
 <script setup>
-import { pickFromCenter } from '@unite/scripts/stylework/ColorTheme';
+import { pickFromCenter } from '@ux-ts/stylework/ColorTheme';
 import { ref } from "vue";
 
 const target = ref(null);

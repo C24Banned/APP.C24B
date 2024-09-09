@@ -1,19 +1,17 @@
-import {observeBySelector, observeBorderBox} from "@unite/scripts/dom/Observer.ts";
-import {grabForDrag} from "@unite/scripts/interact/PointerAPI.ts";
-import {MOC} from "@unite/scripts/utils/Utils.ts";
-import {zoomOf} from "@unite/scripts/utils/Zoom.ts";
-import {redirectCell} from "@unite/scripts/utils/GridItemUtils.ts";
-import type {GridItemType} from "@unite/scripts/utils/GridItemUtils.ts";
-import {animationSequence} from "@unite/scripts/stylework/GridLayout.ts";
-import stateMap from "@unite/scripts/reactive/StateManager.ts"
+import {grabForDrag} from "@ux-ts/interact/PointerAPI.ts";
+import {MOC} from "@ux-ts/utils/Utils.ts";
+import {zoomOf} from "@ux-ts/utils/Zoom.ts";
+import {redirectCell} from "@ux-ts/utils/GridItemUtils.ts";
+import type {GridItemType, GridPageType} from "@ux-ts/utils/GridItemUtils.ts";
+import {animationSequence} from "@ux-ts/stylework/GridLayout.ts";
+import stateMap from "@ux-ts/reactive/StateManager.ts"
 import {
     absoluteCXToRelativeCX,
     relativeToAbsoluteInPx,
     convertOrientPxToCX,
-    absolutePxToRelativeInOrientPx,
     convertPointerPxToOrientPx,
     floorInCX
-} from "@unite/scripts/utils/GridItemUtils.ts";
+} from "@ux-ts/utils/GridItemUtils.ts";
 
 //
 export default async ()=>{
@@ -123,7 +121,7 @@ export default async ()=>{
 
         //
         if (!state.lists?.get?.(current)?.has?.(id)) {
-            const oldList = Array.from(state.lists?.values()||[]).find((L)=>{
+            const oldList: any = Array.from(state.lists?.values()||[]).find((L: any)=>{
                 return L.has(id);
             });
 

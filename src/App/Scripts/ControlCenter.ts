@@ -1,5 +1,5 @@
-import {MOC, MOCElement} from "@unite/scripts/utils/Utils.ts";
-import stateMap from "@unite/scripts/reactive/StateManager.ts";
+import {MOC, MOCElement} from "@ux-ts/utils/Utils.ts";
+import stateMap from "@ux-ts/reactive/StateManager.ts";
 
 //
 export default async ()=>{

@@ -8,9 +8,7 @@
         @include ps.stretch;
         @include ps.grid-layout(
             minmax(0px, 1fr),
-            [empty-space] minmax(0px, 1fr)
-            [field-edit] minmax(3rem, max-content)
-            [v-keyboard] minmax(0px, var(--keyboard-inset-height, 0px))
+            minmax(0px, 1fr)
         );
 
         //
@@ -39,45 +37,9 @@
         }
 
         //
-        & > * { grid-row: empty-space; }
-
-        //
-        .ui-viewport-box {
-            @include ps.stretch;
-
-            //
-            & {
-                background-color: transparent !important;
-                align-self: start;
-                position: relative;
-                overflow: visible;
-                inset: 0px;
-                grid-row: 1 / 1 span;
-            }
-
-            //
-            .ui-viewport-content {
-                @include ps.grid-layout();
-
-                //
-                background-color: transparent !important;
-                inset: 0px;
-                inset-block-end: auto;
-                position: absolute;
-                overflow: hidden;
-                container-type: size;
-                contain: content;
-
-                //
-                inline-size: 100cqi;
-                block-size: 100cqb;
-
-                //
-                & > :where(*) {
-                    grid-column: 1 / 1 span;
-                    grid-row: 1 / 1 span;
-                }
-            }
+        & > * {
+            grid-row: 1 / 1 span;
+            grid-column: 1 / 1 span;
         }
     }
 };

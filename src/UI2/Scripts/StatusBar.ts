@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 
 //
 const setElementContent = (selector, value)=>{
@@ -96,3 +97,6 @@ const setElementIcon = (selector, value)=>{
     changeBatteryStatus();
     setInterval(changeBatteryStatus, 1000);
 })();
+
+//
+export default ()=>{};

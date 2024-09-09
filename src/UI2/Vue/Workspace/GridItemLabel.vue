@@ -1,9 +1,9 @@
 <script setup>
-    import GestureControl from "@unite/scripts/interact/Gesture.ts";
+    import GestureControl from "@ux-ts/interact/Gesture.ts";
     import {reactive, watch, ref, onMounted} from "vue";
-    import {subscribe, safe, derivate} from "@unite/scripts/reactive/ReactiveLib.ts";
-    import { objectAssign } from '@unite/scripts/reactive/AssignObject';
-    import stateMap from "@unite/scripts/reactive/StateManager.ts";
+    import {subscribe, safe, derivate} from "@ux-ts/reactive/ReactiveLib.ts";
+    import { objectAssign } from '@ux-ts/reactive/AssignObject';
+    import stateMap from "@ux-ts/reactive/StateManager.ts";
 
     //
     const props  = defineProps({

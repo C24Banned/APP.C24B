@@ -1,6 +1,6 @@
 //
 import { pickWallpaperImage } from "@idc/PreInit/ActionMap.ts";
-import { useFS } from "@unite/scripts/utils/Utils.ts";
+import { useFS } from "@ux-ts/utils/Utils.ts";
 
 // Function to download data to a file
 export const downloadImage = async (file) => {
@@ -25,7 +25,7 @@ export const downloadImage = async (file) => {
                 // @ts-ignore
             })
         )
-        : import("@unite/scripts/polyfill/showOpenFilePicker.mjs"));
+        : import("@ux-ts/polyfill/showOpenFilePicker.mjs"));
 
     //
     // @ts-ignore
@@ -63,6 +63,7 @@ const files = new Map([]);
 //
 export const getFileList = async (exists, state)=>{
     const fs = await useFS();
+    await fs?.mkdir?.("/images/");
 
     //
     const entries: any[] = [];

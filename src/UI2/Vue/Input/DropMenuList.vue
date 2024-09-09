@@ -1,9 +1,9 @@
 <script setup>
-    import StateManager from '@unite/scripts/reactive/StateManager.ts';
-    import { subscribe } from '@unite/scripts/reactive/ReactiveLib.ts';
+    import StateManager from '@ux-ts/reactive/StateManager.ts';
+    import { subscribe } from '@ux-ts/reactive/ReactiveLib.ts';
     import {reactive, watch, ref, shallowRef, onMounted} from "vue";
     import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
-    import { fixedClientZoom } from "@unite/scripts/utils/Zoom.ts";
+    import { fixedClientZoom } from "@ux-ts/utils/Zoom.ts";
 
     //
     const UIState      = StateManager.get("UIState");

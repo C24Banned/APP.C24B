@@ -56,6 +56,8 @@ const config = defineConfig({
             "@src": path.resolve("src/"),
             "@idc": path.resolve("src/"),
             "@unite": path.resolve("unite/"),
+            "@ux-ts": path.resolve("unite/scripts/"),
+            "@ux-ss": path.resolve("unite/scss/"),
             "@assets": path.resolve("assets/")
         },
     },
@@ -64,7 +66,11 @@ const config = defineConfig({
         vue({
             template: {
                 compilerOptions: {
-                    isCustomElement: (tag) => ['x-scrollbox'].includes(tag),
+                    isCustomElement: (tag) => [
+                        'x-scrollbox',
+                        'x-focustext',
+                        'x-longtext'
+                    ].includes(tag),
                 }
             }
         }),

@@ -1,9 +1,9 @@
 import {JSOX} from 'jsox';
 
 //
-import {makeReactive} from "@unite/scripts/reactive/ReactiveLib.ts";
-import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
-import { changeZoom } from "@unite/scripts/utils/Zoom.ts";
+import {makeReactive} from "@ux-ts/reactive/ReactiveLib.ts";
+import {subscribe} from "@ux-ts/reactive/ReactiveLib.ts";
+import { changeZoom } from "@ux-ts/utils/Zoom.ts";
 
 //
 export const settings = makeReactive(Object.assign({

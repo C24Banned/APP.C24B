@@ -1,5 +1,5 @@
-import { observeBySelector } from "@unite/scripts/dom/Observer.ts";
-import stateMap from "@unite/scripts/reactive/StateManager.ts";
+import { observeBySelector } from "@ux-ts/dom/Observer.ts";
+import stateMap from "@ux-ts/reactive/StateManager.ts";
 
 //
 export default async ()=>{

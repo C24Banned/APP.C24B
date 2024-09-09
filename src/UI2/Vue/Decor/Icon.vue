@@ -2,7 +2,7 @@
     import { computed, onMounted, ref } from 'vue';
     import * as iconPack from "lucide-vue-next";
     import { useAttrs } from 'vue';
-    import { observeAttribute } from '@unite/scripts/dom/Observer.ts';
+    import { observeAttribute } from '@ux-ts/dom/Observer.ts';
 
     //
     const camelize = (str) => {

@@ -1,9 +1,9 @@
 <script setup>
     import {reactive, watch, ref, onMounted} from "vue";
-    import { observeBySelector } from "@unite/scripts/dom/Observer.ts";
-    import {subscribe} from "@unite/scripts/reactive/ReactiveLib.ts";
-    import { objectAssign } from '@unite/scripts/reactive/AssignObject';
-    import { derivate } from "@unite/scripts/reactive/ReactiveLib";
+    import { observeBySelector } from "@ux-ts/dom/Observer.ts";
+    import {subscribe} from "@ux-ts/reactive/ReactiveLib.ts";
+    import { objectAssign } from '@ux-ts/reactive/AssignObject';
+    import { derivate } from "@ux-ts/reactive/ReactiveLib";
 
     //
     const props = defineProps({
@@ -21,9 +21,14 @@
     const confirm = ()=>{
         for (const F of fields) {
             if (F.name in props.whatEdit) {
-                props.whatEdit[F.name] = F.value;
+                props.whatEdit[F.name] = elRef?.value?.querySelector("input[type=\"text\"][name=\""+F.name+"\"]")?.value ?? F?.value;
             };
         }
+
+        //
+        requestAnimationFrame(()=>{
+            document.activeElement?.blur?.();
+        });
     }
 
     //
@@ -48,20 +53,24 @@
         <div class="ui-edit-desc">
             <slot name="description"/>
         </div>
-        <div class="ui-field-block" v-for="F in fields">
+        <div v-if="fields" class="ui-field-block" v-for="F in fields">
             <div inert class="field-label">{{F.label}}</div>
-            <input
+            <x-longtext
                 data-scheme="solid"
                 class="field-input hl-1 hl-2h"
                 data-highlight="1"
                 data-highlight-hover="2"
-                type="text"
-                maxlength="1024"
-                autocomplete="off"
-                v-model="F.value"
-                :name="F.name"
-                :data-name="F.name"
+            >
+                <input
+                    v-if="F"
+                    type="text"
+                    maxlength="1024"
+                    autocomplete="off"
+                    v-model="F.value"
+                    :name="F.name"
+                    :data-name="F.name"
                 />
+            </x-longtext>
         </div>
     </form>
 </template>

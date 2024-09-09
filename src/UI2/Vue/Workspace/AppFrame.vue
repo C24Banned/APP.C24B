@@ -2,7 +2,7 @@
     import {reactive, watch, ref, onMounted} from "vue";
     import Icon from "@idc/UI2/Vue/Decor/Icon.vue";
     import TaskManager from "@idc/PreInit/TaskManager.ts";
-    import { zoomOf } from "@unite/scripts/utils/Zoom.ts";
+    import { zoomOf } from "@ux-ts/utils/Zoom.ts";
 
     //
     const target = ref(null);

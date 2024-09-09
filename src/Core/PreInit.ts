@@ -4,6 +4,12 @@ const preInit = async ()=>{
         import("@idc/PreInit/ActionMap.ts"),
         import("@idc/PreInit/CurrentState.ts"),
         import("@idc/PreInit/GridState.ts"),
+
+        //
+        import("@unite/wcomp/scrollbox/ScrollBox.ts"),
+        import("@unite/wcomp/flexlike/FlexLike.ts"),
+        import("@unite/wcomp/longtext/FocusText.ts"),
+        import("@unite/wcomp/longtext/LongText.ts")
     ];
 };
 

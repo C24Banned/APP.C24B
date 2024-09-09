@@ -1,9 +1,9 @@
 
 
 //
-import {zoomOf} from "@unite/scripts/utils/Zoom.ts";
-import stateMap from "@unite/scripts/reactive/StateManager.ts";
-import { MOC, MOCElement } from "@unite/scripts/utils/Utils.ts";
+import {zoomOf} from "@ux-ts/utils/Zoom.ts";
+import stateMap from "@ux-ts/reactive/StateManager.ts";
+import { MOC, MOCElement } from "@ux-ts/utils/Utils.ts";
 
 //
 export default async ()=>{
@@ -33,8 +33,10 @@ export default async ()=>{
         //
         if (target.matches("*[data-ctx], *[data-ctx] .ui-item-design")) {
             const real = MOCElement(target, "*[data-ctx]");
-            const ctxName = real.dataset.ctx;
-            initiators.set(ctxName, real);
+            const ctxName = real?.dataset?.ctx || "";
+            if (real) {
+                initiators.set(ctxName, real);
+            }
 
             //
             requestAnimationFrame(()=>{

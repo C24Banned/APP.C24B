@@ -1,8 +1,8 @@
 //
-import { MOCElement } from "@unite/scripts/utils/Utils.ts";
-import AxGesture from "@unite/scripts/interact/Gesture.ts";
-import { observeBySelector } from "@unite/scripts/dom/Observer.ts";
-import { zoomOf } from "@unite/scripts/utils/Zoom.ts";
+import { MOCElement } from "@ux-ts/utils/Utils.ts";
+import AxGesture from "@ux-ts/interact/Gesture.ts";
+import { observeBySelector } from "@ux-ts/dom/Observer.ts";
+import { zoomOf } from "@ux-ts/utils/Zoom.ts";
 
 //
 import TaskManager from "@idc/PreInit/TaskManager.ts";

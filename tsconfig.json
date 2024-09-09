@@ -8,7 +8,9 @@
             "@idc/*": ["src/*"],
             "@src/*": ["src/*"],
             "@unite/*": ["unite/*"],
-            "@assets/*": ["assets/*"]
+            "@assets/*": ["assets/*"],
+            "@ux-ts/*": ["unite/scripts/*"],
+            "@ux-ss/*": ["unite/scss/*"]
         },
         "baseUrl": "./",
         "composite": true,

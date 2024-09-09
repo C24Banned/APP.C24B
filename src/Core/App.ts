@@ -1,6 +1,6 @@
 // Initiate loading instantly
 const App = async ()=>{
-    const { observeAttribute } = await import("@unite/scripts/dom/Observer.ts");
+    const { observeAttribute } = await import("@ux-ts/dom/Observer.ts");
     const i18n = (await import("@idc/L18n/L18n.ts"))?.default;
 
     //
@@ -16,20 +16,18 @@ const App = async ()=>{
 
     //
     const loading = Promise.allSettled([
-        import("@unite/scripts/stylework/Bundle.ts"),
+        import("@ux-ts/stylework/Bundle.ts"),
         import("@idc/UI2/Scripts/Dropper.ts"),
         import("@idc/UI2/Scripts/AppFrame.ts"),
         import("@idc/UI2/Scripts/ContextMenu.ts"),
         import("@idc/UI2/Scripts/DesktopGrid.ts"),
-        import("@idc/UI2/Scripts/InputEdit.ts"),
+        //import("@idc/UI2/Scripts/InputEdit.ts"),
         import("@idc/UI2/Scripts/ItemEdit.ts"),
         import("@idc/UI2/Scripts/StatusBar.ts"),
         import("@idc/UI2/Scripts/Tooltip.ts"),
         import("@idc/UI2/Scripts/ShapeSelect.ts"),
         import("@idc/App/Scripts/Settings.ts"),
-        import("@idc/App/Scripts/ControlCenter.ts"),
-        import("@unite/wcomp/scrollbox/ScrollBox.ts"),
-        import("@unite/wcomp/flexlike/FlexLike.ts")
+        import("@idc/App/Scripts/ControlCenter.ts")
     ]);
 
     //
@@ -38,7 +36,7 @@ const App = async ()=>{
 
     //
     (await services).map((mod)=>{
-        const lazy = mod?.value?.default;
+        const lazy = mod?.value?.default ?? mod?.default;
         if (typeof lazy == "function") { lazy?.(); };
     });
 
@@ -58,7 +56,7 @@ const App = async ()=>{
 
     //
     (await loading).map((mod)=>{
-        const lazy = mod?.value?.default;
+        const lazy = mod?.value?.default ?? mod?.default;
         if (typeof lazy == "function") { lazy?.(); };
     });
 }

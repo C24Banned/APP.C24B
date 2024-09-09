@@ -18,7 +18,6 @@
     import DropMenuList from "@idc/UI2/Vue/Input/DropMenuList.vue";
 
     //
-    import Viewport from "@idc/UI2/Vue/Viewport.vue";
     import DesktopGrid from "@idc/UI2/Vue/Workspace/DesktopGrid.vue";
     import AppFrame from "@idc/UI2/Vue/Workspace/AppFrame.vue";
 
@@ -79,15 +78,13 @@
 <!-- -->
 <template>
     <!-- -->
-    <Viewport>
-        <DesktopGrid></DesktopGrid>
+    <DesktopGrid></DesktopGrid>
 
-        <!-- -->
-        <AppFrame v-for="task in tasks" :key="task.id" :id="task.id" :tasks="tasks"></AppFrame>
+    <!-- -->
+    <AppFrame v-for="task in tasks" :key="task.id" :id="task.id" :tasks="tasks"></AppFrame>
 
-        <!-- -->
-        <Taskbar></Taskbar>
-    </Viewport>
+    <!-- -->
+    <Taskbar></Taskbar>
 
     <!-- -->
     <IconEdit></IconEdit>
@@ -98,5 +95,13 @@
     <StatusBar></StatusBar>
 
     <!-- -->
+    <x-focustext
+        value=""
+        id="focustext"
+        class="ui-focus ui-mobile-input ui-dedicated"
+        data-chroma="0"
+        data-scheme="solid"
+        data-highlight="1"
+    ></x-focustext>
     <div data-hidden="true" data-delay-hide="400" class="ui-tooltip" data-scheme="solid" v-bind="$attrs"></div>
 </template>

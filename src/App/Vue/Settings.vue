@@ -2,7 +2,7 @@
     import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
     import { lang } from "@idc/Config/Config.ts";
     import { defineAsyncComponent, ref, shallowRef, computed } from 'vue'
-    import {MOC, MOCElement} from "@unite/scripts/utils/Utils.ts";
+    import {MOC, MOCElement} from "@ux-ts/utils/Utils.ts";
 
     //
     import { useI18n } from "vue-i18n";

@@ -4,7 +4,7 @@
 
     //
     import RangeTouch from 'rangetouch';
-    import stateMap from "@unite/scripts/reactive/StateManager.ts";
+    import stateMap from "@ux-ts/reactive/StateManager.ts";
 
     //
     const input  = ref(null);

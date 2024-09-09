@@ -1,6 +1,6 @@
 <script setup>
 import Icon from '@idc/UI2/Vue/Decor/Icon.vue';
-import stateMap from "@unite/scripts/reactive/StateManager.ts";
+import stateMap from "@ux-ts/reactive/StateManager.ts";
 
 //
 import {reactive, watch, ref, onMounted} from "vue";

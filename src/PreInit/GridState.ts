@@ -1,10 +1,10 @@
 import {JSOX} from 'jsox';
 
 //
-import {makeReactive, createReactiveSet, createReactiveMap} from "@unite/scripts/reactive/ReactiveLib.ts";
-import {makeObjectAssignable} from "@unite/scripts/reactive/AssignObject.ts";
-import stateMap from "@unite/scripts/reactive/StateManager.ts"
-import {subscribe, extractSymbol} from "@unite/scripts/reactive/ReactiveLib.ts";
+import {makeReactive, createReactiveSet, createReactiveMap} from "@ux-ts/reactive/ReactiveLib.ts";
+import {makeObjectAssignable} from "@ux-ts/reactive/AssignObject.ts";
+import stateMap from "@ux-ts/reactive/StateManager.ts"
+import {subscribe, extractSymbol} from "@ux-ts/reactive/ReactiveLib.ts";
 
 //
 import {settings} from "./CurrentState.ts";
@@ -136,8 +136,7 @@ export const loadState = (st = preLoadState)=>{
         icon: "settings",
         label: "Settings",
         pointerId: -1,
-        action: "open-settings",
-        href: "#control-center"
+        action: "open-settings"
     }));
 
     //
@@ -147,8 +146,7 @@ export const loadState = (st = preLoadState)=>{
         icon: "wallpaper",
         label: "Wallpapers",
         pointerId: -1,
-        action: "open-manager",
-        href: "#control-center"
+        action: "open-manager"
     }));
 
     //

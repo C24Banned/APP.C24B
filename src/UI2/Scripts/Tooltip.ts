@@ -1,7 +1,5 @@
-import { observeBySelector } from "@unite/scripts/dom/Observer.ts";
-import { MOC, propsFilter } from "@unite/scripts/utils/Utils.ts";
-import AxGesture from "@unite/scripts/interact/Gesture.ts";
-import {pointerMap} from "@unite/scripts/interact/PointerAPI.ts";
+import AxGesture from "@ux-ts/interact/Gesture.ts";
+import {pointerMap} from "@ux-ts/interact/PointerAPI.ts";
 
 //
 export default async ()=>{
@@ -31,30 +29,30 @@ export default async ()=>{
         holdTime: 500
     }, (ev)=>{
         const initiator = ev.target;
-        const tooltip = document.querySelector(".ui-tooltip");
+        const tooltip: HTMLElement | null = document.querySelector(".ui-tooltip");
         if (tooltip) {
             {
                 if (tooltip[timer]) clearTimeout(tooltip[timer]);
-                tooltip.dataset.hidden = true;
+                tooltip.dataset.hidden = ""+true;
                 tooltip[timer] = null;
             }
 
             //
             tooltip.innerHTML = initiator.dataset.tooltip;
             fixTooltip(ev);
-            tooltip.dataset.hidden = false;
+            tooltip.dataset.hidden = ""+false;
             tooltip[timer] = setTimeout(()=>{
-                tooltip.dataset.hidden = true;
+                tooltip.dataset.hidden = ""+true;
             }, 1000);
         }
     });
 
     //
     const hideTooltip = (ev)=>{
-        const tooltip = document.querySelector(".ui-tooltip");
+        const tooltip: HTMLElement | null = document.querySelector(".ui-tooltip");
         if (tooltip) {
             if (tooltip[timer]) clearTimeout(tooltip[timer]);
-            tooltip.dataset.hidden = true;
+            tooltip.dataset.hidden = ""+true;
             tooltip[timer] = null;
         }
     }

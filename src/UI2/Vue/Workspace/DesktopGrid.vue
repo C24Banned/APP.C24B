@@ -2,16 +2,16 @@
     import {reactive, watch, ref, onMounted, computed } from "vue";
 
     //
-    import stateMap from "@unite/scripts/reactive/StateManager.ts";
-    import {observeBySelector, observeBorderBox} from "@unite/scripts/dom/Observer.ts";
-    import {subscribe, safe} from "@unite/scripts/reactive/ReactiveLib.ts";
+    import stateMap from "@ux-ts/reactive/StateManager.ts";
+    import {observeBySelector, observeBorderBox} from "@ux-ts/dom/Observer.ts";
+    import {subscribe, safe} from "@ux-ts/reactive/ReactiveLib.ts";
 
     //
     import GridItem from "./GridItem.vue";
     import GridItemLabel from "./GridItemLabel.vue";
-    import { MOCElement } from '@unite/scripts/utils/Utils';
-    import { objectAssign } from '@unite/scripts/reactive/AssignObject';
-    import { derivate } from "@unite/scripts/reactive/ReactiveLib";
+    import { MOCElement } from '@ux-ts/utils/Utils';
+    import { objectAssign } from '@ux-ts/reactive/AssignObject';
+    import { derivate } from "@ux-ts/reactive/ReactiveLib";
 
     //
     const props     = defineProps({ state: Object, actionMap: Object });
