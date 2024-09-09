@@ -66,7 +66,7 @@
         @container ui-windowed (width >= 8in) {
             & {
                 --sidebar-size: 100%;
-                --sidebar-space: min(16rem, 100cqi);
+                --sidebar-space: min(18rem, 100cqi);
             }
 
             //
@@ -76,7 +76,7 @@
         //
         @container ui-windowed (width < 8in) {
             & {
-                --sidebar-size: 12rem;
+                --sidebar-size: 32rem;
                 --sidebar-space: 0px;
             }
 
