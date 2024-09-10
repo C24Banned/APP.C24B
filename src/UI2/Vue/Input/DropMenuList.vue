@@ -37,11 +37,11 @@
                 const bbox = dropWith.getBoundingClientRect();
 
                 //
-                /*if (!CSS.supports("anchor-name", "--carter")) {
+                if (!CSS.supports("anchor-name", "--carter")) {
                     target.value.style.insetInlineStart = `calc(${(bbox.left   * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                     target.value.style.insetBlockStart  = `calc(${(bbox.bottom * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                     target.value.style.inlineSize       = `calc(${(bbox.width  * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
-                }*/
+                }
             }
         });
     });
@@ -50,14 +50,14 @@
     document.addEventListener("scroll", ()=>{
         if (currentMenu.value) {
             const dropWith = document.querySelector(".ui-input[data-name=\""+currentMenu.value?.menuName+"\"]");
-            const bbox = dropWith.getBoundingClientRect() * fixedClientZoom();
+            const bbox = dropWith.getBoundingClientRect();
 
             //
-            /*if (!CSS.supports("anchor-name", "--carter")) {
+            if (!CSS.supports("anchor-name", "--carter")) {
                 target.value.style.insetInlineStart = `calc(${(bbox.left   * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                 target.value.style.insetBlockStart  = `calc(${(bbox.bottom * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
                 target.value.style.inlineSize       = `calc(${(bbox.width  * fixedClientZoom()) + "px"} / var(--zoom, 1))`;
-            };*/
+            };
         }
     });
 
