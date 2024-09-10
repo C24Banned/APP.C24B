@@ -8,6 +8,7 @@
     import Signal from "@idc/UI2/Vue/Status/Signal.vue";
     import Battery from "@idc/UI2/Vue/Status/Battery.vue";
     import Time from "@idc/UI2/Vue/Status/Time.vue";
+    import Github from "@idc/UI2/Vue/Status/Github.vue";
 
     //
     import TaskManager from "@idc/PreInit/TaskManager.ts";
@@ -121,6 +122,7 @@
             </div>
         </div>
         <div class="ui-status" data-transparent data-scheme="dynamic-transparent">
+            <Github data-highlight="1" data-highlight-hover="2"></Github>
             <Signal data-highlight="1" data-highlight-hover="2"></Signal>
             <Battery data-highlight="1" data-highlight-hover="2"></Battery>
             <Time data-highlight="1" data-highlight-hover="2"></Time>

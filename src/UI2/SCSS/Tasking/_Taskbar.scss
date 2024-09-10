@@ -88,6 +88,17 @@
         @include ps.clamped-block(var(--taskbar-size), max-content);
 
         //
+        & a {
+            display: inline;
+            pointer-events: auto;
+            inline-size: max-content;
+            block-size: max-content;
+            place-self: center;
+            place-content: center;
+            place-items: center;
+        }
+
+        //
         & {
             position: fixed;
             inset: 0px;
@@ -186,6 +197,17 @@
 
         //
         & { --translate-y: var(--data-taskbar-shift, 0px); };
+
+        //
+        & a {
+            display: inline;
+            pointer-events: auto;
+            inline-size: max-content;
+            block-size: max-content;
+            place-self: center;
+            place-content: center;
+            place-items: center;
+        }
 
         //
         & {
@@ -291,14 +313,14 @@
             }
 
             //
-            & > .ui-indicator {
+            & .ui-indicator {
                 padding-inline: 0.25rem;
                 inline-size: max-content;
                 block-size: max-content;
             }
 
             //
-            & > .ui-time {
+            & .ui-time {
                 padding-inline: 1rem;
             }
         }

@@ -89,7 +89,7 @@ export const loadState = (st = preLoadState)=>{
         id: "main",
         size: size,
         layout: layout,
-        list: ["settings", "import", "export", "wallpapers"]
+        list: ["settings", "import", "export", "wallpapers", "github"]
     }));
 
     //
@@ -110,7 +110,7 @@ export const loadState = (st = preLoadState)=>{
     //
     state.items.set("import", state.items.get("import") || makeReactive({
         id: "import",
-        cell: [0, 0],
+        cell: [2, 0],
         icon: "upload",
         label: "Import Data",
         pointerId: -1,
@@ -121,7 +121,7 @@ export const loadState = (st = preLoadState)=>{
     //
     state.items.set("export", state.items.get("export") || makeReactive({
         id: "export",
-        cell: [1, 0],
+        cell: [3, 0],
         icon: "download",
         label: "Export Data",
         pointerId: -1,
@@ -132,7 +132,7 @@ export const loadState = (st = preLoadState)=>{
     //
     state.items.set("settings", state.items.get("settings") || makeReactive({
         id: "settings",
-        cell: [2, 0],
+        cell: [0, 0],
         icon: "settings",
         label: "Settings",
         pointerId: -1,
@@ -142,11 +142,22 @@ export const loadState = (st = preLoadState)=>{
     //
     state.items.set("wallpapers", state.items.get("wallpapers") || makeReactive({
         id: "wallpapers",
-        cell: [3, 0],
+        cell: [1, 0],
         icon: "wallpaper",
         label: "Wallpapers",
         pointerId: -1,
         action: "open-manager"
+    }));
+
+    //
+    state.items.set("github", state.items.get("github") || makeReactive({
+        id: "github",
+        cell: [0, 1],
+        icon: "github",
+        label: "Our Github",
+        pointerId: -1,
+        action: "open-link",
+        href: "https://github.com/BZ-0/APP.C24B"
     }));
 
     //
@@ -155,6 +166,7 @@ export const loadState = (st = preLoadState)=>{
     ls.add("import");
     ls.add("export");
     ls.add("wallpapers");
+    ls.add("github");
     state.lists.set("main", ls);
 
     //
