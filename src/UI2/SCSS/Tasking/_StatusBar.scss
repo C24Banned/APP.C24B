@@ -54,6 +54,7 @@
 
         //
         .ui-indicator {
+            pointer-events: none;
             inline-size: max-content;
             block-size: max-content;
         }

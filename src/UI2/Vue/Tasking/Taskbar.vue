@@ -104,7 +104,7 @@
 
     <!-- -->
     <div class="ui-taskbar" v-bind="$attrs" data-scheme="solid">
-        <div class="ui-app-menu" data-highlight-hover="2" data-transparent data-scheme="dynamic-transparent">
+        <div data-tooltip="Not implemented" class="ui-app-menu" data-highlight-hover="2" data-transparent data-scheme="dynamic-transparent">
             <Icon inert name="layout-grid"></Icon>
         </div>
         <div class="ui-task-bar" data-transparent data-scheme="dynamic-transparent">
@@ -122,10 +122,10 @@
             </div>
         </div>
         <div class="ui-status" data-transparent data-scheme="dynamic-transparent">
-            <Github data-highlight="1" data-highlight-hover="2"></Github>
-            <Signal data-highlight="1" data-highlight-hover="2"></Signal>
-            <Battery data-highlight="1" data-highlight-hover="2"></Battery>
-            <Time data-highlight="1" data-highlight-hover="2"></Time>
+            <Github data-tooltip="Our Github Repository" data-highlight="1" data-highlight-hover="2" style="pointer-events: auto;"></Github>
+            <Signal data-tooltip="Not implemented" data-highlight="1" data-highlight-hover="2"></Signal>
+            <Battery data-tooltip="Not implemented" data-highlight="1" data-highlight-hover="2"></Battery>
+            <Time data-tooltip="Not implemented" data-highlight="1" data-highlight-hover="2"></Time>
         </div>
     </div>
 

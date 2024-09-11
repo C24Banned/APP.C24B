@@ -1,4 +1,4 @@
-@use "@unite/scss/design/ColorTheme";
+@use "@unite/scss/design/ColorTheme" as tm;
 @use "@unite/scss/core/Profile" as ps;
 
 //
@@ -28,6 +28,11 @@
 
         //
         & {
+            background-color: var(--current-surface-color, black) !important;
+            outline: solid 0.5px oklch(from var(--current-glyph-color) l c h / 0.125) !important;
+
+            //
+            user-select: none;
             place-self: start;
 
             //
@@ -44,7 +49,6 @@
 
             //
             transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale, 1));
-            outline: solid 0.5px oklch(from var(--current-glyph-color) l c h / 0.125);
             padding: 0.5rem;
         }
     }

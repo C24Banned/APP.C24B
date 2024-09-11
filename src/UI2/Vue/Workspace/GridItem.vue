@@ -63,7 +63,8 @@
         <div
             class="ui-item-design"
             @click="(ev)=>{props.onClick(ev);}"
-            data-scheme="accent-inverse">
+            data-scheme="accent-inverse"
+            :data-tooltip="gridItem?.href">
 
             <Icon inert :name="gridItem.icon" :data-icon="gridItem.icon"></Icon>
 

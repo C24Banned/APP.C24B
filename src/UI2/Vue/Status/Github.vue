@@ -11,6 +11,7 @@ const target = ref(null);
 <template>
     <div data-transparent ref="target" class="ui-indicator" color-scheme="dynamic-transparent" v-bind="$attrs">
         <a href="https://github.com/BZ-0/APP.C24B" target="_blank"><Icon
+            inert
             color-scheme="dynamic-transparent"
             name="github"
             class="icon-wrap ui-icon-state ui-github"

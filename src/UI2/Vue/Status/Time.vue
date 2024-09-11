@@ -7,5 +7,5 @@ const target = ref(null);
 
 <!-- -->
 <template>
-    <div data-transparent ref="target" class="ui-indicator ui-time" color-scheme="dynamic-transparent" v-bind="$attrs"><span class="ui-time-hour">00</span>:<span class="ui-time-minute">00</span></div>
+    <div data-transparent ref="target" class="ui-indicator ui-time" color-scheme="dynamic-transparent" v-bind="$attrs"><span class="ui-time-hour" inert>00</span>:<span class="ui-time-minute" inert>00</span></div>
 </template>

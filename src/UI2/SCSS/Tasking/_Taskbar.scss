@@ -314,6 +314,7 @@
 
             //
             & .ui-indicator {
+                pointer-events: auto;
                 padding-inline: 0.25rem;
                 inline-size: max-content;
                 block-size: max-content;

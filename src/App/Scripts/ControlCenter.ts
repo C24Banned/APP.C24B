@@ -4,7 +4,7 @@ import stateMap from "@ux-ts/reactive/StateManager.ts";
 //
 export default async ()=>{
     //
-    const appId = "#control-center";
+    const appId = "#";
 
     //
     document.documentElement?.addEventListener?.("ui-menu", (ev)=>{
