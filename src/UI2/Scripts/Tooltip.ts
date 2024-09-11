@@ -66,5 +66,5 @@ export default async ()=>{
     document.documentElement.addEventListener("click", hideTooltip);
     document.documentElement.addEventListener("pointerup", hideTooltip);
     document.documentElement.addEventListener("pointerdown", hideTooltip);
-
+    document.documentElement.addEventListener("contextmenu", hideTooltip);
 };
