@@ -114,7 +114,10 @@
             justify-content: start;
 
             //
-            .f-space { @include ps.flex-space; }
+            .f-space {
+                //@include ps.stretch;
+                @include ps.flex-space;
+            }
 
             //
             button {
@@ -127,7 +130,7 @@
                     padding-block: 0.5rem;
 
                     //
-                    //aspect-ratio: 1 / 1;
+                    aspect-ratio: 1 / 1;
                     min-inline-size: 3rem;
                     inline-size: max-content;
                     block-size: 100%;
