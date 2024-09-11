@@ -12,7 +12,7 @@ document.documentElement.addEventListener("contextmenu", (ev)=>{
 	const target = ev.target;
 	if ((target?.matches?.(".ui-status-bar") || target?.closest?.(".ui-status-bar"))) {
 		ev.stopPropagation();
-		ev.stopImmediatePropagation();
+		//ev.stopImmediatePropagation();
 		ev.preventDefault();
 	}
 }, {capture: true});

@@ -55,9 +55,10 @@
                 }
 
                 //
-                & .name {
-                    text-align: start;
-                    justify-self: start;
+                & .icon {
+                    text-align: center;
+                    justify-self: center;
+                    justify-content: center;
                 }
 
                 //
@@ -65,8 +66,13 @@
                     @include ps.stretch;
 
                     //
-                    inline-size: max-content;
-                    block-size: max-content;
+                    text-align: start;
+                    justify-self: start;
+                    justify-content: start;
+
+                    //
+                    //inline-size: max-content;
+                    //block-size: max-content;
                 }
 
                 /*.icon-wrap {

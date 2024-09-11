@@ -16,7 +16,7 @@ export default async ()=>{
         const target = ev.target as HTMLElement;
         if ((target?.matches?.(".ui-app-frame") || target?.closest?.(".ui-app-frame")) && !target.matches("input[type=\"text\"]")) {
             ev.stopPropagation();
-            ev.stopImmediatePropagation();
+            //ev.stopImmediatePropagation();
             ev.preventDefault();
         }
     }, {capture: true});
@@ -42,7 +42,7 @@ export default async ()=>{
         if (target.matches(".ui-navbar .menu-button")) {
             // kuril i umer
             ev.stopPropagation();
-            ev.stopImmediatePropagation();
+            //ev.stopImmediatePropagation();
             ev.preventDefault();
 
             //
@@ -63,7 +63,7 @@ export default async ()=>{
         if (target.matches(".ui-navbar .back-button")) {
             // kuril i umer
             ev.stopPropagation();
-            ev.stopImmediatePropagation();
+            //ev.stopImmediatePropagation();
             ev.preventDefault();
 
             //
@@ -93,7 +93,7 @@ export default async ()=>{
         if (target.matches(".ui-app-frame .menu-button")) {
             // kuril i umer
             ev.stopPropagation();
-            ev.stopImmediatePropagation();
+            //ev.stopImmediatePropagation();
             ev.preventDefault();
 
             //
@@ -113,7 +113,7 @@ export default async ()=>{
         if (target.matches(".ui-app-frame .back-button")) {
             // kuril i umer
             ev.stopPropagation();
-            ev.stopImmediatePropagation();
+            //ev.stopImmediatePropagation();
             ev.preventDefault();
 
             //

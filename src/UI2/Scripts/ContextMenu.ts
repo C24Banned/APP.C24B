@@ -56,7 +56,7 @@ export default async ()=>{
         const target = ev.target as HTMLElement;
         if ((target?.matches?.(".ui-modal-frame") || target?.closest?.(".ui-modal-frame")) && !target.matches("input[type=\"text\"]")) {
             ev.stopPropagation();
-            ev.stopImmediatePropagation();
+            //ev.stopImmediatePropagation();
             ev.preventDefault();
         }
     }, {capture: true});

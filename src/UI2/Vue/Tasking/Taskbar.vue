@@ -48,7 +48,7 @@
     const openPanel = (ev)=>{
         ev.preventDefault();
         ev.stopPropagation();
-        ev.stopImmediatePropagation();
+        //ev.stopImmediatePropagation();
         UIState.taskPanelOpen = !UIState.taskPanelOpen;
     }
 
@@ -76,7 +76,7 @@
     addEventListener("ui-back", (ev)=>{
         if (UIState.taskPanelOpen) {
             ev.stopPropagation();
-            ev.stopImmediatePropagation();
+            //ev.stopImmediatePropagation();
             ev.preventDefault();
             history.go(1);
         };

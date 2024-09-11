@@ -201,7 +201,7 @@ history.pushState(null, "", location.hash = location.hash || "#");
 addEventListener("popstate", (ev)=>{
     ev.preventDefault();
     ev.stopPropagation();
-    ev.stopImmediatePropagation();
+    //ev.stopImmediatePropagation();
 
     //
     if (window.dispatchEvent(new CustomEvent("ui-back", {
