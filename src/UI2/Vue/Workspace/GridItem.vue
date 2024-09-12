@@ -79,7 +79,7 @@
             }
         </css-doodle>-->
 
-        <div class="ui-item-icon">
+        <div inert class="ui-item-icon">
             <Icon inert :name="gridItem.icon" :data-icon="gridItem.icon"></Icon>
         </div>
     </div>
