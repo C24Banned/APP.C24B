@@ -1,6 +1,6 @@
 import {grabForDrag} from "@ux-ts/interact/PointerAPI.ts";
-import {MOC} from "@ux-ts/utils/Utils.ts";
-import {zoomOf} from "@ux-ts/utils/Zoom.ts";
+import {MOC, MOCElement} from "@ux-ts/utils/Utils.ts";
+import {unfixedClientZoom, zoomOf} from "@ux-ts/utils/Zoom.ts";
 import {redirectCell} from "@ux-ts/utils/GridItemUtils.ts";
 import type {GridItemType, GridPageType} from "@ux-ts/utils/GridItemUtils.ts";
 import {animationSequence} from "@ux-ts/stylework/GridLayout.ts";
@@ -18,7 +18,7 @@ export default async ()=>{
 
     //
     const initGrab = (target, pointerId = -1)=> {
-        const state = stateMap.get(target.closest(".ui-desktop-grid"));
+        const state = stateMap.get("desktop");//stateMap.get(target.closest(".ui-desktop-grid"));
 
         //
         if (target?.dataset?.id) {
@@ -75,7 +75,7 @@ export default async ()=>{
         const tx = el.closest(".ui-desktop-grid").querySelector("*[data-type=\"labels\"][data-id=\""+id+"\"]");
 
         //
-        const state = stateMap.get(el.closest(".ui-desktop-grid"));
+        const state = stateMap.get("desktop");//stateMap.get(el.closest(".ui-desktop-grid"));
         const current = "main"; //TODO! bind `current` with state.
 
         //
@@ -140,16 +140,29 @@ export default async ()=>{
     document.addEventListener("m-dragstart", (ev)=>{
         if (MOC(ev.target, ".ux-grid-item[data-type=\"items\"]")) {
             const current = "main"; //TODO! bind `current` with state.
-            const state = stateMap.get(ev.target.closest(".ui-desktop-grid"));
+            const state = stateMap.get("desktop");//stateMap.get(ev.target.closest(".ui-desktop-grid"));
             const id = ev.target.dataset.id;
             const item: GridItemType = state.items?.get(id) as unknown as GridItemType;
             const page: GridPageType = state.grids?.get(current) as unknown as GridPageType;
             const com = { items: state.items, item, page };
-            item.cell = floorInCX(item.cell, com);
 
             //
-            ev.target.style.setProperty("--p-cell-x", ev.target.style.getPropertyValue("--cell-x"));
-            ev.target.style.setProperty("--p-cell-y", ev.target.style.getPropertyValue("--cell-y"));
+            const handle = MOCElement(ev.target, ".ux-grid-item[data-type=\"items\"]");
+            const cbox = handle?.getBoundingClientRect();
+            const pbox = handle?.parentNode?.getBoundingClientRect?.();
+            const rel : [number, number] = [(cbox.left + cbox.right)/2 - pbox.left, (cbox.top + cbox.bottom)/2 - pbox.top];
+            const cent: [number, number] = [(rel[0]) * unfixedClientZoom(), (rel[1]) * unfixedClientZoom()]
+            const orient = convertPointerPxToOrientPx(cent, com);
+            const CXa    = convertOrientPxToCX(orient, com);
+
+            //
+            item.cell = [Math.floor(CXa[0]), Math.floor(CXa[1])];
+
+            //
+            ev.target.style.setProperty("--cell-x", item.cell[0] ?? ev.target.style.getPropertyValue("--cell-x"));
+            ev.target.style.setProperty("--cell-y", item.cell[1] ?? ev.target.style.getPropertyValue("--cell-y"));
+            ev.target.style.setProperty("--p-cell-x", item.cell[0] ?? ev.target.style.getPropertyValue("--cell-x"));
+            ev.target.style.setProperty("--p-cell-y", item.cell[1] ?? ev.target.style.getPropertyValue("--cell-y"));
         }
     });
 
@@ -168,7 +181,7 @@ export default async ()=>{
 
             //
             const current = "main"; //TODO! bind `current` with state.
-            const state = stateMap.get(el.closest(".ui-desktop-grid"));
+            const state = stateMap.get("desktop");//stateMap.get(el.closest(".ui-desktop-grid"));
             const item: GridItemType = state.items?.get(id) as unknown as GridItemType;
             const page: GridPageType = state.grids?.get(current) as unknown as GridPageType;
 
