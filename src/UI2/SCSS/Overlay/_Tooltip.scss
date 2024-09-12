@@ -12,8 +12,8 @@
         //
         & {
             //
-            --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - calc(50cqi - 50%));
-            --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - calc(50cqb - 50%));
+            --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - 50cqi);
+            --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - 50cqb - 0.5rem);
 
             //
             --translate-x: clamp(0px, calc(calc(50cqi - 50%) + var(--rx)), calc(100cqi - 100%));
@@ -22,8 +22,8 @@
 
         //
         @media screen and (hover: none) and (pointer: coarse) {
-            --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - 50cqi);
-            --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - 50cqb);
+            --rx: calc(var(--hover-x, 0) * var(--zpx, 1px) - calc(50cqi - 50%));
+            --ry: calc(var(--hover-y, 0) * var(--zpx, 1px) - calc(50cqb - 50%) - 0.5rem);
         }
 
         //

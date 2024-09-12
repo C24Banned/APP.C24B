@@ -49,13 +49,15 @@ export default async ()=>{
 
     //
     const hideTooltip = (ev)=>{
-        const tooltip: HTMLElement | null = document.querySelector(".ui-tooltip");
-        if (tooltip) {
-            if (tooltip[timer]) clearTimeout(tooltip[timer]);
-            tooltip.dataset.delayHide = "" + (["click", "pointerdown", "contextmenu"].indexOf(ev?.type) >= 0 ? 0 : 400);
-            tooltip.dataset.hidden    = "" + true;
-            tooltip[timer] = null;
-        }
+        requestAnimationFrame(()=>{
+            const tooltip: HTMLElement | null = document.querySelector(".ui-tooltip");
+            if (tooltip) {
+                if (tooltip[timer]) clearTimeout(tooltip[timer]);
+                tooltip.dataset.delayHide = "" + (["click", "pointerdown", "contextmenu"].indexOf(ev?.type) >= 0 ? 0 : 400);
+                tooltip.dataset.hidden    = "" + true;
+                tooltip[timer] = null;
+            }
+        });
     }
 
     //

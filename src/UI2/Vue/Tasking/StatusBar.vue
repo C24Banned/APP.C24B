@@ -28,7 +28,7 @@ document.documentElement.addEventListener("contextmenu", (ev)=>{
         <div class="center">
         </div>
         <div class="right">
-            <Github data-scheme="dynamic-transparent" style="pointer-events: auto;"></Github>
+            <Github data-scheme="dynamic-transparent" style="pointer-events: auto;" data-tooltip="Our Github Repository"></Github>
             <Signal data-scheme="dynamic-transparent"></Signal>
             <Battery data-scheme="dynamic-transparent"></Battery>
         </div>
