@@ -151,7 +151,7 @@ export default async ()=>{
             const cbox = handle?.getBoundingClientRect();
             const pbox = handle?.parentNode?.getBoundingClientRect?.();
             const rel : [number, number] = [(cbox.left + cbox.right)/2 - pbox.left, (cbox.top + cbox.bottom)/2 - pbox.top];
-            const cent: [number, number] = [(rel[0]) * unfixedClientZoom(), (rel[1]) * unfixedClientZoom()]
+            const cent: [number, number] = [(rel[0]) / unfixedClientZoom(), (rel[1]) / unfixedClientZoom()]
             const orient = convertPointerPxToOrientPx(cent, com);
             const CXa    = convertOrientPxToCX(orient, com);
 
