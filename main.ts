@@ -1,4 +1,5 @@
 import "core-js";
+import 'css-doodle';
 
 //
 (async()=>{

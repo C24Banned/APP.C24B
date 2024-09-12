@@ -8,7 +8,7 @@
 @layer ui-grid {
 
     //
-    *[data-shape="wavy"] .ui-item-design, .ui-item-design[data-shape="wavy"] {
+    [data-shape="wavy"] .ui-item-design, .ui-item-design[data-shape="wavy"] {
         & {
             --clip-amplitude: 0.06;
             --clip-freq: 8;
@@ -98,17 +98,26 @@
 
         //
         .ux-grid-item {
+            @include ps.grid-layout();
+
+            //
             & {
-                display: flex;
                 inline-size: max-content;
                 block-size: max-content;
                 overflow: visible;
                 filter: drop-shadow(0px 0px 0.25rem #00000060);
+                isolation: isolate;
             }
 
             //
             &[data-dragging="true"] {
                 z-index: 99;
+            }
+
+            //
+            & > :where(*) {
+                grid-column: 1 / 1 span;
+                grid-row: 1 / 1 span;
             }
         }
 
@@ -132,6 +141,15 @@
                 font-size: calc(var(--icon-size) * 0.175);
                 filter: drop-shadow(0px 0px 0.25rem #00000080);
             }
+        }
+
+        //
+        .ui-item-icon {
+            @include ps.limited-block(var(--icon-size));
+            @include ps.limited-inline(var(--icon-size));
+
+            //
+            padding: calc(var(--icon-size) * 0.265);
         }
 
         //
@@ -169,9 +187,9 @@
 
                 //
                 display: flex;
-                padding: calc(var(--icon-size) * 0.265 * var(--corrector));
 
                 //
+                scale: var(--scale, 1);
                 translate: 0px 0px 0px !important;
                 transform: none !important;
             }

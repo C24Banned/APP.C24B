@@ -67,6 +67,7 @@ const config = defineConfig({
             template: {
                 compilerOptions: {
                     isCustomElement: (tag) => [
+                        'css-doodle',
                         'x-scrollbox',
                         'x-focustext',
                         'x-longtext'

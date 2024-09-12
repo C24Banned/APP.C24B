@@ -65,9 +65,22 @@
             @click="(ev)=>{props.onClick(ev);}"
             data-scheme="accent-inverse"
             :data-tooltip="gridItem?.href">
+        </div>-
 
+        <!--<css-doodle
+            class="ui-item-design doodle"
+            @click="(ev)=>{props.onClick(ev);}"
+            data-scheme="accent-inverse"
+            :data-tooltip="gridItem?.href"
+        >
+            :doodle {
+                border-radius: 0px;
+                @shape: circle;
+            }
+        </css-doodle>-->
+
+        <div class="ui-item-icon">
             <Icon inert :name="gridItem.icon" :data-icon="gridItem.icon"></Icon>
-
         </div>
     </div>
 
