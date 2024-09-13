@@ -156,7 +156,7 @@ export default async ()=>{
             //
             const handle = MOCElement(ev.target, ".ux-grid-item[data-type=\"items\"]");
             const cbox = handle?.getBoundingClientRect?.();
-            const pbox = handle?.parentNode?.getBoundingClientRect?.();
+            const pbox = (handle?.parentNode as HTMLElement)?.getBoundingClientRect?.();
             const rel : [number, number] = [(cbox.left + cbox.right)/2 - pbox.left, (cbox.top + cbox.bottom)/2 - pbox.top];
             const cent: [number, number] = [(rel[0]) / unfixedClientZoom(), (rel[1]) / unfixedClientZoom()]
             const orient = convertPointerPxToOrientPx(cent, com);
