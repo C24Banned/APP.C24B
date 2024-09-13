@@ -85,7 +85,7 @@
         @include ps.stretch;
         @include ps.grid-layout(
             // columns
-            [menu-button] minmax(var(--titlebar-size), max-content)
+            //[menu-button] minmax(var(--titlebar-size), max-content)
             [title-label] minmax(0px, 1fr)
             [max-button ] minmax(var(--titlebar-size), max-content)
             [back-button] minmax(var(--titlebar-size), max-content),
@@ -96,6 +96,16 @@
             [status] minmax(0px, var(--status-size))
         );
 
+        //
+        @at-root html[data-app-titlebar="mac"] & {
+            grid-template-columns:
+                [back-button] minmax(var(--titlebar-size), max-content)
+                [max-button ] minmax(var(--titlebar-size), max-content)
+                [title-label] minmax(0px, 1fr);
+                //[menu-button] minmax(var(--titlebar-size), max-content);
+        }
+
+        //
         & {
             //
             --rx: calc(var(--drag-x, 0) * var(--zpx, 1px));
@@ -120,17 +130,12 @@
 
             //
             will-change:
-                inset,
                 inset-inline-start,
                 inset-block-start,
                 inline-size,
                 block-size,
                 transform,
-                contents,
-                --rx, --ry,
-                --drag-x, --drag-y,
-                --resize-x, --resize-y,
-                --translate-x, --translate-y;
+                contents;
 
             //
             overflow: hidden;
@@ -179,7 +184,7 @@
 
                 //
                 grid-row: titlebar;
-                grid-column: 1 / 4 span;
+                grid-column: 1 / -1;
                 gap: 0px;
             }
 
@@ -217,15 +222,27 @@
             @include ps.flex(row);
 
             //
+            span {
+                @include ps.stretch;
+
+                //
+                & {
+                    display: flex;
+                    place-content: center start;
+                    place-items: center;
+                }
+            }
+
+            //
             & {
                 grid-row: 1 / 1 span;
-                grid-column: 1 / 2 span;
+                grid-column: title-label;
                 pointer-events: none;
 
                 //
                 text-align: start;
                 place-self: center start;
-                place-content: center start;
+                place-content: center space-between;
                 place-items: center start;
 
                 //
@@ -247,6 +264,19 @@
                 max-inline-size: 1.25rem;
                 max-block-size: 1.25rem;
             }
+
+            //
+            @at-root html[data-app-titlebar="mac"] & {
+                flex-direction: row-reverse;
+
+                //
+                span {
+                    display: flex;
+                    place-content: center;
+                    place-items: center;
+                }
+            }
+
         };
 
         //
@@ -254,8 +284,8 @@
         & :where(.ui-title-label)  { pointer-events: none; }
 
         //
-        & > .ui-status  { grid-row: status;    grid-column: 1 / 4 span; };
-        & > .ui-content { grid-row: content-b; grid-column: 1 / 4 span; };
+        & > .ui-status  { grid-row: status;    grid-column: 1 / -1; };
+        & > .ui-content { grid-row: content-b; grid-column: 1 / -1; };
 
         //
         @media #{d.$isMobile} { @include whenMobile; };

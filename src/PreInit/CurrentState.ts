@@ -69,6 +69,15 @@ subscribe(settings, (v) => {
 }, "orientation");
 
 
+
+
+//
+subscribe(settings, (v) => {
+    document.documentElement.dataset.appTitlebar = v;
+}, "titlebar");
+
+
+
 //
 subscribe(settings, (v) => {
     document.documentElement.style.setProperty("--layout-c", v || 4);

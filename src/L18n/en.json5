@@ -10,11 +10,14 @@
         scaling: "Scaling: ",
         theme: "Theme: ",
         iconShape: "Icon Shape: ",
+        interface: "Interface: ",
+        titlebar: "Titlebar: ",
 
         //
         display_desc: "Display Settings: ",
         design_desc: "Design Settings: ",
         grid_layout_desc: "Grid Layout Settings: ",
+        interface_desc: "Interface: ",
     },
     manager: {
         

@@ -10,13 +10,15 @@
         scaling: "Масштаб: ",
         theme: "Тема: ",
         iconShape: "Форма: ",
+        interface: "Интерфейс: ",
+        titlebar: "Заглавие: ",
 
         //
         display_desc: "Настройки отображения: ",
         design_desc: "Настройки дизайна: ",
         grid_layout_desc: "Настройки разметки: ",
+        interface_desc: "Интерфейс: ",
     },
     manager: {
-        
     }
 }

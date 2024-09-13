@@ -35,7 +35,7 @@
             id: "all",
             icon: "cog",
             label: "All",
-            include: ["layout", "display", "design"]
+            include: ["layout", "display", "design", "interface"]
         },
         {
             id: "grid",
@@ -47,7 +47,7 @@
             id: "interface",
             icon: "app-window-mac",
             label: "Interface",
-            include: []
+            include: ["interface"]
         },
         {
             id: "display",
@@ -99,6 +99,13 @@
             ]
         },
         {
+            id: "interface",
+            description: t('settings.interface_desc'),
+            fields: [
+                {label: t('settings.titlebar'), icon: "app-window", type: "titlebar", name: "titlebar"},
+            ]
+        },
+        {
             id: "experimental",
             description: "Experimental",
             fields: [
@@ -110,7 +117,6 @@
                         "gitlab": { icon: "gitlab", label: "Gitlab", value: "gitlab" }
                     }
                 }},
-                {label: "Titlebar-Select", icon: "badge-check", type: "titlebar", name: "exp-titlebar"},
             ]
         }
     ]
@@ -190,7 +196,7 @@
             <div is="flex-like" data-gap="16">
                 <div data-scheme="solid" data-highlight="2" v-for="form in filteredForms" data-page class="form-wrap" :key="form.id">
                     <div class="form-description">{{form.description}}</div>
-                    <div v-if="form.fields" v-for="field in form.fields" :key="field.name" class="ui-block-decor pe-none" :class="{'layout-alt': field.type == 'shape' || field.type == 'titlebar'}" style="--decor-size: 4rem;" >
+                    <div v-if="form.fields" v-for="field in form.fields" :key="field.name" class="ui-block-decor pe-none" :class="{'layout-alt': field.type == 'shape' || field.type == 'titlebar'}" style="--decor-size: 4rem; will-change: contents;" >
                         <span class="opt-label" :key="field.name">{{field.label}}</span>
                         <Icon data-place="icon" :key="field.name" :name="field.icon"/>
 
