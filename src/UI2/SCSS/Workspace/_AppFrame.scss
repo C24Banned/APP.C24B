@@ -19,6 +19,10 @@
             //
             inset-inline-start: 0px;
             inset-block-start: 0px;
+
+            //
+            --safe-area-left: env(titlebar-area-x, 0px);
+            --safe-area-right: calc(100% - env(titlebar-area-width, 100%));
         }
 
         & {
@@ -86,9 +90,11 @@
         @include ps.grid-layout(
             // columns
             //[menu-button] minmax(var(--titlebar-size), max-content)
+            [safe-area-left] minmax(0px, var(--safe-area-left, 0px))
             [title-label] minmax(0px, 1fr)
             [max-button ] minmax(var(--titlebar-size), max-content)
-            [back-button] minmax(var(--titlebar-size), max-content),
+            [back-button] minmax(var(--titlebar-size), max-content)
+            [safe-area-right] minmax(0px, var(--safe-area-right, 0px)),
 
             // rows
             [titlebar] minmax(0px, var(--titlebar-size))
@@ -96,17 +102,23 @@
             [status] minmax(0px, var(--status-size))
         );
 
-        //
+        // //titlebar-area-width
         @at-root html[data-app-titlebar="mac"] & {
             grid-template-columns:
+                [safe-area-left] minmax(0px, var(--safe-area-left, 0px))
                 [back-button] minmax(var(--titlebar-size), max-content)
                 [max-button ] minmax(var(--titlebar-size), max-content)
-                [title-label] minmax(0px, 1fr);
+                [title-label] minmax(0px, 1fr)
+                [safe-area-right] minmax(0px, var(--safe-area-right, 0px));
                 //[menu-button] minmax(var(--titlebar-size), max-content);
         }
 
         //
         & {
+            //
+            --safe-area-left: 0px;
+            --safe-area-right: 0px;
+
             //
             --rx: calc(var(--drag-x, 0) * var(--zpx, 1px));
             --ry: calc(var(--drag-y, 0) * var(--zpx, 1px));

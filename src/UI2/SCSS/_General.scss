@@ -29,6 +29,20 @@
 }
 
 //
+@property --safe-area-left {
+    syntax: "<length-percentage>";
+    initial-value: 0px;
+    inherits: true;
+}
+
+//
+@property --safe-area-right {
+    syntax: "<length-percentage>";
+    initial-value: 0px;
+    inherits: true;
+}
+
+//
 // titlebar == titlebar (desktop) | navbar (mobile) | taskbar (mobile)
 // status   == 0px      (desktop) | status (mobile)
 
