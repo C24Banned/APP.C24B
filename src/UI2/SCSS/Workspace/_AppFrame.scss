@@ -124,15 +124,15 @@
             --ry: calc(var(--drag-y, 0) * var(--zpx, 1px));
 
             //
-            --translate-x: clamp(0px, var(--rx, 0px), calc(100cqi - 100%));
-            --translate-y: clamp(0px, var(--ry, 0px), calc(calc(100cqb - var(--height-adjust, 0px)) - 100%));
+            --translate-x: clamp(0px, var(--rx, 0px), calc(100cqi - var(--border-width, 100%)));
+            --translate-y: clamp(0px, var(--ry, 0px), calc(calc(100cqb - var(--height-adjust, 0px)) - var(--border-height, 100%)));
         }
 
         & {
             direction: ltr;
             pointer-events: auto;
-            inset-inline-start: var(--rx, 0px);
-            inset-block-start: var(--ry, 0px);
+            inset-inline-start: var(--translate-x, 0px);
+            inset-block-start: var(--translate-y, 0px);
 
             //
             outline: solid 1px var(--current-surface-color);
