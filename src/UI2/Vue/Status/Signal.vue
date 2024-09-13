@@ -1,6 +1,5 @@
 <script setup>
 import Icon from "@idc/UI2/Vue/Decor/Icon.vue";
-import { pickFromCenter } from '@ux-ts/stylework/ColorTheme';
 import { ref } from "vue";
 
 //

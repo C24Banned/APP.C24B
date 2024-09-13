@@ -3,8 +3,8 @@
     import {reactive, watch, ref, onMounted} from "vue";
 
     //
-    import RangeTouch from 'rangetouch';
-    import stateMap from "@ux-ts/reactive/StateManager.ts";
+    //import RangeTouch from 'rangetouch';
+    //import stateMap from "@ux-ts/reactive/StateManager.ts";
 
     //
     const input  = ref(null);

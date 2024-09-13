@@ -38,6 +38,7 @@
         "jsox": "^1.2.119",
         "lucide-vue-next": "^0.414.0",
         "p-retry": "^6.2.0",
+        "pinia": "^2.2.2",
         "postcss": "^8.4.40",
         "postcss-discard-duplicates": "^7.0.0",
         "postcss-preset-env": "^10.0.0",
@@ -45,7 +46,7 @@
         "rimraf": "^5.0.7",
         "sass": "^1.77.6",
         "typescript": "^5.5.3",
-        "vite": "^5.3.1",
+        "vite": "^5.4.4",
         "vite-bundle-analyzer": "^0.10.3",
         "vite-plugin-browser-sync": "^3.0.3",
         "vite-plugin-bundle-prefetch": "^0.0.4",
@@ -55,7 +56,7 @@
         "vite-plugin-pwa": "^0.20.0",
         "vite-plugin-singlefile": "^2.0.2",
         "vite-plugin-static-copy": "^1.0.5",
-        "vue": "^3.4.33",
-        "vue-i18n": "^9.13.1"
+        "vue": "^3.5.4",
+        "vue-i18n": "^10.0.1"
     }
 }

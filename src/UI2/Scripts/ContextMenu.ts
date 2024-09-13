@@ -23,7 +23,7 @@ export default async ()=>{
     document.documentElement.addEventListener("contextmenu", (ev)=>{
         const target = ev.target as HTMLElement;
 
-        //
+        // comment to enable native context menu
         ev.stopPropagation();
         ev.preventDefault();
 

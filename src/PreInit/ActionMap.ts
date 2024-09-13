@@ -207,6 +207,7 @@ const actionMap = makeReactive(new Map<string, Function>([
             state.lists.get(currentPage)?.add?.(newItem.id);
 
             //
+            newItem.pointerId = -1;
             redirectCell(newItem.cell, {item: newItem, items: state.items, page: state.grids.get(currentPage)});
 
             //

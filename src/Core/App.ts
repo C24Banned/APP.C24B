@@ -7,13 +7,6 @@ const App = async ()=>{
     document.documentElement.style.setProperty("--theme-base-color", localStorage.getItem("--theme-base-color") || "oklch(50% 0.3 0)", "");
     document.documentElement.style.setProperty("--theme-wallpaper-is-dark", localStorage.getItem("--theme-wallpaper-is-dark") || "0", "");
 
-    // avoid any dragging when no-needed...
-    document.documentElement.addEventListener("dragstart", (ev) => {
-        if ((ev?.target as HTMLElement)?.matches?.("div, img, picture, canvas, video, svg")) {
-            ev.preventDefault();
-        }
-    }, {passive: false, capture: true});
-
     //
     const loading = Promise.allSettled([
         import("@ux-ts/stylework/Bundle.ts"),
@@ -41,10 +34,17 @@ const App = async ()=>{
     });
 
     //
-    const {createApp} = await import("vue");
+    const { createApp } = await import("vue");
+    const { createPinia } = await import("pinia");
+
+    //
     const App = (await import("@idc/Main.vue")).default;
+
+    //
+    const pinia = createPinia();
     const app = createApp(App);
-    app.use(i18n)
+    app.use(i18n);
+    app.use(pinia);
     app.directive("observe", {
         created: (el, binding, vNode, prevNode) => {
             observeAttribute(el, binding.arg, (mut)=>{

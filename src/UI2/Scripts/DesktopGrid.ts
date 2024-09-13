@@ -72,7 +72,7 @@ export default async ()=>{
     const placeElement = async ({pointer, holding})=>{
         const el = holding.element.deref();
         const id = el.dataset.id;
-        const tx = el.closest(".ui-desktop-grid").querySelector("*[data-type=\"labels\"][data-id=\""+id+"\"]");
+        const tx = el.closest(".ui-desktop-grid")?.querySelector?.("*[data-type=\"labels\"][data-id=\""+id+"\"]");
 
         //
         const state = stateMap.get("desktop");//stateMap.get(el.closest(".ui-desktop-grid"));
@@ -85,7 +85,7 @@ export default async ()=>{
         ];
 
         //
-        const prev = [...(state.items?.get?.(id)?.cell || [0, 0])];
+        const prev: [number, number] = [...(state.items?.get?.(id)?.cell || [0, 0])] as [number, number];
         const item: GridItemType = state.items?.get(id) as unknown as GridItemType;
         const page: GridPageType = state.grids?.get(current) as unknown as GridPageType;
 
@@ -99,8 +99,15 @@ export default async ()=>{
         el.style.setProperty("--cell-y", xy[1], "");
 
         //
-        if (state.items) { redirectCell(xy, com); }
-        if (item) { item.pointerId = -1; }
+        if (item) {
+            item.cell = redirectCell(item.cell = xy, com);
+            item.pointerId = -1;
+        }
+
+        //
+        requestAnimationFrame(()=>{
+            if (item) { item.pointerId = -1; }
+        });
 
         //
         await el.animate(animationSequence(), {
@@ -148,7 +155,7 @@ export default async ()=>{
 
             //
             const handle = MOCElement(ev.target, ".ux-grid-item[data-type=\"items\"]");
-            const cbox = handle?.getBoundingClientRect();
+            const cbox = handle?.getBoundingClientRect?.();
             const pbox = handle?.parentNode?.getBoundingClientRect?.();
             const rel : [number, number] = [(cbox.left + cbox.right)/2 - pbox.left, (cbox.top + cbox.bottom)/2 - pbox.top];
             const cent: [number, number] = [(rel[0]) / unfixedClientZoom(), (rel[1]) / unfixedClientZoom()]
@@ -199,6 +206,5 @@ export default async ()=>{
             target.style.setProperty("--r-shift-mod", cx[1]);
         }
     });
-
 
 };

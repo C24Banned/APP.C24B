@@ -1,5 +1,5 @@
 <script setup>
-    import GestureControl from "@ux-ts/interact/Gesture.ts";
+    //import GestureControl from "@ux-ts/interact/Gesture.ts";
     import {reactive, watch, ref, onMounted} from "vue";
     import {subscribe, safe, derivate} from "@ux-ts/reactive/ReactiveLib.ts";
     import { objectAssign } from '@ux-ts/reactive/AssignObject';

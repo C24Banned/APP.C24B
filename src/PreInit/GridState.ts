@@ -168,6 +168,12 @@ export const loadState = (st = preLoadState)=>{
     ls.add("wallpapers");
     ls.add("github");
     state.lists.set("main", ls);
+    state.grids.get("main").list = Array.from(ls.values());
+
+    //
+    state?.items?.entries()?.forEach?.((el)=>{
+        el.pointerId = -1;
+    });
 
     //
     toStorage(state);
