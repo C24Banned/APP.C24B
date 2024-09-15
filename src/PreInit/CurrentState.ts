@@ -44,7 +44,7 @@ subscribe(settings, (v) => {
 subscribe(settings, (v) => {
     const target = document.documentElement;
     if (v == -1) { target.setAttribute("data-theme", "dark"); }
-    if (v ==  0) { target.removeAttribute("data-theme"); }
+    if (v ==  0) { target.setAttribute("data-theme", "native"); }
     if (v ==  1) { target.setAttribute("data-theme", "light"); }
 
     //
