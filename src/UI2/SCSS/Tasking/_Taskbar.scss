@@ -19,12 +19,16 @@
 
         & {
             @include ps.stretch;
+            //@include ps.flex(column);
 
             //
+            inline-size: 100%;
             position: relative;
             pointer-events: auto;
             grid-column: 1 / 1 span;
             grid-row: 1 / 1 span;
+            max-inline-size: 100%;
+            min-inline-size: 0px;
 
             //
             z-index: 1400;
@@ -32,34 +36,74 @@
         }
 
         //
+        & span {
+            @include ps.stretch;
+            @include ps.no-wrap;
+            @include ps.flex(row);
+
+            //
+            & {
+                text-align: start;
+                min-inline-size: 0px;
+                flex-grow: 1;
+
+                //
+                place-content: center;
+                place-items: center;
+                place-self: center;
+
+                //
+                justify-self: start;
+                justify-items: start;
+                justify-content: start;
+            };
+        }
+
+        //
         &::part(content-box) {
             @include ps.flex(column);
             @include ps.center;
+            @include ps.stretch;
 
             //
-            pointer-events: auto;
+            & {
+                pointer-events: auto;
+                max-inline-size: 100%;
+                min-inline-size: 0px;
+                inline-size: 100%;
 
-            //
-            justify-items: start !important;
-            justify-content: start !important;
+                //
+                justify-items: start !important;
+                justify-content: start !important;
 
-            //
-            gap: 0px;
-            padding: 0px;
-            padding-block-start: 2rem;
+                //
+                gap: 0px;
+                padding: 0px;
+                padding-block-start: 2rem;
+            }
         }
 
         //
         .ui-tab-item {
-            @include ps.flex(row);
+            //@include ps.flex(row);
+            @include ps.grid-layout(
+                minmax(0px, var(--decor-size)) minmax(0px, 1fr) minmax(0px, var(--decor-size)),
+                minmax(0px, 1fr)
+            );
 
             //
             & { --decor-size: 4rem; };
             & {
+                max-inline-size: 100%;
+                min-inline-size: 0px;
                 inline-size: 100%;
+                block-size: var(--decor-size);
+
+                //
                 justify-content: space-between;
                 justify-items: stretch;
                 pointer-events: auto;
+                text-align: start;
             }
 
             //
@@ -69,8 +113,8 @@
         }
 
         //
-        @media #{d.$isMobile}  { inline-size: 100cqi; }
         @media #{d.$isDesktop} { display: none; }
+        @media #{d.$isMobile} {  }
     }
 
     //
