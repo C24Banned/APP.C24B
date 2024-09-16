@@ -35,6 +35,40 @@
         <meta name="keywords"
             content="pwa, source, project, intendant, idc, software, experimental, nextgen, ng, 2024, 2025, future, wip, portfolio">
 
+        <style type="text/css">
+            @layer root {
+                :where(:host, :root, :scope, body) {
+                    zoom: 1;
+                    padding: 0px;
+                    margin: 0px;
+                }
+
+                :where(*) {
+                    transform: matrix(1, 0, 0, 1, 0, 0);
+                }
+
+                @viewport {
+                    zoom: auto;
+                    viewport-fit: cover;
+                    min-zoom: auto;
+                    max-zoom: auto;
+                    user-zoom: fixed;
+                    orientation: auto;
+                    virtual-keyboard: overlays-content;
+                }
+
+                :root, :where(body) {
+                    user-select: none;
+                    touch-action: none;
+                    background-color: var(--theme-base-color, transparent);
+                }
+
+                ::view-transition {
+                    background-color: var(--theme-base-color, transparent);
+                }
+            }
+        </style>
+
         <!--<meta
             http-equiv="Content-Security-Policy"
             content="script-src 'self';"
@@ -48,28 +82,6 @@
 
         <!-- webpackIgnore: true-->
         <link rel="manifest" href="./manifest-pwa.json">
-
-        <style type="text/css">
-        @viewport {
-            zoom: auto;
-            viewport-fit: cover;
-            min-zoom: auto;
-            max-zoom: auto;
-            user-zoom: fixed;
-            orientation: auto;
-            virtual-keyboard: overlays-content;
-		}
-
-        :root, :where(body) {
-            user-select: none;
-            touch-action: none;
-            background-color: var(--theme-base-color, transparent);
-        }
-
-        ::view-transition {
-            background-color: var(--theme-base-color, transparent);
-        }
-        </style>
 
         <link rel="icon" type="image/png" href="./favicon.png">
         <!--<link rel="stylesheet" type="text/css" href="./main.scss">-->
