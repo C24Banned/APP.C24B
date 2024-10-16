@@ -54,7 +54,7 @@ subscribe(settings, (v) => {
 //
 subscribe(settings, (v) => {
     document.documentElement.dataset["orientation"] = v || "auto";
-    (async () => {
+    /*(async () => {
         switch (v || "auto") {
             case "auto":
                 await screen.orientation?.lock?.(screen.orientation.type);
@@ -65,7 +65,7 @@ subscribe(settings, (v) => {
                 await screen.orientation?.lock?.(v || "any");
                 break;
         }
-    })().catch(console.warn.bind(console));
+    })().catch(console.warn.bind(console));*/
 }, "orientation");
 
 
