@@ -56,10 +56,11 @@ const _WARN_ = (...args) => {
 //
 const tryFetch = (req, event) => {
     const sendResponse = async (response) => {
-        let resp = response?.clone?.()?.catch?.((e)=>{
+        let resp = (await response)?.clone?.()?.catch?.((e)=>{
             console.warn(e);
             return response;
-        }) || response;
+        }) || (await response);
+        if (!(resp instanceof Response)) { throw Error("Invalid Response"); };
         caches.open(RUNTIME).then(async (c)=>c.add(await resp).catch(_WARN_));
         return resp;
     };
