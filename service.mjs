@@ -124,7 +124,10 @@ const fit = (req, event) => {
     //
     const anyone = loading.then((r)=>(r||cached)).catch(()=>cached);
     anyone.then(()=>self.skipWaiting())
-    return anyone;
+    return anyone?.then?.((resp)=>{
+        if (!(resp instanceof Response)) { throw Error("Invalid Response"); };
+        return resp;
+    });
 };
 
 //
